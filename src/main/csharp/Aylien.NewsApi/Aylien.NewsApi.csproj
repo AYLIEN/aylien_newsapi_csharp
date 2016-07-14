@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright 2016 Aylien, Inc. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C9AB4D14-F827-4E0E-B7B5-48AC4E4855AC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Aylien.NewsApi</RootNamespace>
+    <AssemblyName>Aylien.NewsApi</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="RestSharp">
+      <HintPath>..\..\..\..\packages\RestSharp.105.2.3\lib\net45\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath Condition="Exists('$(SolutionDir)\packages')">$(SolutionDir)\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath Condition="Exists('..\packages')">..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath Condition="Exists('..\..\packages')">..\..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath Condition="Exists('..\..\..\..\vendor')">..\..\..\..\vendor\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Api\DefaultApi.cs" />
+    <Compile Include="Client\ApiClient.cs" />
+    <Compile Include="Client\ApiException.cs" />
+    <Compile Include="Client\ApiResponse.cs" />
+    <Compile Include="Client\Configuration.cs" />
+    <Compile Include="Model\Author.cs" />
+    <Compile Include="Model\Autocomplete.cs" />
+    <Compile Include="Model\Autocompletes.cs" />
+    <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\CategoryLinks.cs" />
+    <Compile Include="Model\Coverages.cs" />
+    <Compile Include="Model\Entities.cs" />
+    <Compile Include="Model\Entity.cs" />
+    <Compile Include="Model\EntityLinks.cs" />
+    <Compile Include="Model\Error.cs" />
+    <Compile Include="Model\ErrorLinks.cs" />
+    <Compile Include="Model\Errors.cs" />
+    <Compile Include="Model\HistogramInterval.cs" />
+    <Compile Include="Model\Histograms.cs" />
+    <Compile Include="Model\Location.cs" />
+    <Compile Include="Model\Media.cs" />
+    <Compile Include="Model\RelatedStories.cs" />
+    <Compile Include="Model\Scope.cs" />
+    <Compile Include="Model\Sentiment.cs" />
+    <Compile Include="Model\Sentiments.cs" />
+    <Compile Include="Model\ShareCount.cs" />
+    <Compile Include="Model\ShareCounts.cs" />
+    <Compile Include="Model\Source.cs" />
+    <Compile Include="Model\Stories.cs" />
+    <Compile Include="Model\Story.cs" />
+    <Compile Include="Model\StoryCluster.cs" />
+    <Compile Include="Model\StoryLinks.cs" />
+    <Compile Include="Model\Summary.cs" />
+    <Compile Include="Model\TimeSeries.cs" />
+    <Compile Include="Model\TimeSeriesList.cs" />
+    <Compile Include="Model\Trend.cs" />
+    <Compile Include="Model\Trends.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MsBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -7,8 +7,6 @@ Visit our [interactive documentation](https://newsapi.aylien.com/docs/#swagger-u
 
 ## Frameworks supported
 - .NET 4.0 or later
-- Windows Phone 7.1 (Mango)
-
 
 ## Installation
 
@@ -32,6 +30,7 @@ using Aylien.NewsApi.Model;
 ```
 
 ## Getting Started
+Please follow the [installation](#installation) procedure and then run the following code:
 
 ```csharp
 using System;
@@ -49,10 +48,10 @@ namespace Example
         {
             
             // Configure API key authorization: app_id
-			Configuration.Default.ApiKey.Add("X-AYLIEN-NewsAPI-Application-ID", "YOUR_APP_ID");
+            Configuration.Default.ApiKey.Add("X-AYLIEN-NewsAPI-Application-ID", "YOUR_APP_ID");
 
-			// Configure API key authorization: app_key
-			Configuration.Default.ApiKey.Add("X-AYLIEN-NewsAPI-Application-Key", "YOUR_APP_KEY");
+            // Configure API key authorization: app_key
+            Configuration.Default.ApiKey.Add("X-AYLIEN-NewsAPI-Application-Key", "YOUR_APP_KEY");
 
             var apiInstance = new DefaultApi();
             
@@ -98,38 +97,38 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
- - [Aylien.NewsApi.Model.Author](docs/Author.md)
- - [Aylien.NewsApi.Model.Autocomplete](docs/Autocomplete.md)
- - [Aylien.NewsApi.Model.Autocompletes](docs/Autocompletes.md)
- - [Aylien.NewsApi.Model.Category](docs/Category.md)
- - [Aylien.NewsApi.Model.CategoryLinks](docs/CategoryLinks.md)
- - [Aylien.NewsApi.Model.Coverages](docs/Coverages.md)
- - [Aylien.NewsApi.Model.Entities](docs/Entities.md)
- - [Aylien.NewsApi.Model.Entity](docs/Entity.md)
- - [Aylien.NewsApi.Model.EntityLinks](docs/EntityLinks.md)
- - [Aylien.NewsApi.Model.Error](docs/Error.md)
- - [Aylien.NewsApi.Model.ErrorLinks](docs/ErrorLinks.md)
- - [Aylien.NewsApi.Model.Errors](docs/Errors.md)
- - [Aylien.NewsApi.Model.HistogramInterval](docs/HistogramInterval.md)
- - [Aylien.NewsApi.Model.Histograms](docs/Histograms.md)
- - [Aylien.NewsApi.Model.Location](docs/Location.md)
- - [Aylien.NewsApi.Model.Media](docs/Media.md)
- - [Aylien.NewsApi.Model.RelatedStories](docs/RelatedStories.md)
- - [Aylien.NewsApi.Model.Scope](docs/Scope.md)
- - [Aylien.NewsApi.Model.Sentiment](docs/Sentiment.md)
- - [Aylien.NewsApi.Model.Sentiments](docs/Sentiments.md)
- - [Aylien.NewsApi.Model.ShareCount](docs/ShareCount.md)
- - [Aylien.NewsApi.Model.ShareCounts](docs/ShareCounts.md)
- - [Aylien.NewsApi.Model.Source](docs/Source.md)
- - [Aylien.NewsApi.Model.Stories](docs/Stories.md)
- - [Aylien.NewsApi.Model.Story](docs/Story.md)
- - [Aylien.NewsApi.Model.StoryCluster](docs/StoryCluster.md)
- - [Aylien.NewsApi.Model.StoryLinks](docs/StoryLinks.md)
- - [Aylien.NewsApi.Model.Summary](docs/Summary.md)
- - [Aylien.NewsApi.Model.TimeSeries](docs/TimeSeries.md)
- - [Aylien.NewsApi.Model.TimeSeriesList](docs/TimeSeriesList.md)
- - [Aylien.NewsApi.Model.Trend](docs/Trend.md)
- - [Aylien.NewsApi.Model.Trends](docs/Trends.md)
+ - [Model.Author](docs/Author.md)
+ - [Model.Autocomplete](docs/Autocomplete.md)
+ - [Model.Autocompletes](docs/Autocompletes.md)
+ - [Model.Category](docs/Category.md)
+ - [Model.CategoryLinks](docs/CategoryLinks.md)
+ - [Model.Coverages](docs/Coverages.md)
+ - [Model.Entities](docs/Entities.md)
+ - [Model.Entity](docs/Entity.md)
+ - [Model.EntityLinks](docs/EntityLinks.md)
+ - [Model.Error](docs/Error.md)
+ - [Model.ErrorLinks](docs/ErrorLinks.md)
+ - [Model.Errors](docs/Errors.md)
+ - [Model.HistogramInterval](docs/HistogramInterval.md)
+ - [Model.Histograms](docs/Histograms.md)
+ - [Model.Location](docs/Location.md)
+ - [Model.Media](docs/Media.md)
+ - [Model.RelatedStories](docs/RelatedStories.md)
+ - [Model.Scope](docs/Scope.md)
+ - [Model.Sentiment](docs/Sentiment.md)
+ - [Model.Sentiments](docs/Sentiments.md)
+ - [Model.ShareCount](docs/ShareCount.md)
+ - [Model.ShareCounts](docs/ShareCounts.md)
+ - [Model.Source](docs/Source.md)
+ - [Model.Stories](docs/Stories.md)
+ - [Model.Story](docs/Story.md)
+ - [Model.StoryCluster](docs/StoryCluster.md)
+ - [Model.StoryLinks](docs/StoryLinks.md)
+ - [Model.Summary](docs/Summary.md)
+ - [Model.TimeSeries](docs/TimeSeries.md)
+ - [Model.TimeSeriesList](docs/TimeSeriesList.md)
+ - [Model.Trend](docs/Trend.md)
+ - [Model.Trends](docs/Trends.md)
 
 
 ## Documentation for Authorization
