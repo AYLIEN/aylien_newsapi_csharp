@@ -33,7 +33,7 @@ namespace Aylien.NewsApi.Model
     /// Entity
     /// </summary>
     [DataContract]
-    public partial class Entity : IEquatable<Entity>
+    public partial class Entity :  IEquatable<Entity>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Entity" /> class.
@@ -51,36 +51,36 @@ namespace Aylien.NewsApi.Model
             this.Links = Links;
             this.Indices = Indices;
         }
-
+        
         /// <summary>
         /// The entity text
         /// </summary>
         /// <value>The entity text</value>
-        [DataMember(Name = "text", EmitDefaultValue = false)]
+        [DataMember(Name="text", EmitDefaultValue=false)]
         public string Text { get; set; }
         /// <summary>
         /// The entity score
         /// </summary>
         /// <value>The entity score</value>
-        [DataMember(Name = "score", EmitDefaultValue = false)]
+        [DataMember(Name="score", EmitDefaultValue=false)]
         public double? Score { get; set; }
         /// <summary>
         /// An array of the dbpedia types
         /// </summary>
         /// <value>An array of the dbpedia types</value>
-        [DataMember(Name = "types", EmitDefaultValue = false)]
+        [DataMember(Name="types", EmitDefaultValue=false)]
         public List<string> Types { get; set; }
         /// <summary>
         /// Related links to the entity
         /// </summary>
         /// <value>Related links to the entity</value>
-        [DataMember(Name = "links", EmitDefaultValue = false)]
+        [DataMember(Name="links", EmitDefaultValue=false)]
         public EntityLinks Links { get; set; }
         /// <summary>
         /// The indices of the entity text
         /// </summary>
         /// <value>The indices of the entity text</value>
-        [DataMember(Name = "indices", EmitDefaultValue = false)]
+        [DataMember(Name="indices", EmitDefaultValue=false)]
         public List<List<int?>> Indices { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
@@ -98,7 +98,7 @@ namespace Aylien.NewsApi.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -130,27 +130,27 @@ namespace Aylien.NewsApi.Model
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
                     this.Text == other.Text ||
                     this.Text != null &&
                     this.Text.Equals(other.Text)
-                ) &&
+                ) && 
                 (
                     this.Score == other.Score ||
                     this.Score != null &&
                     this.Score.Equals(other.Score)
-                ) &&
+                ) && 
                 (
                     this.Types == other.Types ||
                     this.Types != null &&
                     this.Types.SequenceEqual(other.Types)
-                ) &&
+                ) && 
                 (
                     this.Links == other.Links ||
                     this.Links != null &&
                     this.Links.Equals(other.Links)
-                ) &&
+                ) && 
                 (
                     this.Indices == other.Indices ||
                     this.Indices != null &&

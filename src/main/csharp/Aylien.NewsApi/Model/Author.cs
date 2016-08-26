@@ -33,7 +33,7 @@ namespace Aylien.NewsApi.Model
     /// Author
     /// </summary>
     [DataContract]
-    public partial class Author : IEquatable<Author>
+    public partial class Author :  IEquatable<Author>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Author" /> class.
@@ -47,24 +47,24 @@ namespace Aylien.NewsApi.Model
             this.Name = Name;
             this.AvatarUrl = AvatarUrl;
         }
-
+        
         /// <summary>
         /// A unique identification for the author
         /// </summary>
         /// <value>A unique identification for the author</value>
-        [DataMember(Name = "id", EmitDefaultValue = false)]
+        [DataMember(Name="id", EmitDefaultValue=false)]
         public long? Id { get; set; }
         /// <summary>
         /// The extracted author full name
         /// </summary>
         /// <value>The extracted author full name</value>
-        [DataMember(Name = "name", EmitDefaultValue = false)]
+        [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
         /// <summary>
         /// A URL which points to the author avatar
         /// </summary>
         /// <value>A URL which points to the author avatar</value>
-        [DataMember(Name = "avatar_url", EmitDefaultValue = false)]
+        [DataMember(Name="avatar_url", EmitDefaultValue=false)]
         public string AvatarUrl { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
@@ -80,7 +80,7 @@ namespace Aylien.NewsApi.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -112,17 +112,17 @@ namespace Aylien.NewsApi.Model
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
                     this.Id == other.Id ||
                     this.Id != null &&
                     this.Id.Equals(other.Id)
-                ) &&
+                ) && 
                 (
                     this.Name == other.Name ||
                     this.Name != null &&
                     this.Name.Equals(other.Name)
-                ) &&
+                ) && 
                 (
                     this.AvatarUrl == other.AvatarUrl ||
                     this.AvatarUrl != null &&

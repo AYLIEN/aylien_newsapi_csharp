@@ -33,7 +33,7 @@ namespace Aylien.NewsApi.Model
     /// Autocomplete
     /// </summary>
     [DataContract]
-    public partial class Autocomplete : IEquatable<Autocomplete>
+    public partial class Autocomplete :  IEquatable<Autocomplete>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Autocomplete" /> class.
@@ -45,18 +45,18 @@ namespace Aylien.NewsApi.Model
             this.Id = Id;
             this.Text = Text;
         }
-
+        
         /// <summary>
         /// ID of the autocomplete
         /// </summary>
         /// <value>ID of the autocomplete</value>
-        [DataMember(Name = "id", EmitDefaultValue = false)]
+        [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
         /// <summary>
         /// Text of the autocomplete
         /// </summary>
         /// <value>Text of the autocomplete</value>
-        [DataMember(Name = "text", EmitDefaultValue = false)]
+        [DataMember(Name="text", EmitDefaultValue=false)]
         public string Text { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
@@ -71,7 +71,7 @@ namespace Aylien.NewsApi.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -103,12 +103,12 @@ namespace Aylien.NewsApi.Model
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
                     this.Id == other.Id ||
                     this.Id != null &&
                     this.Id.Equals(other.Id)
-                ) &&
+                ) && 
                 (
                     this.Text == other.Text ||
                     this.Text != null &&

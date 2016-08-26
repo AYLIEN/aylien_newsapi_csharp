@@ -29,7 +29,7 @@ namespace Aylien.NewsApi.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public interface IDefaultApi
+    public interface IDefaultApi : IApiAccessor
     {
         #region Synchronous Operations
         /// <summary>
@@ -44,7 +44,7 @@ namespace Aylien.NewsApi.Api
         /// <param name="language">This parameter is used for autocompletes whose language is the specified value. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional, default to en)</param>
         /// <param name="perPage">This parameter is used for specifying number of items in each page. (optional, default to 3)</param>
         /// <returns>Autocompletes</returns>
-        Autocompletes ListAutocompletes(string type, string term, string language = null, int? perPage = null);
+        Autocompletes ListAutocompletes (string type, string term, string language = null, int? perPage = null);
 
         /// <summary>
         /// List autocompletes
@@ -58,7 +58,7 @@ namespace Aylien.NewsApi.Api
         /// <param name="language">This parameter is used for autocompletes whose language is the specified value. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional, default to en)</param>
         /// <param name="perPage">This parameter is used for specifying number of items in each page. (optional, default to 3)</param>
         /// <returns>ApiResponse of Autocompletes</returns>
-        ApiResponse<Autocompletes> ListAutocompletesWithHttpInfo(string type, string term, string language = null, int? perPage = null);
+        ApiResponse<Autocompletes> ListAutocompletesWithHttpInfo (string type, string term, string language = null, int? perPage = null);
         /// <summary>
         /// List coverages
         /// </summary>
@@ -101,6 +101,11 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes  is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="cluster">This parameter enables clustering for the returned stories. (optional, default to false)</param>
         /// <param name="clusterAlgorithm">This parameter is used for specifying the clustering algorithm you wish to use. It supprts STC, Lingo and [k-means](https://en.wikipedia.org/wiki/K-means_clustering) algorithms. (optional, default to lingo)</param>
         /// <param name="_return">This parameter is used for specifying return fields. (optional)</param>
@@ -112,7 +117,7 @@ namespace Aylien.NewsApi.Api
         /// <param name="storyLanguage">This parameter is used for setting the language of the story. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional, default to auto)</param>
         /// <param name="perPage">This parameter is used for specifying number of items in each page. (optional, default to 3)</param>
         /// <returns>Coverages</returns>
-        Coverages ListCoverages(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, long? storyId = null, string storyUrl = null, string storyTitle = null, string storyBody = null, DateTime? storyPublishedAt = null, string storyLanguage = null, int? perPage = null);
+        Coverages ListCoverages (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, long? storyId = null, string storyUrl = null, string storyTitle = null, string storyBody = null, DateTime? storyPublishedAt = null, string storyLanguage = null, int? perPage = null);
 
         /// <summary>
         /// List coverages
@@ -156,6 +161,11 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes  is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="cluster">This parameter enables clustering for the returned stories. (optional, default to false)</param>
         /// <param name="clusterAlgorithm">This parameter is used for specifying the clustering algorithm you wish to use. It supprts STC, Lingo and [k-means](https://en.wikipedia.org/wiki/K-means_clustering) algorithms. (optional, default to lingo)</param>
         /// <param name="_return">This parameter is used for specifying return fields. (optional)</param>
@@ -167,7 +177,7 @@ namespace Aylien.NewsApi.Api
         /// <param name="storyLanguage">This parameter is used for setting the language of the story. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional, default to auto)</param>
         /// <param name="perPage">This parameter is used for specifying number of items in each page. (optional, default to 3)</param>
         /// <returns>ApiResponse of Coverages</returns>
-        ApiResponse<Coverages> ListCoveragesWithHttpInfo(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, long? storyId = null, string storyUrl = null, string storyTitle = null, string storyBody = null, DateTime? storyPublishedAt = null, string storyLanguage = null, int? perPage = null);
+        ApiResponse<Coverages> ListCoveragesWithHttpInfo (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, long? storyId = null, string storyUrl = null, string storyTitle = null, string storyBody = null, DateTime? storyPublishedAt = null, string storyLanguage = null, int? perPage = null);
         /// <summary>
         /// List histograms
         /// </summary>
@@ -210,12 +220,17 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="intervalStart">This parameter is used for setting the start data point of histogram intervals. (optional)</param>
         /// <param name="intervalEnd">This parameter is used for setting the end data point of histogram intervals. (optional)</param>
         /// <param name="intervalWidth">This parameter is used for setting the width of histogram intervals. (optional)</param>
         /// <param name="field">This parameter is used for specifying the y-axis variable for the histogram. (optional, default to social_shares_count)</param>
         /// <returns>Histograms</returns>
-        Histograms ListHistograms(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? intervalStart = null, int? intervalEnd = null, int? intervalWidth = null, string field = null);
+        Histograms ListHistograms (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, int? intervalStart = null, int? intervalEnd = null, int? intervalWidth = null, string field = null);
 
         /// <summary>
         /// List histograms
@@ -259,12 +274,17 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="intervalStart">This parameter is used for setting the start data point of histogram intervals. (optional)</param>
         /// <param name="intervalEnd">This parameter is used for setting the end data point of histogram intervals. (optional)</param>
         /// <param name="intervalWidth">This parameter is used for setting the width of histogram intervals. (optional)</param>
         /// <param name="field">This parameter is used for specifying the y-axis variable for the histogram. (optional, default to social_shares_count)</param>
         /// <returns>ApiResponse of Histograms</returns>
-        ApiResponse<Histograms> ListHistogramsWithHttpInfo(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? intervalStart = null, int? intervalEnd = null, int? intervalWidth = null, string field = null);
+        ApiResponse<Histograms> ListHistogramsWithHttpInfo (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, int? intervalStart = null, int? intervalEnd = null, int? intervalWidth = null, string field = null);
         /// <summary>
         /// List related stories
         /// </summary>
@@ -307,6 +327,11 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes  is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="cluster">This parameter enables clustering for the returned stories. (optional, default to false)</param>
         /// <param name="clusterAlgorithm">This parameter is used for specifying the clustering algorithm you wish to use. It supprts STC, Lingo and [k-means](https://en.wikipedia.org/wiki/K-means_clustering) algorithms. (optional, default to lingo)</param>
         /// <param name="_return">This parameter is used for specifying return fields. (optional)</param>
@@ -318,7 +343,7 @@ namespace Aylien.NewsApi.Api
         /// <param name="storyLanguage">This parameter is used for setting the language of the story. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional, default to auto)</param>
         /// <param name="perPage">This parameter is used for specifying number of items in each page. (optional, default to 3)</param>
         /// <returns>RelatedStories</returns>
-        RelatedStories ListRelatedStories(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, long? storyId = null, string storyUrl = null, string storyTitle = null, string storyBody = null, string boostBy = null, string storyLanguage = null, int? perPage = null);
+        RelatedStories ListRelatedStories (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, long? storyId = null, string storyUrl = null, string storyTitle = null, string storyBody = null, string boostBy = null, string storyLanguage = null, int? perPage = null);
 
         /// <summary>
         /// List related stories
@@ -362,6 +387,11 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes  is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="cluster">This parameter enables clustering for the returned stories. (optional, default to false)</param>
         /// <param name="clusterAlgorithm">This parameter is used for specifying the clustering algorithm you wish to use. It supprts STC, Lingo and [k-means](https://en.wikipedia.org/wiki/K-means_clustering) algorithms. (optional, default to lingo)</param>
         /// <param name="_return">This parameter is used for specifying return fields. (optional)</param>
@@ -373,7 +403,7 @@ namespace Aylien.NewsApi.Api
         /// <param name="storyLanguage">This parameter is used for setting the language of the story. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional, default to auto)</param>
         /// <param name="perPage">This parameter is used for specifying number of items in each page. (optional, default to 3)</param>
         /// <returns>ApiResponse of RelatedStories</returns>
-        ApiResponse<RelatedStories> ListRelatedStoriesWithHttpInfo(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, long? storyId = null, string storyUrl = null, string storyTitle = null, string storyBody = null, string boostBy = null, string storyLanguage = null, int? perPage = null);
+        ApiResponse<RelatedStories> ListRelatedStoriesWithHttpInfo (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, long? storyId = null, string storyUrl = null, string storyTitle = null, string storyBody = null, string boostBy = null, string storyLanguage = null, int? perPage = null);
         /// <summary>
         /// List Stories
         /// </summary>
@@ -416,6 +446,11 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="cluster">This parameter enables clustering for the returned stories. (optional, default to false)</param>
         /// <param name="clusterAlgorithm">This parameter is used for specifying the clustering algorithm you wish to use. It supprts STC, Lingo and [k-means](https://en.wikipedia.org/wiki/K-means_clustering) algorithms. (optional, default to lingo)</param>
         /// <param name="_return">This parameter is used for specifying return fields. (optional)</param>
@@ -424,7 +459,7 @@ namespace Aylien.NewsApi.Api
         /// <param name="cursor">This parameter is used for finding a specific page. (optional, default to *)</param>
         /// <param name="perPage">This parameter is used for specifying number of items in each page. (optional, default to 10)</param>
         /// <returns>Stories</returns>
-        Stories ListStories(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, string sortBy = null, string sortDirection = null, string cursor = null, int? perPage = null);
+        Stories ListStories (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, string sortBy = null, string sortDirection = null, string cursor = null, int? perPage = null);
 
         /// <summary>
         /// List Stories
@@ -468,6 +503,11 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="cluster">This parameter enables clustering for the returned stories. (optional, default to false)</param>
         /// <param name="clusterAlgorithm">This parameter is used for specifying the clustering algorithm you wish to use. It supprts STC, Lingo and [k-means](https://en.wikipedia.org/wiki/K-means_clustering) algorithms. (optional, default to lingo)</param>
         /// <param name="_return">This parameter is used for specifying return fields. (optional)</param>
@@ -476,7 +516,7 @@ namespace Aylien.NewsApi.Api
         /// <param name="cursor">This parameter is used for finding a specific page. (optional, default to *)</param>
         /// <param name="perPage">This parameter is used for specifying number of items in each page. (optional, default to 10)</param>
         /// <returns>ApiResponse of Stories</returns>
-        ApiResponse<Stories> ListStoriesWithHttpInfo(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, string sortBy = null, string sortDirection = null, string cursor = null, int? perPage = null);
+        ApiResponse<Stories> ListStoriesWithHttpInfo (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, string sortBy = null, string sortDirection = null, string cursor = null, int? perPage = null);
         /// <summary>
         /// List time series
         /// </summary>
@@ -517,11 +557,16 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="publishedAtStart">This parameter is used for finding stories whose published at time is less than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional, default to NOW-7DAYS/DAY)</param>
         /// <param name="publishedAtEnd">This parameter is used for finding stories whose published at time is greater than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional, default to NOW/DAY)</param>
         /// <param name="period">The size of each date range is expressed as an interval to be added to the lower bound. It supports Date Math Syntax. Valid options are &#x60;+&#x60; following an integer number greater than 0 and one of the Date Math keywords. e.g. &#x60;+1DAY&#x60;, &#x60;+2MINUTES&#x60; and &#x60;+1MONTH&#x60;. Here are [Supported keywords](https://newsapi.aylien.com/docs/working-with-dates#date-math). (optional, default to +1DAY)</param>
         /// <returns>TimeSeriesList</returns>
-        TimeSeriesList ListTimeSeries(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, string publishedAtStart = null, string publishedAtEnd = null, string period = null);
+        TimeSeriesList ListTimeSeries (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, string publishedAtStart = null, string publishedAtEnd = null, string period = null);
 
         /// <summary>
         /// List time series
@@ -563,11 +608,16 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="publishedAtStart">This parameter is used for finding stories whose published at time is less than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional, default to NOW-7DAYS/DAY)</param>
         /// <param name="publishedAtEnd">This parameter is used for finding stories whose published at time is greater than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional, default to NOW/DAY)</param>
         /// <param name="period">The size of each date range is expressed as an interval to be added to the lower bound. It supports Date Math Syntax. Valid options are &#x60;+&#x60; following an integer number greater than 0 and one of the Date Math keywords. e.g. &#x60;+1DAY&#x60;, &#x60;+2MINUTES&#x60; and &#x60;+1MONTH&#x60;. Here are [Supported keywords](https://newsapi.aylien.com/docs/working-with-dates#date-math). (optional, default to +1DAY)</param>
         /// <returns>ApiResponse of TimeSeriesList</returns>
-        ApiResponse<TimeSeriesList> ListTimeSeriesWithHttpInfo(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, string publishedAtStart = null, string publishedAtEnd = null, string period = null);
+        ApiResponse<TimeSeriesList> ListTimeSeriesWithHttpInfo (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, string publishedAtStart = null, string publishedAtEnd = null, string period = null);
         /// <summary>
         /// List trends
         /// </summary>
@@ -610,9 +660,14 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="field">This parameter is used to specify the trend field. (optional)</param>
         /// <returns>Trends</returns>
-        Trends ListTrends(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, string field = null);
+        Trends ListTrends (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, string field = null);
 
         /// <summary>
         /// List trends
@@ -656,9 +711,14 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="field">This parameter is used to specify the trend field. (optional)</param>
         /// <returns>ApiResponse of Trends</returns>
-        ApiResponse<Trends> ListTrendsWithHttpInfo(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, string field = null);
+        ApiResponse<Trends> ListTrendsWithHttpInfo (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, string field = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -673,7 +733,7 @@ namespace Aylien.NewsApi.Api
         /// <param name="language">This parameter is used for autocompletes whose language is the specified value. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional, default to en)</param>
         /// <param name="perPage">This parameter is used for specifying number of items in each page. (optional, default to 3)</param>
         /// <returns>Task of Autocompletes</returns>
-        System.Threading.Tasks.Task<Autocompletes> ListAutocompletesAsync(string type, string term, string language = null, int? perPage = null);
+        System.Threading.Tasks.Task<Autocompletes> ListAutocompletesAsync (string type, string term, string language = null, int? perPage = null);
 
         /// <summary>
         /// List autocompletes
@@ -687,7 +747,7 @@ namespace Aylien.NewsApi.Api
         /// <param name="language">This parameter is used for autocompletes whose language is the specified value. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional, default to en)</param>
         /// <param name="perPage">This parameter is used for specifying number of items in each page. (optional, default to 3)</param>
         /// <returns>Task of ApiResponse (Autocompletes)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Autocompletes>> ListAutocompletesAsyncWithHttpInfo(string type, string term, string language = null, int? perPage = null);
+        System.Threading.Tasks.Task<ApiResponse<Autocompletes>> ListAutocompletesAsyncWithHttpInfo (string type, string term, string language = null, int? perPage = null);
         /// <summary>
         /// List coverages
         /// </summary>
@@ -730,6 +790,11 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes  is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="cluster">This parameter enables clustering for the returned stories. (optional, default to false)</param>
         /// <param name="clusterAlgorithm">This parameter is used for specifying the clustering algorithm you wish to use. It supprts STC, Lingo and [k-means](https://en.wikipedia.org/wiki/K-means_clustering) algorithms. (optional, default to lingo)</param>
         /// <param name="_return">This parameter is used for specifying return fields. (optional)</param>
@@ -741,7 +806,7 @@ namespace Aylien.NewsApi.Api
         /// <param name="storyLanguage">This parameter is used for setting the language of the story. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional, default to auto)</param>
         /// <param name="perPage">This parameter is used for specifying number of items in each page. (optional, default to 3)</param>
         /// <returns>Task of Coverages</returns>
-        System.Threading.Tasks.Task<Coverages> ListCoveragesAsync(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, long? storyId = null, string storyUrl = null, string storyTitle = null, string storyBody = null, DateTime? storyPublishedAt = null, string storyLanguage = null, int? perPage = null);
+        System.Threading.Tasks.Task<Coverages> ListCoveragesAsync (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, long? storyId = null, string storyUrl = null, string storyTitle = null, string storyBody = null, DateTime? storyPublishedAt = null, string storyLanguage = null, int? perPage = null);
 
         /// <summary>
         /// List coverages
@@ -785,6 +850,11 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes  is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="cluster">This parameter enables clustering for the returned stories. (optional, default to false)</param>
         /// <param name="clusterAlgorithm">This parameter is used for specifying the clustering algorithm you wish to use. It supprts STC, Lingo and [k-means](https://en.wikipedia.org/wiki/K-means_clustering) algorithms. (optional, default to lingo)</param>
         /// <param name="_return">This parameter is used for specifying return fields. (optional)</param>
@@ -796,7 +866,7 @@ namespace Aylien.NewsApi.Api
         /// <param name="storyLanguage">This parameter is used for setting the language of the story. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional, default to auto)</param>
         /// <param name="perPage">This parameter is used for specifying number of items in each page. (optional, default to 3)</param>
         /// <returns>Task of ApiResponse (Coverages)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Coverages>> ListCoveragesAsyncWithHttpInfo(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, long? storyId = null, string storyUrl = null, string storyTitle = null, string storyBody = null, DateTime? storyPublishedAt = null, string storyLanguage = null, int? perPage = null);
+        System.Threading.Tasks.Task<ApiResponse<Coverages>> ListCoveragesAsyncWithHttpInfo (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, long? storyId = null, string storyUrl = null, string storyTitle = null, string storyBody = null, DateTime? storyPublishedAt = null, string storyLanguage = null, int? perPage = null);
         /// <summary>
         /// List histograms
         /// </summary>
@@ -839,12 +909,17 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="intervalStart">This parameter is used for setting the start data point of histogram intervals. (optional)</param>
         /// <param name="intervalEnd">This parameter is used for setting the end data point of histogram intervals. (optional)</param>
         /// <param name="intervalWidth">This parameter is used for setting the width of histogram intervals. (optional)</param>
         /// <param name="field">This parameter is used for specifying the y-axis variable for the histogram. (optional, default to social_shares_count)</param>
         /// <returns>Task of Histograms</returns>
-        System.Threading.Tasks.Task<Histograms> ListHistogramsAsync(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? intervalStart = null, int? intervalEnd = null, int? intervalWidth = null, string field = null);
+        System.Threading.Tasks.Task<Histograms> ListHistogramsAsync (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, int? intervalStart = null, int? intervalEnd = null, int? intervalWidth = null, string field = null);
 
         /// <summary>
         /// List histograms
@@ -888,12 +963,17 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="intervalStart">This parameter is used for setting the start data point of histogram intervals. (optional)</param>
         /// <param name="intervalEnd">This parameter is used for setting the end data point of histogram intervals. (optional)</param>
         /// <param name="intervalWidth">This parameter is used for setting the width of histogram intervals. (optional)</param>
         /// <param name="field">This parameter is used for specifying the y-axis variable for the histogram. (optional, default to social_shares_count)</param>
         /// <returns>Task of ApiResponse (Histograms)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Histograms>> ListHistogramsAsyncWithHttpInfo(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? intervalStart = null, int? intervalEnd = null, int? intervalWidth = null, string field = null);
+        System.Threading.Tasks.Task<ApiResponse<Histograms>> ListHistogramsAsyncWithHttpInfo (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, int? intervalStart = null, int? intervalEnd = null, int? intervalWidth = null, string field = null);
         /// <summary>
         /// List related stories
         /// </summary>
@@ -936,6 +1016,11 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes  is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="cluster">This parameter enables clustering for the returned stories. (optional, default to false)</param>
         /// <param name="clusterAlgorithm">This parameter is used for specifying the clustering algorithm you wish to use. It supprts STC, Lingo and [k-means](https://en.wikipedia.org/wiki/K-means_clustering) algorithms. (optional, default to lingo)</param>
         /// <param name="_return">This parameter is used for specifying return fields. (optional)</param>
@@ -947,7 +1032,7 @@ namespace Aylien.NewsApi.Api
         /// <param name="storyLanguage">This parameter is used for setting the language of the story. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional, default to auto)</param>
         /// <param name="perPage">This parameter is used for specifying number of items in each page. (optional, default to 3)</param>
         /// <returns>Task of RelatedStories</returns>
-        System.Threading.Tasks.Task<RelatedStories> ListRelatedStoriesAsync(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, long? storyId = null, string storyUrl = null, string storyTitle = null, string storyBody = null, string boostBy = null, string storyLanguage = null, int? perPage = null);
+        System.Threading.Tasks.Task<RelatedStories> ListRelatedStoriesAsync (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, long? storyId = null, string storyUrl = null, string storyTitle = null, string storyBody = null, string boostBy = null, string storyLanguage = null, int? perPage = null);
 
         /// <summary>
         /// List related stories
@@ -991,6 +1076,11 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes  is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="cluster">This parameter enables clustering for the returned stories. (optional, default to false)</param>
         /// <param name="clusterAlgorithm">This parameter is used for specifying the clustering algorithm you wish to use. It supprts STC, Lingo and [k-means](https://en.wikipedia.org/wiki/K-means_clustering) algorithms. (optional, default to lingo)</param>
         /// <param name="_return">This parameter is used for specifying return fields. (optional)</param>
@@ -1002,7 +1092,7 @@ namespace Aylien.NewsApi.Api
         /// <param name="storyLanguage">This parameter is used for setting the language of the story. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional, default to auto)</param>
         /// <param name="perPage">This parameter is used for specifying number of items in each page. (optional, default to 3)</param>
         /// <returns>Task of ApiResponse (RelatedStories)</returns>
-        System.Threading.Tasks.Task<ApiResponse<RelatedStories>> ListRelatedStoriesAsyncWithHttpInfo(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, long? storyId = null, string storyUrl = null, string storyTitle = null, string storyBody = null, string boostBy = null, string storyLanguage = null, int? perPage = null);
+        System.Threading.Tasks.Task<ApiResponse<RelatedStories>> ListRelatedStoriesAsyncWithHttpInfo (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, long? storyId = null, string storyUrl = null, string storyTitle = null, string storyBody = null, string boostBy = null, string storyLanguage = null, int? perPage = null);
         /// <summary>
         /// List Stories
         /// </summary>
@@ -1045,6 +1135,11 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="cluster">This parameter enables clustering for the returned stories. (optional, default to false)</param>
         /// <param name="clusterAlgorithm">This parameter is used for specifying the clustering algorithm you wish to use. It supprts STC, Lingo and [k-means](https://en.wikipedia.org/wiki/K-means_clustering) algorithms. (optional, default to lingo)</param>
         /// <param name="_return">This parameter is used for specifying return fields. (optional)</param>
@@ -1053,7 +1148,7 @@ namespace Aylien.NewsApi.Api
         /// <param name="cursor">This parameter is used for finding a specific page. (optional, default to *)</param>
         /// <param name="perPage">This parameter is used for specifying number of items in each page. (optional, default to 10)</param>
         /// <returns>Task of Stories</returns>
-        System.Threading.Tasks.Task<Stories> ListStoriesAsync(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, string sortBy = null, string sortDirection = null, string cursor = null, int? perPage = null);
+        System.Threading.Tasks.Task<Stories> ListStoriesAsync (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, string sortBy = null, string sortDirection = null, string cursor = null, int? perPage = null);
 
         /// <summary>
         /// List Stories
@@ -1097,6 +1192,11 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="cluster">This parameter enables clustering for the returned stories. (optional, default to false)</param>
         /// <param name="clusterAlgorithm">This parameter is used for specifying the clustering algorithm you wish to use. It supprts STC, Lingo and [k-means](https://en.wikipedia.org/wiki/K-means_clustering) algorithms. (optional, default to lingo)</param>
         /// <param name="_return">This parameter is used for specifying return fields. (optional)</param>
@@ -1105,7 +1205,7 @@ namespace Aylien.NewsApi.Api
         /// <param name="cursor">This parameter is used for finding a specific page. (optional, default to *)</param>
         /// <param name="perPage">This parameter is used for specifying number of items in each page. (optional, default to 10)</param>
         /// <returns>Task of ApiResponse (Stories)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Stories>> ListStoriesAsyncWithHttpInfo(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, string sortBy = null, string sortDirection = null, string cursor = null, int? perPage = null);
+        System.Threading.Tasks.Task<ApiResponse<Stories>> ListStoriesAsyncWithHttpInfo (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, string sortBy = null, string sortDirection = null, string cursor = null, int? perPage = null);
         /// <summary>
         /// List time series
         /// </summary>
@@ -1146,11 +1246,16 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="publishedAtStart">This parameter is used for finding stories whose published at time is less than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional, default to NOW-7DAYS/DAY)</param>
         /// <param name="publishedAtEnd">This parameter is used for finding stories whose published at time is greater than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional, default to NOW/DAY)</param>
         /// <param name="period">The size of each date range is expressed as an interval to be added to the lower bound. It supports Date Math Syntax. Valid options are &#x60;+&#x60; following an integer number greater than 0 and one of the Date Math keywords. e.g. &#x60;+1DAY&#x60;, &#x60;+2MINUTES&#x60; and &#x60;+1MONTH&#x60;. Here are [Supported keywords](https://newsapi.aylien.com/docs/working-with-dates#date-math). (optional, default to +1DAY)</param>
         /// <returns>Task of TimeSeriesList</returns>
-        System.Threading.Tasks.Task<TimeSeriesList> ListTimeSeriesAsync(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, string publishedAtStart = null, string publishedAtEnd = null, string period = null);
+        System.Threading.Tasks.Task<TimeSeriesList> ListTimeSeriesAsync (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, string publishedAtStart = null, string publishedAtEnd = null, string period = null);
 
         /// <summary>
         /// List time series
@@ -1192,11 +1297,16 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="publishedAtStart">This parameter is used for finding stories whose published at time is less than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional, default to NOW-7DAYS/DAY)</param>
         /// <param name="publishedAtEnd">This parameter is used for finding stories whose published at time is greater than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional, default to NOW/DAY)</param>
         /// <param name="period">The size of each date range is expressed as an interval to be added to the lower bound. It supports Date Math Syntax. Valid options are &#x60;+&#x60; following an integer number greater than 0 and one of the Date Math keywords. e.g. &#x60;+1DAY&#x60;, &#x60;+2MINUTES&#x60; and &#x60;+1MONTH&#x60;. Here are [Supported keywords](https://newsapi.aylien.com/docs/working-with-dates#date-math). (optional, default to +1DAY)</param>
         /// <returns>Task of ApiResponse (TimeSeriesList)</returns>
-        System.Threading.Tasks.Task<ApiResponse<TimeSeriesList>> ListTimeSeriesAsyncWithHttpInfo(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, string publishedAtStart = null, string publishedAtEnd = null, string period = null);
+        System.Threading.Tasks.Task<ApiResponse<TimeSeriesList>> ListTimeSeriesAsyncWithHttpInfo (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, string publishedAtStart = null, string publishedAtEnd = null, string period = null);
         /// <summary>
         /// List trends
         /// </summary>
@@ -1239,9 +1349,14 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="field">This parameter is used to specify the trend field. (optional)</param>
         /// <returns>Task of Trends</returns>
-        System.Threading.Tasks.Task<Trends> ListTrendsAsync(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, string field = null);
+        System.Threading.Tasks.Task<Trends> ListTrendsAsync (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, string field = null);
 
         /// <summary>
         /// List trends
@@ -1285,17 +1400,24 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="field">This parameter is used to specify the trend field. (optional)</param>
         /// <returns>Task of ApiResponse (Trends)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Trends>> ListTrendsAsyncWithHttpInfo(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, string field = null);
+        System.Threading.Tasks.Task<ApiResponse<Trends>> ListTrendsAsyncWithHttpInfo (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, string field = null);
         #endregion Asynchronous Operations
     }
 
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public class DefaultApi : IDefaultApi
+    public partial class DefaultApi : IDefaultApi
     {
+        private Aylien.NewsApi.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="DefaultApi"/> class.
         /// </summary>
@@ -1303,6 +1425,8 @@ namespace Aylien.NewsApi.Api
         public DefaultApi(String basePath)
         {
             this.Configuration = new Configuration(new ApiClient(basePath));
+
+            ExceptionFactory = Aylien.NewsApi.Client.Configuration.DefaultExceptionFactory;
 
             // ensure API client has configuration ready
             if (Configuration.ApiClient.Configuration == null)
@@ -1324,6 +1448,8 @@ namespace Aylien.NewsApi.Api
             else
                 this.Configuration = configuration;
 
+            ExceptionFactory = Aylien.NewsApi.Client.Configuration.DefaultExceptionFactory;
+
             // ensure API client has configuration ready
             if (Configuration.ApiClient.Configuration == null)
             {
@@ -1344,7 +1470,23 @@ namespace Aylien.NewsApi.Api
         /// Gets or sets the configuration object
         /// </summary>
         /// <value>An instance of the Configuration</value>
-        public Configuration Configuration { get; set; }
+        public Configuration Configuration {get; set;}
+
+        /// <summary>
+        /// Provides a factory method hook for the creation of exceptions.
+        /// </summary>
+        public Aylien.NewsApi.Client.ExceptionFactory ExceptionFactory
+        {
+            get
+            {
+                if (_exceptionFactory != null && _exceptionFactory.GetInvocationList().Length > 1)
+                {
+                    throw new InvalidOperationException("Multicast delegate for ExceptionFactory is unsupported.");
+                }
+                return _exceptionFactory;
+            }
+            set { _exceptionFactory = value; }
+        }
 
         /// <summary>
         /// List autocompletes This endpoint is used for getting list of autocompletes by providing a specific term and type.
@@ -1355,10 +1497,10 @@ namespace Aylien.NewsApi.Api
         /// <param name="language">This parameter is used for autocompletes whose language is the specified value. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional, default to en)</param>
         /// <param name="perPage">This parameter is used for specifying number of items in each page. (optional, default to 3)</param>
         /// <returns>Autocompletes</returns>
-        public Autocompletes ListAutocompletes(string type, string term, string language = null, int? perPage = null)
+        public Autocompletes ListAutocompletes (string type, string term, string language = null, int? perPage = null)
         {
-            ApiResponse<Autocompletes> localVarResponse = ListAutocompletesWithHttpInfo(type, term, language, perPage);
-            return localVarResponse.Data;
+             ApiResponse<Autocompletes> localVarResponse = ListAutocompletesWithHttpInfo(type, term, language, perPage);
+             return localVarResponse.Data;
         }
 
         /// <summary>
@@ -1370,7 +1512,7 @@ namespace Aylien.NewsApi.Api
         /// <param name="language">This parameter is used for autocompletes whose language is the specified value. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional, default to en)</param>
         /// <param name="perPage">This parameter is used for specifying number of items in each page. (optional, default to 3)</param>
         /// <returns>ApiResponse of Autocompletes</returns>
-        public ApiResponse<Autocompletes> ListAutocompletesWithHttpInfo(string type, string term, string language = null, int? perPage = null)
+        public ApiResponse< Autocompletes > ListAutocompletesWithHttpInfo (string type, string term, string language = null, int? perPage = null)
         {
             // verify the required parameter 'type' is set
             if (type == null)
@@ -1424,21 +1566,22 @@ namespace Aylien.NewsApi.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse)Configuration.ApiClient.CallApi(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
                 Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (localVarStatusCode >= 400)
-                throw new ApiException(localVarStatusCode, "Error calling ListAutocompletes: " + localVarResponse.Content, localVarResponse.Content);
-            else if (localVarStatusCode == 0)
-                throw new ApiException(localVarStatusCode, "Error calling ListAutocompletes: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ListAutocompletes", localVarResponse);
+                if (exception != null) throw exception;
+            }
 
             return new ApiResponse<Autocompletes>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Autocompletes)Configuration.ApiClient.Deserialize(localVarResponse, typeof(Autocompletes)));
-
+                (Autocompletes) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Autocompletes)));
+            
         }
 
         /// <summary>
@@ -1450,10 +1593,10 @@ namespace Aylien.NewsApi.Api
         /// <param name="language">This parameter is used for autocompletes whose language is the specified value. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional, default to en)</param>
         /// <param name="perPage">This parameter is used for specifying number of items in each page. (optional, default to 3)</param>
         /// <returns>Task of Autocompletes</returns>
-        public async System.Threading.Tasks.Task<Autocompletes> ListAutocompletesAsync(string type, string term, string language = null, int? perPage = null)
+        public async System.Threading.Tasks.Task<Autocompletes> ListAutocompletesAsync (string type, string term, string language = null, int? perPage = null)
         {
-            ApiResponse<Autocompletes> localVarResponse = await ListAutocompletesAsyncWithHttpInfo(type, term, language, perPage);
-            return localVarResponse.Data;
+             ApiResponse<Autocompletes> localVarResponse = await ListAutocompletesAsyncWithHttpInfo(type, term, language, perPage);
+             return localVarResponse.Data;
 
         }
 
@@ -1466,7 +1609,7 @@ namespace Aylien.NewsApi.Api
         /// <param name="language">This parameter is used for autocompletes whose language is the specified value. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional, default to en)</param>
         /// <param name="perPage">This parameter is used for specifying number of items in each page. (optional, default to 3)</param>
         /// <returns>Task of ApiResponse (Autocompletes)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Autocompletes>> ListAutocompletesAsyncWithHttpInfo(string type, string term, string language = null, int? perPage = null)
+        public async System.Threading.Tasks.Task<ApiResponse<Autocompletes>> ListAutocompletesAsyncWithHttpInfo (string type, string term, string language = null, int? perPage = null)
         {
             // verify the required parameter 'type' is set
             if (type == null)
@@ -1518,21 +1661,22 @@ namespace Aylien.NewsApi.Api
             }
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
                 Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (localVarStatusCode >= 400)
-                throw new ApiException(localVarStatusCode, "Error calling ListAutocompletes: " + localVarResponse.Content, localVarResponse.Content);
-            else if (localVarStatusCode == 0)
-                throw new ApiException(localVarStatusCode, "Error calling ListAutocompletes: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ListAutocompletes", localVarResponse);
+                if (exception != null) throw exception;
+            }
 
             return new ApiResponse<Autocompletes>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Autocompletes)Configuration.ApiClient.Deserialize(localVarResponse, typeof(Autocompletes)));
-
+                (Autocompletes) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Autocompletes)));
+            
         }
 
         /// <summary>
@@ -1574,6 +1718,11 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes  is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="cluster">This parameter enables clustering for the returned stories. (optional, default to false)</param>
         /// <param name="clusterAlgorithm">This parameter is used for specifying the clustering algorithm you wish to use. It supprts STC, Lingo and [k-means](https://en.wikipedia.org/wiki/K-means_clustering) algorithms. (optional, default to lingo)</param>
         /// <param name="_return">This parameter is used for specifying return fields. (optional)</param>
@@ -1585,10 +1734,10 @@ namespace Aylien.NewsApi.Api
         /// <param name="storyLanguage">This parameter is used for setting the language of the story. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional, default to auto)</param>
         /// <param name="perPage">This parameter is used for specifying number of items in each page. (optional, default to 3)</param>
         /// <returns>Coverages</returns>
-        public Coverages ListCoverages(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, long? storyId = null, string storyUrl = null, string storyTitle = null, string storyBody = null, DateTime? storyPublishedAt = null, string storyLanguage = null, int? perPage = null)
+        public Coverages ListCoverages (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, long? storyId = null, string storyUrl = null, string storyTitle = null, string storyBody = null, DateTime? storyPublishedAt = null, string storyLanguage = null, int? perPage = null)
         {
-            ApiResponse<Coverages> localVarResponse = ListCoveragesWithHttpInfo(id, title, body, text, language, publishedAtStart, publishedAtEnd, categoriesTaxonomy, categoriesConfident, categoriesId, categoriesLevel, entitiesTitleText, entitiesTitleType, entitiesTitleLinksDbpedia, entitiesBodyText, entitiesBodyType, entitiesBodyLinksDbpedia, sentimentTitlePolarity, sentimentBodyPolarity, mediaImagesCountMin, mediaImagesCountMax, mediaVideosCountMin, mediaVideosCountMax, authorId, authorName, sourceId, sourceName, sourceDomain, sourceLocationsCountry, sourceLocationsState, sourceLocationsCity, sourceScopesCountry, sourceScopesState, sourceScopesCity, sourceScopesLevel, cluster, clusterAlgorithm, _return, storyId, storyUrl, storyTitle, storyBody, storyPublishedAt, storyLanguage, perPage);
-            return localVarResponse.Data;
+             ApiResponse<Coverages> localVarResponse = ListCoveragesWithHttpInfo(id, title, body, text, language, publishedAtStart, publishedAtEnd, categoriesTaxonomy, categoriesConfident, categoriesId, categoriesLevel, entitiesTitleText, entitiesTitleType, entitiesTitleLinksDbpedia, entitiesBodyText, entitiesBodyType, entitiesBodyLinksDbpedia, sentimentTitlePolarity, sentimentBodyPolarity, mediaImagesCountMin, mediaImagesCountMax, mediaVideosCountMin, mediaVideosCountMax, authorId, authorName, sourceId, sourceName, sourceDomain, sourceLocationsCountry, sourceLocationsState, sourceLocationsCity, sourceScopesCountry, sourceScopesState, sourceScopesCity, sourceScopesLevel, sourceLinksInCountMin, sourceLinksInCountMax, sourceRankingsAlexaRankMin, sourceRankingsAlexaRankMax, sourceRankingsAlexaCountry, cluster, clusterAlgorithm, _return, storyId, storyUrl, storyTitle, storyBody, storyPublishedAt, storyLanguage, perPage);
+             return localVarResponse.Data;
         }
 
         /// <summary>
@@ -1630,6 +1779,11 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes  is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="cluster">This parameter enables clustering for the returned stories. (optional, default to false)</param>
         /// <param name="clusterAlgorithm">This parameter is used for specifying the clustering algorithm you wish to use. It supprts STC, Lingo and [k-means](https://en.wikipedia.org/wiki/K-means_clustering) algorithms. (optional, default to lingo)</param>
         /// <param name="_return">This parameter is used for specifying return fields. (optional)</param>
@@ -1641,7 +1795,7 @@ namespace Aylien.NewsApi.Api
         /// <param name="storyLanguage">This parameter is used for setting the language of the story. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional, default to auto)</param>
         /// <param name="perPage">This parameter is used for specifying number of items in each page. (optional, default to 3)</param>
         /// <returns>ApiResponse of Coverages</returns>
-        public ApiResponse<Coverages> ListCoveragesWithHttpInfo(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, long? storyId = null, string storyUrl = null, string storyTitle = null, string storyBody = null, DateTime? storyPublishedAt = null, string storyLanguage = null, int? perPage = null)
+        public ApiResponse< Coverages > ListCoveragesWithHttpInfo (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, long? storyId = null, string storyUrl = null, string storyTitle = null, string storyBody = null, DateTime? storyPublishedAt = null, string storyLanguage = null, int? perPage = null)
         {
 
             var localVarPath = "/coverages";
@@ -1747,8 +1901,26 @@ namespace Aylien.NewsApi.Api
             if (sourceScopesLevel != null)
                 foreach (var val in sourceScopesLevel)
                     localVarFormParams.Add(new Tuple<String, String>("source.scopes.level[]", Configuration.ApiClient.ParameterToString(val))); // form parameter
+            if (sourceLinksInCountMin != null) localVarFormParams.Add(new Tuple<String, String>("source.links_in_count.min", Configuration.ApiClient.ParameterToString(sourceLinksInCountMin))); // form parameter
+            if (sourceLinksInCountMax != null) localVarFormParams.Add(new Tuple<String, String>("source.links_in_count.max", Configuration.ApiClient.ParameterToString(sourceLinksInCountMax))); // form parameter
+            if (sourceRankingsAlexaRankMin != null) localVarFormParams.Add(new Tuple<String, String>("source.rankings.alexa.rank.min", Configuration.ApiClient.ParameterToString(sourceRankingsAlexaRankMin))); // form parameter
+            if (sourceRankingsAlexaRankMax != null) localVarFormParams.Add(new Tuple<String, String>("source.rankings.alexa.rank.max", Configuration.ApiClient.ParameterToString(sourceRankingsAlexaRankMax))); // form parameter
+            if (sourceRankingsAlexaCountry != null)
+                foreach (var val in sourceRankingsAlexaCountry)
+                    localVarFormParams.Add(new Tuple<String, String>("source.rankings.alexa.country[]", Configuration.ApiClient.ParameterToString(val))); // form parameter
             if (cluster != null) localVarFormParams.Add(new Tuple<String, String>("cluster", Configuration.ApiClient.ParameterToString(cluster))); // form parameter
             if (clusterAlgorithm != null) localVarFormParams.Add(new Tuple<String, String>("cluster.algorithm", Configuration.ApiClient.ParameterToString(clusterAlgorithm))); // form parameter
+
+            if (_return != null)
+                foreach (var val in _return)
+                    localVarFormParams.Add(new Tuple<String, String>("return[]", Configuration.ApiClient.ParameterToString(val))); // form parameter
+            if (storyId != null) localVarFormParams.Add(new Tuple<String, String>("story_id", Configuration.ApiClient.ParameterToString(storyId))); // form parameter
+            if (storyUrl != null) localVarFormParams.Add(new Tuple<String, String>("story_url", Configuration.ApiClient.ParameterToString(storyUrl))); // form parameter
+            if (storyTitle != null) localVarFormParams.Add(new Tuple<String, String>("story_title", Configuration.ApiClient.ParameterToString(storyTitle))); // form parameter
+            if (storyBody != null) localVarFormParams.Add(new Tuple<String, String>("story_body", Configuration.ApiClient.ParameterToString(storyBody))); // form parameter
+            if (storyPublishedAt != null) localVarFormParams.Add(new Tuple<String, String>("story_published_at", Configuration.ApiClient.ParameterToString(storyPublishedAt))); // form parameter
+            if (storyLanguage != null) localVarFormParams.Add(new Tuple<String, String>("story_language", Configuration.ApiClient.ParameterToString(storyLanguage))); // form parameter
+            if (perPage != null) localVarFormParams.Add(new Tuple<String, String>("per_page", Configuration.ApiClient.ParameterToString(perPage))); // form parameter
 
             if (_return != null)
                 foreach (var val in _return)
@@ -1775,21 +1947,22 @@ namespace Aylien.NewsApi.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse)Configuration.ApiClient.CallApi(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
                 Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (localVarStatusCode >= 400)
-                throw new ApiException(localVarStatusCode, "Error calling ListCoverages: " + localVarResponse.Content, localVarResponse.Content);
-            else if (localVarStatusCode == 0)
-                throw new ApiException(localVarStatusCode, "Error calling ListCoverages: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ListCoverages", localVarResponse);
+                if (exception != null) throw exception;
+            }
 
             return new ApiResponse<Coverages>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Coverages)Configuration.ApiClient.Deserialize(localVarResponse, typeof(Coverages)));
-
+                (Coverages) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Coverages)));
+            
         }
 
         /// <summary>
@@ -1831,6 +2004,11 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes  is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="cluster">This parameter enables clustering for the returned stories. (optional, default to false)</param>
         /// <param name="clusterAlgorithm">This parameter is used for specifying the clustering algorithm you wish to use. It supprts STC, Lingo and [k-means](https://en.wikipedia.org/wiki/K-means_clustering) algorithms. (optional, default to lingo)</param>
         /// <param name="_return">This parameter is used for specifying return fields. (optional)</param>
@@ -1842,10 +2020,10 @@ namespace Aylien.NewsApi.Api
         /// <param name="storyLanguage">This parameter is used for setting the language of the story. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional, default to auto)</param>
         /// <param name="perPage">This parameter is used for specifying number of items in each page. (optional, default to 3)</param>
         /// <returns>Task of Coverages</returns>
-        public async System.Threading.Tasks.Task<Coverages> ListCoveragesAsync(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, long? storyId = null, string storyUrl = null, string storyTitle = null, string storyBody = null, DateTime? storyPublishedAt = null, string storyLanguage = null, int? perPage = null)
+        public async System.Threading.Tasks.Task<Coverages> ListCoveragesAsync (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, long? storyId = null, string storyUrl = null, string storyTitle = null, string storyBody = null, DateTime? storyPublishedAt = null, string storyLanguage = null, int? perPage = null)
         {
-            ApiResponse<Coverages> localVarResponse = await ListCoveragesAsyncWithHttpInfo(id, title, body, text, language, publishedAtStart, publishedAtEnd, categoriesTaxonomy, categoriesConfident, categoriesId, categoriesLevel, entitiesTitleText, entitiesTitleType, entitiesTitleLinksDbpedia, entitiesBodyText, entitiesBodyType, entitiesBodyLinksDbpedia, sentimentTitlePolarity, sentimentBodyPolarity, mediaImagesCountMin, mediaImagesCountMax, mediaVideosCountMin, mediaVideosCountMax, authorId, authorName, sourceId, sourceName, sourceDomain, sourceLocationsCountry, sourceLocationsState, sourceLocationsCity, sourceScopesCountry, sourceScopesState, sourceScopesCity, sourceScopesLevel, cluster, clusterAlgorithm, _return, storyId, storyUrl, storyTitle, storyBody, storyPublishedAt, storyLanguage, perPage);
-            return localVarResponse.Data;
+             ApiResponse<Coverages> localVarResponse = await ListCoveragesAsyncWithHttpInfo(id, title, body, text, language, publishedAtStart, publishedAtEnd, categoriesTaxonomy, categoriesConfident, categoriesId, categoriesLevel, entitiesTitleText, entitiesTitleType, entitiesTitleLinksDbpedia, entitiesBodyText, entitiesBodyType, entitiesBodyLinksDbpedia, sentimentTitlePolarity, sentimentBodyPolarity, mediaImagesCountMin, mediaImagesCountMax, mediaVideosCountMin, mediaVideosCountMax, authorId, authorName, sourceId, sourceName, sourceDomain, sourceLocationsCountry, sourceLocationsState, sourceLocationsCity, sourceScopesCountry, sourceScopesState, sourceScopesCity, sourceScopesLevel, sourceLinksInCountMin, sourceLinksInCountMax, sourceRankingsAlexaRankMin, sourceRankingsAlexaRankMax, sourceRankingsAlexaCountry, cluster, clusterAlgorithm, _return, storyId, storyUrl, storyTitle, storyBody, storyPublishedAt, storyLanguage, perPage);
+             return localVarResponse.Data;
 
         }
 
@@ -1888,6 +2066,11 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes  is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="cluster">This parameter enables clustering for the returned stories. (optional, default to false)</param>
         /// <param name="clusterAlgorithm">This parameter is used for specifying the clustering algorithm you wish to use. It supprts STC, Lingo and [k-means](https://en.wikipedia.org/wiki/K-means_clustering) algorithms. (optional, default to lingo)</param>
         /// <param name="_return">This parameter is used for specifying return fields. (optional)</param>
@@ -1899,7 +2082,7 @@ namespace Aylien.NewsApi.Api
         /// <param name="storyLanguage">This parameter is used for setting the language of the story. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional, default to auto)</param>
         /// <param name="perPage">This parameter is used for specifying number of items in each page. (optional, default to 3)</param>
         /// <returns>Task of ApiResponse (Coverages)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Coverages>> ListCoveragesAsyncWithHttpInfo(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, long? storyId = null, string storyUrl = null, string storyTitle = null, string storyBody = null, DateTime? storyPublishedAt = null, string storyLanguage = null, int? perPage = null)
+        public async System.Threading.Tasks.Task<ApiResponse<Coverages>> ListCoveragesAsyncWithHttpInfo (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, long? storyId = null, string storyUrl = null, string storyTitle = null, string storyBody = null, DateTime? storyPublishedAt = null, string storyLanguage = null, int? perPage = null)
         {
 
             var localVarPath = "/coverages";
@@ -2005,6 +2188,13 @@ namespace Aylien.NewsApi.Api
             if (sourceScopesLevel != null)
                 foreach (var val in sourceScopesLevel)
                     localVarFormParams.Add(new Tuple<String, String>("source.scopes.level[]", Configuration.ApiClient.ParameterToString(val))); // form parameter
+            if (sourceLinksInCountMin != null) localVarFormParams.Add(new Tuple<String, String>("source.links_in_count.min", Configuration.ApiClient.ParameterToString(sourceLinksInCountMin))); // form parameter
+            if (sourceLinksInCountMax != null) localVarFormParams.Add(new Tuple<String, String>("source.links_in_count.max", Configuration.ApiClient.ParameterToString(sourceLinksInCountMax))); // form parameter
+            if (sourceRankingsAlexaRankMin != null) localVarFormParams.Add(new Tuple<String, String>("source.rankings.alexa.rank.min", Configuration.ApiClient.ParameterToString(sourceRankingsAlexaRankMin))); // form parameter
+            if (sourceRankingsAlexaRankMax != null) localVarFormParams.Add(new Tuple<String, String>("source.rankings.alexa.rank.max", Configuration.ApiClient.ParameterToString(sourceRankingsAlexaRankMax))); // form parameter
+            if (sourceRankingsAlexaCountry != null)
+                foreach (var val in sourceRankingsAlexaCountry)
+                    localVarFormParams.Add(new Tuple<String, String>("source.rankings.alexa.country[]", Configuration.ApiClient.ParameterToString(val))); // form parameter
             if (cluster != null) localVarFormParams.Add(new Tuple<String, String>("cluster", Configuration.ApiClient.ParameterToString(cluster))); // form parameter
             if (clusterAlgorithm != null) localVarFormParams.Add(new Tuple<String, String>("cluster.algorithm", Configuration.ApiClient.ParameterToString(clusterAlgorithm))); // form parameter
             if (_return != null)
@@ -2030,21 +2220,22 @@ namespace Aylien.NewsApi.Api
             }
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
                 Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (localVarStatusCode >= 400)
-                throw new ApiException(localVarStatusCode, "Error calling ListCoverages: " + localVarResponse.Content, localVarResponse.Content);
-            else if (localVarStatusCode == 0)
-                throw new ApiException(localVarStatusCode, "Error calling ListCoverages: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ListCoverages", localVarResponse);
+                if (exception != null) throw exception;
+            }
 
             return new ApiResponse<Coverages>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Coverages)Configuration.ApiClient.Deserialize(localVarResponse, typeof(Coverages)));
-
+                (Coverages) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Coverages)));
+            
         }
 
         /// <summary>
@@ -2086,15 +2277,20 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="intervalStart">This parameter is used for setting the start data point of histogram intervals. (optional)</param>
         /// <param name="intervalEnd">This parameter is used for setting the end data point of histogram intervals. (optional)</param>
         /// <param name="intervalWidth">This parameter is used for setting the width of histogram intervals. (optional)</param>
         /// <param name="field">This parameter is used for specifying the y-axis variable for the histogram. (optional, default to social_shares_count)</param>
         /// <returns>Histograms</returns>
-        public Histograms ListHistograms(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? intervalStart = null, int? intervalEnd = null, int? intervalWidth = null, string field = null)
+        public Histograms ListHistograms (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, int? intervalStart = null, int? intervalEnd = null, int? intervalWidth = null, string field = null)
         {
-            ApiResponse<Histograms> localVarResponse = ListHistogramsWithHttpInfo(id, title, body, text, language, publishedAtStart, publishedAtEnd, categoriesTaxonomy, categoriesConfident, categoriesId, categoriesLevel, entitiesTitleText, entitiesTitleType, entitiesTitleLinksDbpedia, entitiesBodyText, entitiesBodyType, entitiesBodyLinksDbpedia, sentimentTitlePolarity, sentimentBodyPolarity, mediaImagesCountMin, mediaImagesCountMax, mediaVideosCountMin, mediaVideosCountMax, authorId, authorName, sourceId, sourceName, sourceDomain, sourceLocationsCountry, sourceLocationsState, sourceLocationsCity, sourceScopesCountry, sourceScopesState, sourceScopesCity, sourceScopesLevel, intervalStart, intervalEnd, intervalWidth, field);
-            return localVarResponse.Data;
+             ApiResponse<Histograms> localVarResponse = ListHistogramsWithHttpInfo(id, title, body, text, language, publishedAtStart, publishedAtEnd, categoriesTaxonomy, categoriesConfident, categoriesId, categoriesLevel, entitiesTitleText, entitiesTitleType, entitiesTitleLinksDbpedia, entitiesBodyText, entitiesBodyType, entitiesBodyLinksDbpedia, sentimentTitlePolarity, sentimentBodyPolarity, mediaImagesCountMin, mediaImagesCountMax, mediaVideosCountMin, mediaVideosCountMax, authorId, authorName, sourceId, sourceName, sourceDomain, sourceLocationsCountry, sourceLocationsState, sourceLocationsCity, sourceScopesCountry, sourceScopesState, sourceScopesCity, sourceScopesLevel, sourceLinksInCountMin, sourceLinksInCountMax, sourceRankingsAlexaRankMin, sourceRankingsAlexaRankMax, sourceRankingsAlexaCountry, intervalStart, intervalEnd, intervalWidth, field);
+             return localVarResponse.Data;
         }
 
         /// <summary>
@@ -2136,12 +2332,17 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="intervalStart">This parameter is used for setting the start data point of histogram intervals. (optional)</param>
         /// <param name="intervalEnd">This parameter is used for setting the end data point of histogram intervals. (optional)</param>
         /// <param name="intervalWidth">This parameter is used for setting the width of histogram intervals. (optional)</param>
         /// <param name="field">This parameter is used for specifying the y-axis variable for the histogram. (optional, default to social_shares_count)</param>
         /// <returns>ApiResponse of Histograms</returns>
-        public ApiResponse<Histograms> ListHistogramsWithHttpInfo(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? intervalStart = null, int? intervalEnd = null, int? intervalWidth = null, string field = null)
+        public ApiResponse< Histograms > ListHistogramsWithHttpInfo (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, int? intervalStart = null, int? intervalEnd = null, int? intervalWidth = null, string field = null)
         {
 
             var localVarPath = "/histograms";
@@ -2247,6 +2448,13 @@ namespace Aylien.NewsApi.Api
             if (sourceScopesLevel != null)
                 foreach (var val in sourceScopesLevel)
                     localVarQueryParams.Add(new Tuple<String, String>("source.scopes.level[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (sourceLinksInCountMin != null) localVarQueryParams.Add(new Tuple<String, String>("source.links_in_count.min", Configuration.ApiClient.ParameterToString(sourceLinksInCountMin))); // query parameter
+            if (sourceLinksInCountMax != null) localVarQueryParams.Add(new Tuple<String, String>("source.links_in_count.max", Configuration.ApiClient.ParameterToString(sourceLinksInCountMax))); // query parameter
+            if (sourceRankingsAlexaRankMin != null) localVarQueryParams.Add(new Tuple<String, String>("source.rankings.alexa.rank.min", Configuration.ApiClient.ParameterToString(sourceRankingsAlexaRankMin))); // query parameter
+            if (sourceRankingsAlexaRankMax != null) localVarQueryParams.Add(new Tuple<String, String>("source.rankings.alexa.rank.max", Configuration.ApiClient.ParameterToString(sourceRankingsAlexaRankMax))); // query parameter
+            if (sourceRankingsAlexaCountry != null)
+                foreach (var val in sourceRankingsAlexaCountry)
+                    localVarQueryParams.Add(new Tuple<String, String>("source.rankings.alexa.country[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (intervalStart != null) localVarQueryParams.Add(new Tuple<String, String>("interval.start", Configuration.ApiClient.ParameterToString(intervalStart))); // query parameter
             if (intervalEnd != null) localVarQueryParams.Add(new Tuple<String, String>("interval.end", Configuration.ApiClient.ParameterToString(intervalEnd))); // query parameter
             if (intervalWidth != null) localVarQueryParams.Add(new Tuple<String, String>("interval.width", Configuration.ApiClient.ParameterToString(intervalWidth))); // query parameter
@@ -2266,21 +2474,22 @@ namespace Aylien.NewsApi.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse)Configuration.ApiClient.CallApi(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
                 Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (localVarStatusCode >= 400)
-                throw new ApiException(localVarStatusCode, "Error calling ListHistograms: " + localVarResponse.Content, localVarResponse.Content);
-            else if (localVarStatusCode == 0)
-                throw new ApiException(localVarStatusCode, "Error calling ListHistograms: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ListHistograms", localVarResponse);
+                if (exception != null) throw exception;
+            }
 
             return new ApiResponse<Histograms>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Histograms)Configuration.ApiClient.Deserialize(localVarResponse, typeof(Histograms)));
-
+                (Histograms) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Histograms)));
+            
         }
 
         /// <summary>
@@ -2322,15 +2531,20 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="intervalStart">This parameter is used for setting the start data point of histogram intervals. (optional)</param>
         /// <param name="intervalEnd">This parameter is used for setting the end data point of histogram intervals. (optional)</param>
         /// <param name="intervalWidth">This parameter is used for setting the width of histogram intervals. (optional)</param>
         /// <param name="field">This parameter is used for specifying the y-axis variable for the histogram. (optional, default to social_shares_count)</param>
         /// <returns>Task of Histograms</returns>
-        public async System.Threading.Tasks.Task<Histograms> ListHistogramsAsync(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? intervalStart = null, int? intervalEnd = null, int? intervalWidth = null, string field = null)
+        public async System.Threading.Tasks.Task<Histograms> ListHistogramsAsync (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, int? intervalStart = null, int? intervalEnd = null, int? intervalWidth = null, string field = null)
         {
-            ApiResponse<Histograms> localVarResponse = await ListHistogramsAsyncWithHttpInfo(id, title, body, text, language, publishedAtStart, publishedAtEnd, categoriesTaxonomy, categoriesConfident, categoriesId, categoriesLevel, entitiesTitleText, entitiesTitleType, entitiesTitleLinksDbpedia, entitiesBodyText, entitiesBodyType, entitiesBodyLinksDbpedia, sentimentTitlePolarity, sentimentBodyPolarity, mediaImagesCountMin, mediaImagesCountMax, mediaVideosCountMin, mediaVideosCountMax, authorId, authorName, sourceId, sourceName, sourceDomain, sourceLocationsCountry, sourceLocationsState, sourceLocationsCity, sourceScopesCountry, sourceScopesState, sourceScopesCity, sourceScopesLevel, intervalStart, intervalEnd, intervalWidth, field);
-            return localVarResponse.Data;
+             ApiResponse<Histograms> localVarResponse = await ListHistogramsAsyncWithHttpInfo(id, title, body, text, language, publishedAtStart, publishedAtEnd, categoriesTaxonomy, categoriesConfident, categoriesId, categoriesLevel, entitiesTitleText, entitiesTitleType, entitiesTitleLinksDbpedia, entitiesBodyText, entitiesBodyType, entitiesBodyLinksDbpedia, sentimentTitlePolarity, sentimentBodyPolarity, mediaImagesCountMin, mediaImagesCountMax, mediaVideosCountMin, mediaVideosCountMax, authorId, authorName, sourceId, sourceName, sourceDomain, sourceLocationsCountry, sourceLocationsState, sourceLocationsCity, sourceScopesCountry, sourceScopesState, sourceScopesCity, sourceScopesLevel, sourceLinksInCountMin, sourceLinksInCountMax, sourceRankingsAlexaRankMin, sourceRankingsAlexaRankMax, sourceRankingsAlexaCountry, intervalStart, intervalEnd, intervalWidth, field);
+             return localVarResponse.Data;
 
         }
 
@@ -2373,12 +2587,17 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="intervalStart">This parameter is used for setting the start data point of histogram intervals. (optional)</param>
         /// <param name="intervalEnd">This parameter is used for setting the end data point of histogram intervals. (optional)</param>
         /// <param name="intervalWidth">This parameter is used for setting the width of histogram intervals. (optional)</param>
         /// <param name="field">This parameter is used for specifying the y-axis variable for the histogram. (optional, default to social_shares_count)</param>
         /// <returns>Task of ApiResponse (Histograms)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Histograms>> ListHistogramsAsyncWithHttpInfo(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? intervalStart = null, int? intervalEnd = null, int? intervalWidth = null, string field = null)
+        public async System.Threading.Tasks.Task<ApiResponse<Histograms>> ListHistogramsAsyncWithHttpInfo (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, int? intervalStart = null, int? intervalEnd = null, int? intervalWidth = null, string field = null)
         {
 
             var localVarPath = "/histograms";
@@ -2484,6 +2703,13 @@ namespace Aylien.NewsApi.Api
             if (sourceScopesLevel != null)
                 foreach (var val in sourceScopesLevel)
                     localVarQueryParams.Add(new Tuple<String, String>("source.scopes.level[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (sourceLinksInCountMin != null) localVarQueryParams.Add(new Tuple<String, String>("source.links_in_count.min", Configuration.ApiClient.ParameterToString(sourceLinksInCountMin))); // query parameter
+            if (sourceLinksInCountMax != null) localVarQueryParams.Add(new Tuple<String, String>("source.links_in_count.max", Configuration.ApiClient.ParameterToString(sourceLinksInCountMax))); // query parameter
+            if (sourceRankingsAlexaRankMin != null) localVarQueryParams.Add(new Tuple<String, String>("source.rankings.alexa.rank.min", Configuration.ApiClient.ParameterToString(sourceRankingsAlexaRankMin))); // query parameter
+            if (sourceRankingsAlexaRankMax != null) localVarQueryParams.Add(new Tuple<String, String>("source.rankings.alexa.rank.max", Configuration.ApiClient.ParameterToString(sourceRankingsAlexaRankMax))); // query parameter
+            if (sourceRankingsAlexaCountry != null)
+                foreach (var val in sourceRankingsAlexaCountry)
+                    localVarQueryParams.Add(new Tuple<String, String>("source.rankings.alexa.country[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (intervalStart != null) localVarQueryParams.Add(new Tuple<String, String>("interval.start", Configuration.ApiClient.ParameterToString(intervalStart))); // query parameter
             if (intervalEnd != null) localVarQueryParams.Add(new Tuple<String, String>("interval.end", Configuration.ApiClient.ParameterToString(intervalEnd))); // query parameter
             if (intervalWidth != null) localVarQueryParams.Add(new Tuple<String, String>("interval.width", Configuration.ApiClient.ParameterToString(intervalWidth))); // query parameter
@@ -2501,21 +2727,22 @@ namespace Aylien.NewsApi.Api
             }
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
                 Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (localVarStatusCode >= 400)
-                throw new ApiException(localVarStatusCode, "Error calling ListHistograms: " + localVarResponse.Content, localVarResponse.Content);
-            else if (localVarStatusCode == 0)
-                throw new ApiException(localVarStatusCode, "Error calling ListHistograms: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ListHistograms", localVarResponse);
+                if (exception != null) throw exception;
+            }
 
             return new ApiResponse<Histograms>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Histograms)Configuration.ApiClient.Deserialize(localVarResponse, typeof(Histograms)));
-
+                (Histograms) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Histograms)));
+            
         }
 
         /// <summary>
@@ -2557,6 +2784,11 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes  is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="cluster">This parameter enables clustering for the returned stories. (optional, default to false)</param>
         /// <param name="clusterAlgorithm">This parameter is used for specifying the clustering algorithm you wish to use. It supprts STC, Lingo and [k-means](https://en.wikipedia.org/wiki/K-means_clustering) algorithms. (optional, default to lingo)</param>
         /// <param name="_return">This parameter is used for specifying return fields. (optional)</param>
@@ -2568,10 +2800,10 @@ namespace Aylien.NewsApi.Api
         /// <param name="storyLanguage">This parameter is used for setting the language of the story. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional, default to auto)</param>
         /// <param name="perPage">This parameter is used for specifying number of items in each page. (optional, default to 3)</param>
         /// <returns>RelatedStories</returns>
-        public RelatedStories ListRelatedStories(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, long? storyId = null, string storyUrl = null, string storyTitle = null, string storyBody = null, string boostBy = null, string storyLanguage = null, int? perPage = null)
+        public RelatedStories ListRelatedStories (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, long? storyId = null, string storyUrl = null, string storyTitle = null, string storyBody = null, string boostBy = null, string storyLanguage = null, int? perPage = null)
         {
-            ApiResponse<RelatedStories> localVarResponse = ListRelatedStoriesWithHttpInfo(id, title, body, text, language, publishedAtStart, publishedAtEnd, categoriesTaxonomy, categoriesConfident, categoriesId, categoriesLevel, entitiesTitleText, entitiesTitleType, entitiesTitleLinksDbpedia, entitiesBodyText, entitiesBodyType, entitiesBodyLinksDbpedia, sentimentTitlePolarity, sentimentBodyPolarity, mediaImagesCountMin, mediaImagesCountMax, mediaVideosCountMin, mediaVideosCountMax, authorId, authorName, sourceId, sourceName, sourceDomain, sourceLocationsCountry, sourceLocationsState, sourceLocationsCity, sourceScopesCountry, sourceScopesState, sourceScopesCity, sourceScopesLevel, cluster, clusterAlgorithm, _return, storyId, storyUrl, storyTitle, storyBody, boostBy, storyLanguage, perPage);
-            return localVarResponse.Data;
+             ApiResponse<RelatedStories> localVarResponse = ListRelatedStoriesWithHttpInfo(id, title, body, text, language, publishedAtStart, publishedAtEnd, categoriesTaxonomy, categoriesConfident, categoriesId, categoriesLevel, entitiesTitleText, entitiesTitleType, entitiesTitleLinksDbpedia, entitiesBodyText, entitiesBodyType, entitiesBodyLinksDbpedia, sentimentTitlePolarity, sentimentBodyPolarity, mediaImagesCountMin, mediaImagesCountMax, mediaVideosCountMin, mediaVideosCountMax, authorId, authorName, sourceId, sourceName, sourceDomain, sourceLocationsCountry, sourceLocationsState, sourceLocationsCity, sourceScopesCountry, sourceScopesState, sourceScopesCity, sourceScopesLevel, sourceLinksInCountMin, sourceLinksInCountMax, sourceRankingsAlexaRankMin, sourceRankingsAlexaRankMax, sourceRankingsAlexaCountry, cluster, clusterAlgorithm, _return, storyId, storyUrl, storyTitle, storyBody, boostBy, storyLanguage, perPage);
+             return localVarResponse.Data;
         }
 
         /// <summary>
@@ -2613,6 +2845,11 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes  is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="cluster">This parameter enables clustering for the returned stories. (optional, default to false)</param>
         /// <param name="clusterAlgorithm">This parameter is used for specifying the clustering algorithm you wish to use. It supprts STC, Lingo and [k-means](https://en.wikipedia.org/wiki/K-means_clustering) algorithms. (optional, default to lingo)</param>
         /// <param name="_return">This parameter is used for specifying return fields. (optional)</param>
@@ -2624,7 +2861,7 @@ namespace Aylien.NewsApi.Api
         /// <param name="storyLanguage">This parameter is used for setting the language of the story. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional, default to auto)</param>
         /// <param name="perPage">This parameter is used for specifying number of items in each page. (optional, default to 3)</param>
         /// <returns>ApiResponse of RelatedStories</returns>
-        public ApiResponse<RelatedStories> ListRelatedStoriesWithHttpInfo(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, long? storyId = null, string storyUrl = null, string storyTitle = null, string storyBody = null, string boostBy = null, string storyLanguage = null, int? perPage = null)
+        public ApiResponse< RelatedStories > ListRelatedStoriesWithHttpInfo (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, long? storyId = null, string storyUrl = null, string storyTitle = null, string storyBody = null, string boostBy = null, string storyLanguage = null, int? perPage = null)
         {
 
             var localVarPath = "/related_stories";
@@ -2730,6 +2967,13 @@ namespace Aylien.NewsApi.Api
             if (sourceScopesLevel != null)
                 foreach (var val in sourceScopesLevel)
                     localVarFormParams.Add(new Tuple<String, String>("source.scopes.level[]", Configuration.ApiClient.ParameterToString(val))); // form parameter
+            if (sourceLinksInCountMin != null) localVarFormParams.Add(new Tuple<String, String>("source.links_in_count.min", Configuration.ApiClient.ParameterToString(sourceLinksInCountMin))); // form parameter
+            if (sourceLinksInCountMax != null) localVarFormParams.Add(new Tuple<String, String>("source.links_in_count.max", Configuration.ApiClient.ParameterToString(sourceLinksInCountMax))); // form parameter
+            if (sourceRankingsAlexaRankMin != null) localVarFormParams.Add(new Tuple<String, String>("source.rankings.alexa.rank.min", Configuration.ApiClient.ParameterToString(sourceRankingsAlexaRankMin))); // form parameter
+            if (sourceRankingsAlexaRankMax != null) localVarFormParams.Add(new Tuple<String, String>("source.rankings.alexa.rank.max", Configuration.ApiClient.ParameterToString(sourceRankingsAlexaRankMax))); // form parameter
+            if (sourceRankingsAlexaCountry != null)
+                foreach (var val in sourceRankingsAlexaCountry)
+                    localVarFormParams.Add(new Tuple<String, String>("source.rankings.alexa.country[]", Configuration.ApiClient.ParameterToString(val))); // form parameter
             if (cluster != null) localVarFormParams.Add(new Tuple<String, String>("cluster", Configuration.ApiClient.ParameterToString(cluster))); // form parameter
             if (clusterAlgorithm != null) localVarFormParams.Add(new Tuple<String, String>("cluster.algorithm", Configuration.ApiClient.ParameterToString(clusterAlgorithm))); // form parameter
             if (_return != null)
@@ -2742,7 +2986,6 @@ namespace Aylien.NewsApi.Api
             if (boostBy != null) localVarFormParams.Add(new Tuple<String, String>("boost_by", Configuration.ApiClient.ParameterToString(boostBy))); // form parameter
             if (storyLanguage != null) localVarFormParams.Add(new Tuple<String, String>("story_language", Configuration.ApiClient.ParameterToString(storyLanguage))); // form parameter
             if (perPage != null) localVarFormParams.Add(new Tuple<String, String>("per_page", Configuration.ApiClient.ParameterToString(perPage))); // form parameter
-
 
             // authentication (app_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-AYLIEN-NewsAPI-Application-Key")))
@@ -2758,21 +3001,22 @@ namespace Aylien.NewsApi.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse)Configuration.ApiClient.CallApi(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
                 Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (localVarStatusCode >= 400)
-                throw new ApiException(localVarStatusCode, "Error calling ListRelatedStories: " + localVarResponse.Content, localVarResponse.Content);
-            else if (localVarStatusCode == 0)
-                throw new ApiException(localVarStatusCode, "Error calling ListRelatedStories: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ListRelatedStories", localVarResponse);
+                if (exception != null) throw exception;
+            }
 
             return new ApiResponse<RelatedStories>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (RelatedStories)Configuration.ApiClient.Deserialize(localVarResponse, typeof(RelatedStories)));
-
+                (RelatedStories) Configuration.ApiClient.Deserialize(localVarResponse, typeof(RelatedStories)));
+            
         }
 
         /// <summary>
@@ -2814,6 +3058,11 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes  is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="cluster">This parameter enables clustering for the returned stories. (optional, default to false)</param>
         /// <param name="clusterAlgorithm">This parameter is used for specifying the clustering algorithm you wish to use. It supprts STC, Lingo and [k-means](https://en.wikipedia.org/wiki/K-means_clustering) algorithms. (optional, default to lingo)</param>
         /// <param name="_return">This parameter is used for specifying return fields. (optional)</param>
@@ -2825,10 +3074,10 @@ namespace Aylien.NewsApi.Api
         /// <param name="storyLanguage">This parameter is used for setting the language of the story. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional, default to auto)</param>
         /// <param name="perPage">This parameter is used for specifying number of items in each page. (optional, default to 3)</param>
         /// <returns>Task of RelatedStories</returns>
-        public async System.Threading.Tasks.Task<RelatedStories> ListRelatedStoriesAsync(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, long? storyId = null, string storyUrl = null, string storyTitle = null, string storyBody = null, string boostBy = null, string storyLanguage = null, int? perPage = null)
+        public async System.Threading.Tasks.Task<RelatedStories> ListRelatedStoriesAsync (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, long? storyId = null, string storyUrl = null, string storyTitle = null, string storyBody = null, string boostBy = null, string storyLanguage = null, int? perPage = null)
         {
-            ApiResponse<RelatedStories> localVarResponse = await ListRelatedStoriesAsyncWithHttpInfo(id, title, body, text, language, publishedAtStart, publishedAtEnd, categoriesTaxonomy, categoriesConfident, categoriesId, categoriesLevel, entitiesTitleText, entitiesTitleType, entitiesTitleLinksDbpedia, entitiesBodyText, entitiesBodyType, entitiesBodyLinksDbpedia, sentimentTitlePolarity, sentimentBodyPolarity, mediaImagesCountMin, mediaImagesCountMax, mediaVideosCountMin, mediaVideosCountMax, authorId, authorName, sourceId, sourceName, sourceDomain, sourceLocationsCountry, sourceLocationsState, sourceLocationsCity, sourceScopesCountry, sourceScopesState, sourceScopesCity, sourceScopesLevel, cluster, clusterAlgorithm, _return, storyId, storyUrl, storyTitle, storyBody, boostBy, storyLanguage, perPage);
-            return localVarResponse.Data;
+             ApiResponse<RelatedStories> localVarResponse = await ListRelatedStoriesAsyncWithHttpInfo(id, title, body, text, language, publishedAtStart, publishedAtEnd, categoriesTaxonomy, categoriesConfident, categoriesId, categoriesLevel, entitiesTitleText, entitiesTitleType, entitiesTitleLinksDbpedia, entitiesBodyText, entitiesBodyType, entitiesBodyLinksDbpedia, sentimentTitlePolarity, sentimentBodyPolarity, mediaImagesCountMin, mediaImagesCountMax, mediaVideosCountMin, mediaVideosCountMax, authorId, authorName, sourceId, sourceName, sourceDomain, sourceLocationsCountry, sourceLocationsState, sourceLocationsCity, sourceScopesCountry, sourceScopesState, sourceScopesCity, sourceScopesLevel, sourceLinksInCountMin, sourceLinksInCountMax, sourceRankingsAlexaRankMin, sourceRankingsAlexaRankMax, sourceRankingsAlexaCountry, cluster, clusterAlgorithm, _return, storyId, storyUrl, storyTitle, storyBody, boostBy, storyLanguage, perPage);
+             return localVarResponse.Data;
 
         }
 
@@ -2871,6 +3120,11 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes  is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="cluster">This parameter enables clustering for the returned stories. (optional, default to false)</param>
         /// <param name="clusterAlgorithm">This parameter is used for specifying the clustering algorithm you wish to use. It supprts STC, Lingo and [k-means](https://en.wikipedia.org/wiki/K-means_clustering) algorithms. (optional, default to lingo)</param>
         /// <param name="_return">This parameter is used for specifying return fields. (optional)</param>
@@ -2882,7 +3136,7 @@ namespace Aylien.NewsApi.Api
         /// <param name="storyLanguage">This parameter is used for setting the language of the story. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional, default to auto)</param>
         /// <param name="perPage">This parameter is used for specifying number of items in each page. (optional, default to 3)</param>
         /// <returns>Task of ApiResponse (RelatedStories)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<RelatedStories>> ListRelatedStoriesAsyncWithHttpInfo(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, long? storyId = null, string storyUrl = null, string storyTitle = null, string storyBody = null, string boostBy = null, string storyLanguage = null, int? perPage = null)
+        public async System.Threading.Tasks.Task<ApiResponse<RelatedStories>> ListRelatedStoriesAsyncWithHttpInfo (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, long? storyId = null, string storyUrl = null, string storyTitle = null, string storyBody = null, string boostBy = null, string storyLanguage = null, int? perPage = null)
         {
 
             var localVarPath = "/related_stories";
@@ -2988,6 +3242,13 @@ namespace Aylien.NewsApi.Api
             if (sourceScopesLevel != null)
                 foreach (var val in sourceScopesLevel)
                     localVarFormParams.Add(new Tuple<String, String>("source.scopes.level[]", Configuration.ApiClient.ParameterToString(val))); // form parameter
+            if (sourceLinksInCountMin != null) localVarFormParams.Add(new Tuple<String, String>("source.links_in_count.min", Configuration.ApiClient.ParameterToString(sourceLinksInCountMin))); // form parameter
+            if (sourceLinksInCountMax != null) localVarFormParams.Add(new Tuple<String, String>("source.links_in_count.max", Configuration.ApiClient.ParameterToString(sourceLinksInCountMax))); // form parameter
+            if (sourceRankingsAlexaRankMin != null) localVarFormParams.Add(new Tuple<String, String>("source.rankings.alexa.rank.min", Configuration.ApiClient.ParameterToString(sourceRankingsAlexaRankMin))); // form parameter
+            if (sourceRankingsAlexaRankMax != null) localVarFormParams.Add(new Tuple<String, String>("source.rankings.alexa.rank.max", Configuration.ApiClient.ParameterToString(sourceRankingsAlexaRankMax))); // form parameter
+            if (sourceRankingsAlexaCountry != null)
+                foreach (var val in sourceRankingsAlexaCountry)
+                    localVarFormParams.Add(new Tuple<String, String>("source.rankings.alexa.country[]", Configuration.ApiClient.ParameterToString(val))); // form parameter
             if (cluster != null) localVarFormParams.Add(new Tuple<String, String>("cluster", Configuration.ApiClient.ParameterToString(cluster))); // form parameter
             if (clusterAlgorithm != null) localVarFormParams.Add(new Tuple<String, String>("cluster.algorithm", Configuration.ApiClient.ParameterToString(clusterAlgorithm))); // form parameter
             if (_return != null)
@@ -3013,21 +3274,22 @@ namespace Aylien.NewsApi.Api
             }
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
                 Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (localVarStatusCode >= 400)
-                throw new ApiException(localVarStatusCode, "Error calling ListRelatedStories: " + localVarResponse.Content, localVarResponse.Content);
-            else if (localVarStatusCode == 0)
-                throw new ApiException(localVarStatusCode, "Error calling ListRelatedStories: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ListRelatedStories", localVarResponse);
+                if (exception != null) throw exception;
+            }
 
             return new ApiResponse<RelatedStories>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (RelatedStories)Configuration.ApiClient.Deserialize(localVarResponse, typeof(RelatedStories)));
-
+                (RelatedStories) Configuration.ApiClient.Deserialize(localVarResponse, typeof(RelatedStories)));
+            
         }
 
         /// <summary>
@@ -3069,6 +3331,11 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="cluster">This parameter enables clustering for the returned stories. (optional, default to false)</param>
         /// <param name="clusterAlgorithm">This parameter is used for specifying the clustering algorithm you wish to use. It supprts STC, Lingo and [k-means](https://en.wikipedia.org/wiki/K-means_clustering) algorithms. (optional, default to lingo)</param>
         /// <param name="_return">This parameter is used for specifying return fields. (optional)</param>
@@ -3077,10 +3344,10 @@ namespace Aylien.NewsApi.Api
         /// <param name="cursor">This parameter is used for finding a specific page. (optional, default to *)</param>
         /// <param name="perPage">This parameter is used for specifying number of items in each page. (optional, default to 10)</param>
         /// <returns>Stories</returns>
-        public Stories ListStories(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, string sortBy = null, string sortDirection = null, string cursor = null, int? perPage = null)
+        public Stories ListStories (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, string sortBy = null, string sortDirection = null, string cursor = null, int? perPage = null)
         {
-            ApiResponse<Stories> localVarResponse = ListStoriesWithHttpInfo(id, title, body, text, language, publishedAtStart, publishedAtEnd, categoriesTaxonomy, categoriesConfident, categoriesId, categoriesLevel, entitiesTitleText, entitiesTitleType, entitiesTitleLinksDbpedia, entitiesBodyText, entitiesBodyType, entitiesBodyLinksDbpedia, sentimentTitlePolarity, sentimentBodyPolarity, mediaImagesCountMin, mediaImagesCountMax, mediaVideosCountMin, mediaVideosCountMax, authorId, authorName, sourceId, sourceName, sourceDomain, sourceLocationsCountry, sourceLocationsState, sourceLocationsCity, sourceScopesCountry, sourceScopesState, sourceScopesCity, sourceScopesLevel, cluster, clusterAlgorithm, _return, sortBy, sortDirection, cursor, perPage);
-            return localVarResponse.Data;
+             ApiResponse<Stories> localVarResponse = ListStoriesWithHttpInfo(id, title, body, text, language, publishedAtStart, publishedAtEnd, categoriesTaxonomy, categoriesConfident, categoriesId, categoriesLevel, entitiesTitleText, entitiesTitleType, entitiesTitleLinksDbpedia, entitiesBodyText, entitiesBodyType, entitiesBodyLinksDbpedia, sentimentTitlePolarity, sentimentBodyPolarity, mediaImagesCountMin, mediaImagesCountMax, mediaVideosCountMin, mediaVideosCountMax, authorId, authorName, sourceId, sourceName, sourceDomain, sourceLocationsCountry, sourceLocationsState, sourceLocationsCity, sourceScopesCountry, sourceScopesState, sourceScopesCity, sourceScopesLevel, sourceLinksInCountMin, sourceLinksInCountMax, sourceRankingsAlexaRankMin, sourceRankingsAlexaRankMax, sourceRankingsAlexaCountry, cluster, clusterAlgorithm, _return, sortBy, sortDirection, cursor, perPage);
+             return localVarResponse.Data;
         }
 
         /// <summary>
@@ -3122,6 +3389,11 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="cluster">This parameter enables clustering for the returned stories. (optional, default to false)</param>
         /// <param name="clusterAlgorithm">This parameter is used for specifying the clustering algorithm you wish to use. It supprts STC, Lingo and [k-means](https://en.wikipedia.org/wiki/K-means_clustering) algorithms. (optional, default to lingo)</param>
         /// <param name="_return">This parameter is used for specifying return fields. (optional)</param>
@@ -3130,255 +3402,7 @@ namespace Aylien.NewsApi.Api
         /// <param name="cursor">This parameter is used for finding a specific page. (optional, default to *)</param>
         /// <param name="perPage">This parameter is used for specifying number of items in each page. (optional, default to 10)</param>
         /// <returns>ApiResponse of Stories</returns>
-        public ApiResponse<Stories> ListStoriesWithHttpInfo(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, string sortBy = null, string sortDirection = null, string cursor = null, int? perPage = null)
-        {
-
-            var localVarPath = "/stories";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<Tuple<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new List<Tuple<String, String>>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/x-www-form-urlencoded"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json", 
-                "text/xml"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (id != null)
-                foreach (var val in id)
-                    localVarQueryParams .Add(new Tuple<String, String>("id[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (title != null) localVarQueryParams .Add(new Tuple<String, String>("title", Configuration.ApiClient.ParameterToString(title))); // query parameter
-            if (body != null) localVarQueryParams .Add(new Tuple<String, String>("body", Configuration.ApiClient.ParameterToString(body))); // query parameter
-            if (text != null) localVarQueryParams .Add(new Tuple<String, String>("text", Configuration.ApiClient.ParameterToString(text))); // query parameter
-            if (language != null)
-                foreach (var val in language)
-                    localVarQueryParams .Add(new Tuple<String, String>("language[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (publishedAtStart != null) localVarQueryParams .Add(new Tuple<String, String>("published_at.start", Configuration.ApiClient.ParameterToString(publishedAtStart))); // query parameter
-            if (publishedAtEnd != null) localVarQueryParams .Add(new Tuple<String, String>("published_at.end", Configuration.ApiClient.ParameterToString(publishedAtEnd))); // query parameter
-            if (categoriesTaxonomy != null) localVarQueryParams .Add(new Tuple<String, String>("categories.taxonomy", Configuration.ApiClient.ParameterToString(categoriesTaxonomy))); // query parameter
-            if (categoriesConfident != null) localVarQueryParams .Add(new Tuple<String, String>("categories.confident", Configuration.ApiClient.ParameterToString(categoriesConfident))); // query parameter
-            if (categoriesId != null)
-                foreach (var val in categoriesId)
-                    localVarQueryParams .Add(new Tuple<String, String>("categories.id[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (categoriesLevel != null)
-                foreach (var val in categoriesLevel)
-                    localVarQueryParams .Add(new Tuple<String, String>("categories.level[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (entitiesTitleText != null)
-                foreach (var val in entitiesTitleText)
-                    localVarQueryParams .Add(new Tuple<String, String>("entities.title.text[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (entitiesTitleType != null)
-                foreach (var val in entitiesTitleType)
-                    localVarQueryParams .Add(new Tuple<String, String>("entities.title.type[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (entitiesTitleLinksDbpedia != null)
-                foreach (var val in entitiesTitleLinksDbpedia)
-                    localVarQueryParams .Add(new Tuple<String, String>("entities.title.links.dbpedia[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (entitiesBodyText != null)
-                foreach (var val in entitiesBodyText)
-                    localVarQueryParams .Add(new Tuple<String, String>("entities.body.text[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (entitiesBodyType != null)
-                foreach (var val in entitiesBodyType)
-                    localVarQueryParams .Add(new Tuple<String, String>("entities.body.type[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (entitiesBodyLinksDbpedia != null)
-                foreach (var val in entitiesBodyLinksDbpedia)
-                    localVarQueryParams .Add(new Tuple<String, String>("entities.body.links.dbpedia[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (sentimentTitlePolarity != null) localVarQueryParams .Add(new Tuple<String, String>("sentiment.title.polarity", Configuration.ApiClient.ParameterToString(sentimentTitlePolarity))); // query parameter
-            if (sentimentBodyPolarity != null) localVarQueryParams .Add(new Tuple<String, String>("sentiment.body.polarity", Configuration.ApiClient.ParameterToString(sentimentBodyPolarity))); // query parameter
-            if (mediaImagesCountMin != null) localVarQueryParams .Add(new Tuple<String, String>("media.images.count.min", Configuration.ApiClient.ParameterToString(mediaImagesCountMin))); // query parameter
-            if (mediaImagesCountMax != null) localVarQueryParams .Add(new Tuple<String, String>("media.images.count.max", Configuration.ApiClient.ParameterToString(mediaImagesCountMax))); // query parameter
-            if (mediaVideosCountMin != null) localVarQueryParams .Add(new Tuple<String, String>("media.videos.count.min", Configuration.ApiClient.ParameterToString(mediaVideosCountMin))); // query parameter
-            if (mediaVideosCountMax != null) localVarQueryParams .Add(new Tuple<String, String>("media.videos.count.max", Configuration.ApiClient.ParameterToString(mediaVideosCountMax))); // query parameter
-            if (authorId != null)
-                foreach (var val in authorId)
-                    localVarQueryParams .Add(new Tuple<String, String>("author.id[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (authorName != null) localVarQueryParams .Add(new Tuple<String, String>("author.name", Configuration.ApiClient.ParameterToString(authorName))); // query parameter
-            if (sourceId != null)
-                foreach (var val in sourceId)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.id[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (sourceName != null)
-                foreach (var val in sourceName)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.name[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (sourceDomain != null)
-                foreach (var val in sourceDomain)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.domain[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (sourceLocationsCountry != null)
-                foreach (var val in sourceLocationsCountry)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.locations.country[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (sourceLocationsState != null)
-                foreach (var val in sourceLocationsState)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.locations.state[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (sourceLocationsCity != null)
-                foreach (var val in sourceLocationsCity)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.locations.city[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (sourceScopesCountry != null)
-                foreach (var val in sourceScopesCountry)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.scopes.country[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (sourceScopesState != null)
-                foreach (var val in sourceScopesState)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.scopes.state[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (sourceScopesCity != null)
-                foreach (var val in sourceScopesCity)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.scopes.city[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (sourceScopesLevel != null)
-                foreach (var val in sourceScopesLevel)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.scopes.level[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (cluster != null) localVarQueryParams.Add(new Tuple<String, String>("cluster", Configuration.ApiClient.ParameterToString(cluster))); // query parameter
-            if (clusterAlgorithm != null) localVarQueryParams.Add(new Tuple<String, String>("cluster.algorithm", Configuration.ApiClient.ParameterToString(clusterAlgorithm))); // query parameter
-            if (_return != null)
-                foreach (var val in _return)
-                    localVarQueryParams.Add(new Tuple<String, String>("return[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (sortBy != null) localVarQueryParams.Add(new Tuple<String, String>("sort_by", Configuration.ApiClient.ParameterToString(sortBy))); // query parameter
-            if (sortDirection != null) localVarQueryParams.Add(new Tuple<String, String>("sort_direction", Configuration.ApiClient.ParameterToString(sortDirection))); // query parameter
-            if (cursor != null) localVarQueryParams.Add(new Tuple<String, String>("cursor", Configuration.ApiClient.ParameterToString(cursor))); // query parameter
-            if (perPage != null) localVarQueryParams.Add(new Tuple<String, String>("per_page", Configuration.ApiClient.ParameterToString(perPage))); // query parameter
-
-            // authentication (app_key) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-AYLIEN-NewsAPI-Application-Key")))
-            {
-                localVarHeaderParams["X-AYLIEN-NewsAPI-Application-Key"] = Configuration.GetApiKeyWithPrefix("X-AYLIEN-NewsAPI-Application-Key");
-            }
-
-            // authentication (app_id) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-AYLIEN-NewsAPI-Application-ID")))
-            {
-                localVarHeaderParams["X-AYLIEN-NewsAPI-Application-ID"] = Configuration.GetApiKeyWithPrefix("X-AYLIEN-NewsAPI-Application-ID");
-            }
-
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse)Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
-
-            if (localVarStatusCode >= 400)
-                throw new ApiException(localVarStatusCode, "Error calling ListStories: " + localVarResponse.Content, localVarResponse.Content);
-            else if (localVarStatusCode == 0)
-                throw new ApiException(localVarStatusCode, "Error calling ListStories: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
-
-            return new ApiResponse<Stories>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Stories)Configuration.ApiClient.Deserialize(localVarResponse, typeof(Stories)));
-
-        }
-
-        /// <summary>
-        /// List Stories This endpoint is used for getting a list of stories.
-        /// </summary>
-        /// <exception cref="Aylien.NewsApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">This parameter is used for finding stroies by story id. (optional)</param>
-        /// <param name="title">This parameter is used for finding stories whose title contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional)</param>
-        /// <param name="body">This parameter is used for finding stories whose body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional)</param>
-        /// <param name="text">This parameter is used for finding stories whose title or body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional)</param>
-        /// <param name="language">This parameter is used for finding stories whose language is the specified value. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional)</param>
-        /// <param name="publishedAtStart">This parameter is used for finding stories whose published at time is greater than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional)</param>
-        /// <param name="publishedAtEnd">This parameter is used for finding stories whose published at time is less than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional)</param>
-        /// <param name="categoriesTaxonomy">This parameter is used for defining the type of the taxonomy for the rest of the categories queries. (optional)</param>
-        /// <param name="categoriesConfident">This parameter is used for finding stories whose categories are confident. (optional, default to true)</param>
-        /// <param name="categoriesId">This parameter is used for finding stories by categories id. (optional)</param>
-        /// <param name="categoriesLevel">This parameter is used for finding stories by categories level. (optional)</param>
-        /// <param name="entitiesTitleText">This parameter is used to find stories based on the specified entities &#x60;text&#x60; in story titles. (optional)</param>
-        /// <param name="entitiesTitleType">This parameter is used to find stories based on the specified entities &#x60;type&#x60; in story titles. (optional)</param>
-        /// <param name="entitiesTitleLinksDbpedia">This parameter is used to find stories based on the specified entities dbpedia URL in story titles. (optional)</param>
-        /// <param name="entitiesBodyText">This parameter is used to find stories based on the specified entities &#x60;text&#x60; in the body of stories. (optional)</param>
-        /// <param name="entitiesBodyType">This parameter is used to find stories based on the specified entities &#x60;type&#x60; in the body of stories. (optional)</param>
-        /// <param name="entitiesBodyLinksDbpedia">This parameter is used to find stories based on the specified entities dbpedia URL in the body of stories. (optional)</param>
-        /// <param name="sentimentTitlePolarity">This parameter is used for finding stories whose title sentiment is the specified value. (optional)</param>
-        /// <param name="sentimentBodyPolarity">This parameter is used for finding stories whose body sentiment is the specified value. (optional)</param>
-        /// <param name="mediaImagesCountMin">This parameter is used for finding stories whose number of images is greater than or equal to the specified value. (optional)</param>
-        /// <param name="mediaImagesCountMax">This parameter is used for finding stories whose number of images is less than or equal to the specified value. (optional)</param>
-        /// <param name="mediaVideosCountMin">This parameter is used for finding stories whose number of videos is greater than or equal to the specified value. (optional)</param>
-        /// <param name="mediaVideosCountMax">This parameter is used for finding stories whose number of videos is less than or equal to the specified value. (optional)</param>
-        /// <param name="authorId">This parameter is used for finding stories whose author id is the specified value. (optional)</param>
-        /// <param name="authorName">This parameter is used for finding stories whose author full name contains the specified value. (optional)</param>
-        /// <param name="sourceId">This parameter is used for finding stories whose source id is the specified value. (optional)</param>
-        /// <param name="sourceName">This parameter is used for finding stories whose source name contains the specified value. (optional)</param>
-        /// <param name="sourceDomain">This parameter is used for finding stories whose source domain is the specified value. (optional)</param>
-        /// <param name="sourceLocationsCountry">This parameter is used for finding stories whose source country is the specified value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
-        /// <param name="sourceLocationsState">This parameter is used for finding stories whose source state/province is the specified value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
-        /// <param name="sourceLocationsCity">This parameter is used for finding stories whose source city is the specified value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
-        /// <param name="sourceScopesCountry">This parameter is used for finding stories whose source scopes is the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
-        /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
-        /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
-        /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
-        /// <param name="cluster">This parameter enables clustering for the returned stories. (optional, default to false)</param>
-        /// <param name="clusterAlgorithm">This parameter is used for specifying the clustering algorithm you wish to use. It supprts STC, Lingo and [k-means](https://en.wikipedia.org/wiki/K-means_clustering) algorithms. (optional, default to lingo)</param>
-        /// <param name="_return">This parameter is used for specifying return fields. (optional)</param>
-        /// <param name="sortBy">This parameter is used for changing the order column of the results. (optional, default to published_at)</param>
-        /// <param name="sortDirection">This parameter is used for changing the order direction of the result. (optional, default to desc)</param>
-        /// <param name="cursor">This parameter is used for finding a specific page. (optional, default to *)</param>
-        /// <param name="perPage">This parameter is used for specifying number of items in each page. (optional, default to 10)</param>
-        /// <returns>Task of Stories</returns>
-        public async System.Threading.Tasks.Task<Stories> ListStoriesAsync(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, string sortBy = null, string sortDirection = null, string cursor = null, int? perPage = null)
-        {
-            ApiResponse<Stories> localVarResponse = await ListStoriesAsyncWithHttpInfo(id, title, body, text, language, publishedAtStart, publishedAtEnd, categoriesTaxonomy, categoriesConfident, categoriesId, categoriesLevel, entitiesTitleText, entitiesTitleType, entitiesTitleLinksDbpedia, entitiesBodyText, entitiesBodyType, entitiesBodyLinksDbpedia, sentimentTitlePolarity, sentimentBodyPolarity, mediaImagesCountMin, mediaImagesCountMax, mediaVideosCountMin, mediaVideosCountMax, authorId, authorName, sourceId, sourceName, sourceDomain, sourceLocationsCountry, sourceLocationsState, sourceLocationsCity, sourceScopesCountry, sourceScopesState, sourceScopesCity, sourceScopesLevel, cluster, clusterAlgorithm, _return, sortBy, sortDirection, cursor, perPage);
-            return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        /// List Stories This endpoint is used for getting a list of stories.
-        /// </summary>
-        /// <exception cref="Aylien.NewsApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">This parameter is used for finding stroies by story id. (optional)</param>
-        /// <param name="title">This parameter is used for finding stories whose title contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional)</param>
-        /// <param name="body">This parameter is used for finding stories whose body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional)</param>
-        /// <param name="text">This parameter is used for finding stories whose title or body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional)</param>
-        /// <param name="language">This parameter is used for finding stories whose language is the specified value. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional)</param>
-        /// <param name="publishedAtStart">This parameter is used for finding stories whose published at time is greater than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional)</param>
-        /// <param name="publishedAtEnd">This parameter is used for finding stories whose published at time is less than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional)</param>
-        /// <param name="categoriesTaxonomy">This parameter is used for defining the type of the taxonomy for the rest of the categories queries. (optional)</param>
-        /// <param name="categoriesConfident">This parameter is used for finding stories whose categories are confident. (optional, default to true)</param>
-        /// <param name="categoriesId">This parameter is used for finding stories by categories id. (optional)</param>
-        /// <param name="categoriesLevel">This parameter is used for finding stories by categories level. (optional)</param>
-        /// <param name="entitiesTitleText">This parameter is used to find stories based on the specified entities &#x60;text&#x60; in story titles. (optional)</param>
-        /// <param name="entitiesTitleType">This parameter is used to find stories based on the specified entities &#x60;type&#x60; in story titles. (optional)</param>
-        /// <param name="entitiesTitleLinksDbpedia">This parameter is used to find stories based on the specified entities dbpedia URL in story titles. (optional)</param>
-        /// <param name="entitiesBodyText">This parameter is used to find stories based on the specified entities &#x60;text&#x60; in the body of stories. (optional)</param>
-        /// <param name="entitiesBodyType">This parameter is used to find stories based on the specified entities &#x60;type&#x60; in the body of stories. (optional)</param>
-        /// <param name="entitiesBodyLinksDbpedia">This parameter is used to find stories based on the specified entities dbpedia URL in the body of stories. (optional)</param>
-        /// <param name="sentimentTitlePolarity">This parameter is used for finding stories whose title sentiment is the specified value. (optional)</param>
-        /// <param name="sentimentBodyPolarity">This parameter is used for finding stories whose body sentiment is the specified value. (optional)</param>
-        /// <param name="mediaImagesCountMin">This parameter is used for finding stories whose number of images is greater than or equal to the specified value. (optional)</param>
-        /// <param name="mediaImagesCountMax">This parameter is used for finding stories whose number of images is less than or equal to the specified value. (optional)</param>
-        /// <param name="mediaVideosCountMin">This parameter is used for finding stories whose number of videos is greater than or equal to the specified value. (optional)</param>
-        /// <param name="mediaVideosCountMax">This parameter is used for finding stories whose number of videos is less than or equal to the specified value. (optional)</param>
-        /// <param name="authorId">This parameter is used for finding stories whose author id is the specified value. (optional)</param>
-        /// <param name="authorName">This parameter is used for finding stories whose author full name contains the specified value. (optional)</param>
-        /// <param name="sourceId">This parameter is used for finding stories whose source id is the specified value. (optional)</param>
-        /// <param name="sourceName">This parameter is used for finding stories whose source name contains the specified value. (optional)</param>
-        /// <param name="sourceDomain">This parameter is used for finding stories whose source domain is the specified value. (optional)</param>
-        /// <param name="sourceLocationsCountry">This parameter is used for finding stories whose source country is the specified value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
-        /// <param name="sourceLocationsState">This parameter is used for finding stories whose source state/province is the specified value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
-        /// <param name="sourceLocationsCity">This parameter is used for finding stories whose source city is the specified value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
-        /// <param name="sourceScopesCountry">This parameter is used for finding stories whose source scopes is the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
-        /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
-        /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
-        /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
-        /// <param name="cluster">This parameter enables clustering for the returned stories. (optional, default to false)</param>
-        /// <param name="clusterAlgorithm">This parameter is used for specifying the clustering algorithm you wish to use. It supprts STC, Lingo and [k-means](https://en.wikipedia.org/wiki/K-means_clustering) algorithms. (optional, default to lingo)</param>
-        /// <param name="_return">This parameter is used for specifying return fields. (optional)</param>
-        /// <param name="sortBy">This parameter is used for changing the order column of the results. (optional, default to published_at)</param>
-        /// <param name="sortDirection">This parameter is used for changing the order direction of the result. (optional, default to desc)</param>
-        /// <param name="cursor">This parameter is used for finding a specific page. (optional, default to *)</param>
-        /// <param name="perPage">This parameter is used for specifying number of items in each page. (optional, default to 10)</param>
-        /// <returns>Task of ApiResponse (Stories)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Stories>> ListStoriesAsyncWithHttpInfo(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, string sortBy = null, string sortDirection = null, string cursor = null, int? perPage = null)
+        public ApiResponse< Stories > ListStoriesWithHttpInfo (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, string sortBy = null, string sortDirection = null, string cursor = null, int? perPage = null)
         {
 
             var localVarPath = "/stories";
@@ -3434,56 +3458,329 @@ namespace Aylien.NewsApi.Api
                     localVarQueryParams.Add(new Tuple<String, String>("entities.title.type[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (entitiesTitleLinksDbpedia != null)
                 foreach (var val in entitiesTitleLinksDbpedia)
-                    localVarQueryParams .Add(new Tuple<String, String>("entities.title.links.dbpedia[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("entities.title.links.dbpedia[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (entitiesBodyText != null)
                 foreach (var val in entitiesBodyText)
-                    localVarQueryParams .Add(new Tuple<String, String>("entities.body.text[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("entities.body.text[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (entitiesBodyType != null)
                 foreach (var val in entitiesBodyType)
-                    localVarQueryParams .Add(new Tuple<String, String>("entities.body.type[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("entities.body.type[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (entitiesBodyLinksDbpedia != null)
                 foreach (var val in entitiesBodyLinksDbpedia)
-                    localVarQueryParams .Add(new Tuple<String, String>("entities.body.links.dbpedia[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (sentimentTitlePolarity != null) localVarQueryParams .Add(new Tuple<String, String>("sentiment.title.polarity", Configuration.ApiClient.ParameterToString(sentimentTitlePolarity))); // query parameter
-            if (sentimentBodyPolarity != null) localVarQueryParams .Add(new Tuple<String, String>("sentiment.body.polarity", Configuration.ApiClient.ParameterToString(sentimentBodyPolarity))); // query parameter
-            if (mediaImagesCountMin != null) localVarQueryParams .Add(new Tuple<String, String>("media.images.count.min", Configuration.ApiClient.ParameterToString(mediaImagesCountMin))); // query parameter
-            if (mediaImagesCountMax != null) localVarQueryParams .Add(new Tuple<String, String>("media.images.count.max", Configuration.ApiClient.ParameterToString(mediaImagesCountMax))); // query parameter
-            if (mediaVideosCountMin != null) localVarQueryParams .Add(new Tuple<String, String>("media.videos.count.min", Configuration.ApiClient.ParameterToString(mediaVideosCountMin))); // query parameter
-            if (mediaVideosCountMax != null) localVarQueryParams .Add(new Tuple<String, String>("media.videos.count.max", Configuration.ApiClient.ParameterToString(mediaVideosCountMax))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("entities.body.links.dbpedia[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (sentimentTitlePolarity != null) localVarQueryParams.Add(new Tuple<String, String>("sentiment.title.polarity", Configuration.ApiClient.ParameterToString(sentimentTitlePolarity))); // query parameter
+            if (sentimentBodyPolarity != null) localVarQueryParams.Add(new Tuple<String, String>("sentiment.body.polarity", Configuration.ApiClient.ParameterToString(sentimentBodyPolarity))); // query parameter
+            if (mediaImagesCountMin != null) localVarQueryParams.Add(new Tuple<String, String>("media.images.count.min", Configuration.ApiClient.ParameterToString(mediaImagesCountMin))); // query parameter
+            if (mediaImagesCountMax != null) localVarQueryParams.Add(new Tuple<String, String>("media.images.count.max", Configuration.ApiClient.ParameterToString(mediaImagesCountMax))); // query parameter
+            if (mediaVideosCountMin != null) localVarQueryParams.Add(new Tuple<String, String>("media.videos.count.min", Configuration.ApiClient.ParameterToString(mediaVideosCountMin))); // query parameter
+            if (mediaVideosCountMax != null) localVarQueryParams.Add(new Tuple<String, String>("media.videos.count.max", Configuration.ApiClient.ParameterToString(mediaVideosCountMax))); // query parameter
             if (authorId != null)
                 foreach (var val in authorId)
-                    localVarQueryParams .Add(new Tuple<String, String>("author.id[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (authorName != null) localVarQueryParams .Add(new Tuple<String, String>("author.name", Configuration.ApiClient.ParameterToString(authorName))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("author.id[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (authorName != null) localVarQueryParams.Add(new Tuple<String, String>("author.name", Configuration.ApiClient.ParameterToString(authorName))); // query parameter
             if (sourceId != null)
                 foreach (var val in sourceId)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.id[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("source.id[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (sourceName != null)
                 foreach (var val in sourceName)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.name[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("source.name[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (sourceDomain != null)
                 foreach (var val in sourceDomain)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.domain[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("source.domain[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (sourceLocationsCountry != null)
                 foreach (var val in sourceLocationsCountry)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.locations.country[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("source.locations.country[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (sourceLocationsState != null)
                 foreach (var val in sourceLocationsState)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.locations.state[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("source.locations.state[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (sourceLocationsCity != null)
                 foreach (var val in sourceLocationsCity)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.locations.city[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("source.locations.city[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (sourceScopesCountry != null)
                 foreach (var val in sourceScopesCountry)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.scopes.country[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("source.scopes.country[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (sourceScopesState != null)
                 foreach (var val in sourceScopesState)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.scopes.state[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("source.scopes.state[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (sourceScopesCity != null)
                 foreach (var val in sourceScopesCity)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.scopes.city[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("source.scopes.city[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (sourceScopesLevel != null)
                 foreach (var val in sourceScopesLevel)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.scopes.level[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("source.scopes.level[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (sourceLinksInCountMin != null) localVarQueryParams.Add(new Tuple<String, String>("source.links_in_count.min", Configuration.ApiClient.ParameterToString(sourceLinksInCountMin))); // query parameter
+            if (sourceLinksInCountMax != null) localVarQueryParams.Add(new Tuple<String, String>("source.links_in_count.max", Configuration.ApiClient.ParameterToString(sourceLinksInCountMax))); // query parameter
+            if (sourceRankingsAlexaRankMin != null) localVarQueryParams.Add(new Tuple<String, String>("source.rankings.alexa.rank.min", Configuration.ApiClient.ParameterToString(sourceRankingsAlexaRankMin))); // query parameter
+            if (sourceRankingsAlexaRankMax != null) localVarQueryParams.Add(new Tuple<String, String>("source.rankings.alexa.rank.max", Configuration.ApiClient.ParameterToString(sourceRankingsAlexaRankMax))); // query parameter
+            if (sourceRankingsAlexaCountry != null)
+                foreach (var val in sourceRankingsAlexaCountry)
+                    localVarQueryParams.Add(new Tuple<String, String>("source.rankings.alexa.country[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (cluster != null) localVarQueryParams.Add(new Tuple<String, String>("cluster", Configuration.ApiClient.ParameterToString(cluster))); // query parameter
+            if (clusterAlgorithm != null) localVarQueryParams.Add(new Tuple<String, String>("cluster.algorithm", Configuration.ApiClient.ParameterToString(clusterAlgorithm))); // query parameter
+            if (_return != null)
+                foreach (var val in _return)
+                    localVarQueryParams.Add(new Tuple<String, String>("return[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (sortBy != null) localVarQueryParams.Add(new Tuple<String, String>("sort_by", Configuration.ApiClient.ParameterToString(sortBy))); // query parameter
+            if (sortDirection != null) localVarQueryParams.Add(new Tuple<String, String>("sort_direction", Configuration.ApiClient.ParameterToString(sortDirection))); // query parameter
+            if (cursor != null) localVarQueryParams.Add(new Tuple<String, String>("cursor", Configuration.ApiClient.ParameterToString(cursor))); // query parameter
+            if (perPage != null) localVarQueryParams.Add(new Tuple<String, String>("per_page", Configuration.ApiClient.ParameterToString(perPage))); // query parameter
+
+            // authentication (app_key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-AYLIEN-NewsAPI-Application-Key")))
+            {
+                localVarHeaderParams["X-AYLIEN-NewsAPI-Application-Key"] = Configuration.GetApiKeyWithPrefix("X-AYLIEN-NewsAPI-Application-Key");
+            }
+
+            // authentication (app_id) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-AYLIEN-NewsAPI-Application-ID")))
+            {
+                localVarHeaderParams["X-AYLIEN-NewsAPI-Application-ID"] = Configuration.GetApiKeyWithPrefix("X-AYLIEN-NewsAPI-Application-ID");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ListStories", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Stories>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Stories) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Stories)));
+            
+        }
+
+        /// <summary>
+        /// List Stories This endpoint is used for getting a list of stories.
+        /// </summary>
+        /// <exception cref="Aylien.NewsApi.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">This parameter is used for finding stroies by story id. (optional)</param>
+        /// <param name="title">This parameter is used for finding stories whose title contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional)</param>
+        /// <param name="body">This parameter is used for finding stories whose body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional)</param>
+        /// <param name="text">This parameter is used for finding stories whose title or body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional)</param>
+        /// <param name="language">This parameter is used for finding stories whose language is the specified value. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional)</param>
+        /// <param name="publishedAtStart">This parameter is used for finding stories whose published at time is greater than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional)</param>
+        /// <param name="publishedAtEnd">This parameter is used for finding stories whose published at time is less than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional)</param>
+        /// <param name="categoriesTaxonomy">This parameter is used for defining the type of the taxonomy for the rest of the categories queries. (optional)</param>
+        /// <param name="categoriesConfident">This parameter is used for finding stories whose categories are confident. (optional, default to true)</param>
+        /// <param name="categoriesId">This parameter is used for finding stories by categories id. (optional)</param>
+        /// <param name="categoriesLevel">This parameter is used for finding stories by categories level. (optional)</param>
+        /// <param name="entitiesTitleText">This parameter is used to find stories based on the specified entities &#x60;text&#x60; in story titles. (optional)</param>
+        /// <param name="entitiesTitleType">This parameter is used to find stories based on the specified entities &#x60;type&#x60; in story titles. (optional)</param>
+        /// <param name="entitiesTitleLinksDbpedia">This parameter is used to find stories based on the specified entities dbpedia URL in story titles. (optional)</param>
+        /// <param name="entitiesBodyText">This parameter is used to find stories based on the specified entities &#x60;text&#x60; in the body of stories. (optional)</param>
+        /// <param name="entitiesBodyType">This parameter is used to find stories based on the specified entities &#x60;type&#x60; in the body of stories. (optional)</param>
+        /// <param name="entitiesBodyLinksDbpedia">This parameter is used to find stories based on the specified entities dbpedia URL in the body of stories. (optional)</param>
+        /// <param name="sentimentTitlePolarity">This parameter is used for finding stories whose title sentiment is the specified value. (optional)</param>
+        /// <param name="sentimentBodyPolarity">This parameter is used for finding stories whose body sentiment is the specified value. (optional)</param>
+        /// <param name="mediaImagesCountMin">This parameter is used for finding stories whose number of images is greater than or equal to the specified value. (optional)</param>
+        /// <param name="mediaImagesCountMax">This parameter is used for finding stories whose number of images is less than or equal to the specified value. (optional)</param>
+        /// <param name="mediaVideosCountMin">This parameter is used for finding stories whose number of videos is greater than or equal to the specified value. (optional)</param>
+        /// <param name="mediaVideosCountMax">This parameter is used for finding stories whose number of videos is less than or equal to the specified value. (optional)</param>
+        /// <param name="authorId">This parameter is used for finding stories whose author id is the specified value. (optional)</param>
+        /// <param name="authorName">This parameter is used for finding stories whose author full name contains the specified value. (optional)</param>
+        /// <param name="sourceId">This parameter is used for finding stories whose source id is the specified value. (optional)</param>
+        /// <param name="sourceName">This parameter is used for finding stories whose source name contains the specified value. (optional)</param>
+        /// <param name="sourceDomain">This parameter is used for finding stories whose source domain is the specified value. (optional)</param>
+        /// <param name="sourceLocationsCountry">This parameter is used for finding stories whose source country is the specified value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLocationsState">This parameter is used for finding stories whose source state/province is the specified value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLocationsCity">This parameter is used for finding stories whose source city is the specified value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceScopesCountry">This parameter is used for finding stories whose source scopes is the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="cluster">This parameter enables clustering for the returned stories. (optional, default to false)</param>
+        /// <param name="clusterAlgorithm">This parameter is used for specifying the clustering algorithm you wish to use. It supprts STC, Lingo and [k-means](https://en.wikipedia.org/wiki/K-means_clustering) algorithms. (optional, default to lingo)</param>
+        /// <param name="_return">This parameter is used for specifying return fields. (optional)</param>
+        /// <param name="sortBy">This parameter is used for changing the order column of the results. (optional, default to published_at)</param>
+        /// <param name="sortDirection">This parameter is used for changing the order direction of the result. (optional, default to desc)</param>
+        /// <param name="cursor">This parameter is used for finding a specific page. (optional, default to *)</param>
+        /// <param name="perPage">This parameter is used for specifying number of items in each page. (optional, default to 10)</param>
+        /// <returns>Task of Stories</returns>
+        public async System.Threading.Tasks.Task<Stories> ListStoriesAsync (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, string sortBy = null, string sortDirection = null, string cursor = null, int? perPage = null)
+        {
+             ApiResponse<Stories> localVarResponse = await ListStoriesAsyncWithHttpInfo(id, title, body, text, language, publishedAtStart, publishedAtEnd, categoriesTaxonomy, categoriesConfident, categoriesId, categoriesLevel, entitiesTitleText, entitiesTitleType, entitiesTitleLinksDbpedia, entitiesBodyText, entitiesBodyType, entitiesBodyLinksDbpedia, sentimentTitlePolarity, sentimentBodyPolarity, mediaImagesCountMin, mediaImagesCountMax, mediaVideosCountMin, mediaVideosCountMax, authorId, authorName, sourceId, sourceName, sourceDomain, sourceLocationsCountry, sourceLocationsState, sourceLocationsCity, sourceScopesCountry, sourceScopesState, sourceScopesCity, sourceScopesLevel, sourceLinksInCountMin, sourceLinksInCountMax, sourceRankingsAlexaRankMin, sourceRankingsAlexaRankMax, sourceRankingsAlexaCountry, cluster, clusterAlgorithm, _return, sortBy, sortDirection, cursor, perPage);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// List Stories This endpoint is used for getting a list of stories.
+        /// </summary>
+        /// <exception cref="Aylien.NewsApi.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">This parameter is used for finding stroies by story id. (optional)</param>
+        /// <param name="title">This parameter is used for finding stories whose title contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional)</param>
+        /// <param name="body">This parameter is used for finding stories whose body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional)</param>
+        /// <param name="text">This parameter is used for finding stories whose title or body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional)</param>
+        /// <param name="language">This parameter is used for finding stories whose language is the specified value. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional)</param>
+        /// <param name="publishedAtStart">This parameter is used for finding stories whose published at time is greater than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional)</param>
+        /// <param name="publishedAtEnd">This parameter is used for finding stories whose published at time is less than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional)</param>
+        /// <param name="categoriesTaxonomy">This parameter is used for defining the type of the taxonomy for the rest of the categories queries. (optional)</param>
+        /// <param name="categoriesConfident">This parameter is used for finding stories whose categories are confident. (optional, default to true)</param>
+        /// <param name="categoriesId">This parameter is used for finding stories by categories id. (optional)</param>
+        /// <param name="categoriesLevel">This parameter is used for finding stories by categories level. (optional)</param>
+        /// <param name="entitiesTitleText">This parameter is used to find stories based on the specified entities &#x60;text&#x60; in story titles. (optional)</param>
+        /// <param name="entitiesTitleType">This parameter is used to find stories based on the specified entities &#x60;type&#x60; in story titles. (optional)</param>
+        /// <param name="entitiesTitleLinksDbpedia">This parameter is used to find stories based on the specified entities dbpedia URL in story titles. (optional)</param>
+        /// <param name="entitiesBodyText">This parameter is used to find stories based on the specified entities &#x60;text&#x60; in the body of stories. (optional)</param>
+        /// <param name="entitiesBodyType">This parameter is used to find stories based on the specified entities &#x60;type&#x60; in the body of stories. (optional)</param>
+        /// <param name="entitiesBodyLinksDbpedia">This parameter is used to find stories based on the specified entities dbpedia URL in the body of stories. (optional)</param>
+        /// <param name="sentimentTitlePolarity">This parameter is used for finding stories whose title sentiment is the specified value. (optional)</param>
+        /// <param name="sentimentBodyPolarity">This parameter is used for finding stories whose body sentiment is the specified value. (optional)</param>
+        /// <param name="mediaImagesCountMin">This parameter is used for finding stories whose number of images is greater than or equal to the specified value. (optional)</param>
+        /// <param name="mediaImagesCountMax">This parameter is used for finding stories whose number of images is less than or equal to the specified value. (optional)</param>
+        /// <param name="mediaVideosCountMin">This parameter is used for finding stories whose number of videos is greater than or equal to the specified value. (optional)</param>
+        /// <param name="mediaVideosCountMax">This parameter is used for finding stories whose number of videos is less than or equal to the specified value. (optional)</param>
+        /// <param name="authorId">This parameter is used for finding stories whose author id is the specified value. (optional)</param>
+        /// <param name="authorName">This parameter is used for finding stories whose author full name contains the specified value. (optional)</param>
+        /// <param name="sourceId">This parameter is used for finding stories whose source id is the specified value. (optional)</param>
+        /// <param name="sourceName">This parameter is used for finding stories whose source name contains the specified value. (optional)</param>
+        /// <param name="sourceDomain">This parameter is used for finding stories whose source domain is the specified value. (optional)</param>
+        /// <param name="sourceLocationsCountry">This parameter is used for finding stories whose source country is the specified value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLocationsState">This parameter is used for finding stories whose source state/province is the specified value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLocationsCity">This parameter is used for finding stories whose source city is the specified value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceScopesCountry">This parameter is used for finding stories whose source scopes is the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="cluster">This parameter enables clustering for the returned stories. (optional, default to false)</param>
+        /// <param name="clusterAlgorithm">This parameter is used for specifying the clustering algorithm you wish to use. It supprts STC, Lingo and [k-means](https://en.wikipedia.org/wiki/K-means_clustering) algorithms. (optional, default to lingo)</param>
+        /// <param name="_return">This parameter is used for specifying return fields. (optional)</param>
+        /// <param name="sortBy">This parameter is used for changing the order column of the results. (optional, default to published_at)</param>
+        /// <param name="sortDirection">This parameter is used for changing the order direction of the result. (optional, default to desc)</param>
+        /// <param name="cursor">This parameter is used for finding a specific page. (optional, default to *)</param>
+        /// <param name="perPage">This parameter is used for specifying number of items in each page. (optional, default to 10)</param>
+        /// <returns>Task of ApiResponse (Stories)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Stories>> ListStoriesAsyncWithHttpInfo (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, string sortBy = null, string sortDirection = null, string cursor = null, int? perPage = null)
+        {
+
+            var localVarPath = "/stories";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<Tuple<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new List<Tuple<String, String>>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json", 
+                "text/xml"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (id != null)
+                foreach (var val in id)
+                    localVarQueryParams.Add(new Tuple<String, String>("id[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (title != null) localVarQueryParams.Add(new Tuple<String, String>("title", Configuration.ApiClient.ParameterToString(title))); // query parameter
+            if (body != null) localVarQueryParams.Add(new Tuple<String, String>("body", Configuration.ApiClient.ParameterToString(body))); // query parameter
+            if (text != null) localVarQueryParams.Add(new Tuple<String, String>("text", Configuration.ApiClient.ParameterToString(text))); // query parameter
+            if (language != null)
+                foreach (var val in language)
+                    localVarQueryParams.Add(new Tuple<String, String>("language[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (publishedAtStart != null) localVarQueryParams.Add(new Tuple<String, String>("published_at.start", Configuration.ApiClient.ParameterToString(publishedAtStart))); // query parameter
+            if (publishedAtEnd != null) localVarQueryParams.Add(new Tuple<String, String>("published_at.end", Configuration.ApiClient.ParameterToString(publishedAtEnd))); // query parameter
+            if (categoriesTaxonomy != null) localVarQueryParams.Add(new Tuple<String, String>("categories.taxonomy", Configuration.ApiClient.ParameterToString(categoriesTaxonomy))); // query parameter
+            if (categoriesConfident != null) localVarQueryParams.Add(new Tuple<String, String>("categories.confident", Configuration.ApiClient.ParameterToString(categoriesConfident))); // query parameter
+            if (categoriesId != null)
+                foreach (var val in categoriesId)
+                    localVarQueryParams.Add(new Tuple<String, String>("categories.id[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (categoriesLevel != null)
+                foreach (var val in categoriesLevel)
+                    localVarQueryParams.Add(new Tuple<String, String>("categories.level[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (entitiesTitleText != null)
+                foreach (var val in entitiesTitleText)
+                    localVarQueryParams.Add(new Tuple<String, String>("entities.title.text[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (entitiesTitleType != null)
+                foreach (var val in entitiesTitleType)
+                    localVarQueryParams.Add(new Tuple<String, String>("entities.title.type[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (entitiesTitleLinksDbpedia != null)
+                foreach (var val in entitiesTitleLinksDbpedia)
+                    localVarQueryParams.Add(new Tuple<String, String>("entities.title.links.dbpedia[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (entitiesBodyText != null)
+                foreach (var val in entitiesBodyText)
+                    localVarQueryParams.Add(new Tuple<String, String>("entities.body.text[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (entitiesBodyType != null)
+                foreach (var val in entitiesBodyType)
+                    localVarQueryParams.Add(new Tuple<String, String>("entities.body.type[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (entitiesBodyLinksDbpedia != null)
+                foreach (var val in entitiesBodyLinksDbpedia)
+                    localVarQueryParams.Add(new Tuple<String, String>("entities.body.links.dbpedia[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (sentimentTitlePolarity != null) localVarQueryParams.Add(new Tuple<String, String>("sentiment.title.polarity", Configuration.ApiClient.ParameterToString(sentimentTitlePolarity))); // query parameter
+            if (sentimentBodyPolarity != null) localVarQueryParams.Add(new Tuple<String, String>("sentiment.body.polarity", Configuration.ApiClient.ParameterToString(sentimentBodyPolarity))); // query parameter
+            if (mediaImagesCountMin != null) localVarQueryParams.Add(new Tuple<String, String>("media.images.count.min", Configuration.ApiClient.ParameterToString(mediaImagesCountMin))); // query parameter
+            if (mediaImagesCountMax != null) localVarQueryParams.Add(new Tuple<String, String>("media.images.count.max", Configuration.ApiClient.ParameterToString(mediaImagesCountMax))); // query parameter
+            if (mediaVideosCountMin != null) localVarQueryParams.Add(new Tuple<String, String>("media.videos.count.min", Configuration.ApiClient.ParameterToString(mediaVideosCountMin))); // query parameter
+            if (mediaVideosCountMax != null) localVarQueryParams.Add(new Tuple<String, String>("media.videos.count.max", Configuration.ApiClient.ParameterToString(mediaVideosCountMax))); // query parameter
+            if (authorId != null)
+                foreach (var val in authorId)
+                    localVarQueryParams.Add(new Tuple<String, String>("author.id[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (authorName != null) localVarQueryParams.Add(new Tuple<String, String>("author.name", Configuration.ApiClient.ParameterToString(authorName))); // query parameter
+            if (sourceId != null)
+                foreach (var val in sourceId)
+                    localVarQueryParams.Add(new Tuple<String, String>("source.id[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (sourceName != null)
+                foreach (var val in sourceName)
+                    localVarQueryParams.Add(new Tuple<String, String>("source.name[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (sourceDomain != null)
+                foreach (var val in sourceDomain)
+                    localVarQueryParams.Add(new Tuple<String, String>("source.domain[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (sourceLocationsCountry != null)
+                foreach (var val in sourceLocationsCountry)
+                    localVarQueryParams.Add(new Tuple<String, String>("source.locations.country[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (sourceLocationsState != null)
+                foreach (var val in sourceLocationsState)
+                    localVarQueryParams.Add(new Tuple<String, String>("source.locations.state[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (sourceLocationsCity != null)
+                foreach (var val in sourceLocationsCity)
+                    localVarQueryParams.Add(new Tuple<String, String>("source.locations.city[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (sourceScopesCountry != null)
+                foreach (var val in sourceScopesCountry)
+                    localVarQueryParams.Add(new Tuple<String, String>("source.scopes.country[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (sourceScopesState != null)
+                foreach (var val in sourceScopesState)
+                    localVarQueryParams.Add(new Tuple<String, String>("source.scopes.state[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (sourceScopesCity != null)
+                foreach (var val in sourceScopesCity)
+                    localVarQueryParams.Add(new Tuple<String, String>("source.scopes.city[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (sourceScopesLevel != null)
+                foreach (var val in sourceScopesLevel)
+                    localVarQueryParams.Add(new Tuple<String, String>("source.scopes.level[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (sourceLinksInCountMin != null) localVarQueryParams.Add(new Tuple<String, String>("source.links_in_count.min", Configuration.ApiClient.ParameterToString(sourceLinksInCountMin))); // query parameter
+            if (sourceLinksInCountMax != null) localVarQueryParams.Add(new Tuple<String, String>("source.links_in_count.max", Configuration.ApiClient.ParameterToString(sourceLinksInCountMax))); // query parameter
+            if (sourceRankingsAlexaRankMin != null) localVarQueryParams.Add(new Tuple<String, String>("source.rankings.alexa.rank.min", Configuration.ApiClient.ParameterToString(sourceRankingsAlexaRankMin))); // query parameter
+            if (sourceRankingsAlexaRankMax != null) localVarQueryParams.Add(new Tuple<String, String>("source.rankings.alexa.rank.max", Configuration.ApiClient.ParameterToString(sourceRankingsAlexaRankMax))); // query parameter
+            if (sourceRankingsAlexaCountry != null)
+                foreach (var val in sourceRankingsAlexaCountry)
+                    localVarQueryParams.Add(new Tuple<String, String>("source.rankings.alexa.country[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (cluster != null) localVarQueryParams.Add(new Tuple<String, String>("cluster", Configuration.ApiClient.ParameterToString(cluster))); // query parameter
             if (clusterAlgorithm != null) localVarQueryParams.Add(new Tuple<String, String>("cluster.algorithm", Configuration.ApiClient.ParameterToString(clusterAlgorithm))); // query parameter
             if (_return != null)
@@ -3506,21 +3803,22 @@ namespace Aylien.NewsApi.Api
             }
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
                 Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (localVarStatusCode >= 400)
-                throw new ApiException(localVarStatusCode, "Error calling ListStories: " + localVarResponse.Content, localVarResponse.Content);
-            else if (localVarStatusCode == 0)
-                throw new ApiException(localVarStatusCode, "Error calling ListStories: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ListStories", localVarResponse);
+                if (exception != null) throw exception;
+            }
 
             return new ApiResponse<Stories>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Stories)Configuration.ApiClient.Deserialize(localVarResponse, typeof(Stories)));
-
+                (Stories) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Stories)));
+            
         }
 
         /// <summary>
@@ -3560,14 +3858,19 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="publishedAtStart">This parameter is used for finding stories whose published at time is less than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional, default to NOW-7DAYS/DAY)</param>
         /// <param name="publishedAtEnd">This parameter is used for finding stories whose published at time is greater than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional, default to NOW/DAY)</param>
         /// <param name="period">The size of each date range is expressed as an interval to be added to the lower bound. It supports Date Math Syntax. Valid options are &#x60;+&#x60; following an integer number greater than 0 and one of the Date Math keywords. e.g. &#x60;+1DAY&#x60;, &#x60;+2MINUTES&#x60; and &#x60;+1MONTH&#x60;. Here are [Supported keywords](https://newsapi.aylien.com/docs/working-with-dates#date-math). (optional, default to +1DAY)</param>
         /// <returns>TimeSeriesList</returns>
-        public TimeSeriesList ListTimeSeries(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, string publishedAtStart = null, string publishedAtEnd = null, string period = null)
+        public TimeSeriesList ListTimeSeries (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, string publishedAtStart = null, string publishedAtEnd = null, string period = null)
         {
-            ApiResponse<TimeSeriesList> localVarResponse = ListTimeSeriesWithHttpInfo(id, title, body, text, language, categoriesTaxonomy, categoriesConfident, categoriesId, categoriesLevel, entitiesTitleText, entitiesTitleType, entitiesTitleLinksDbpedia, entitiesBodyText, entitiesBodyType, entitiesBodyLinksDbpedia, sentimentTitlePolarity, sentimentBodyPolarity, mediaImagesCountMin, mediaImagesCountMax, mediaVideosCountMin, mediaVideosCountMax, authorId, authorName, sourceId, sourceName, sourceDomain, sourceLocationsCountry, sourceLocationsState, sourceLocationsCity, sourceScopesCountry, sourceScopesState, sourceScopesCity, sourceScopesLevel, publishedAtStart, publishedAtEnd, period);
-            return localVarResponse.Data;
+             ApiResponse<TimeSeriesList> localVarResponse = ListTimeSeriesWithHttpInfo(id, title, body, text, language, categoriesTaxonomy, categoriesConfident, categoriesId, categoriesLevel, entitiesTitleText, entitiesTitleType, entitiesTitleLinksDbpedia, entitiesBodyText, entitiesBodyType, entitiesBodyLinksDbpedia, sentimentTitlePolarity, sentimentBodyPolarity, mediaImagesCountMin, mediaImagesCountMax, mediaVideosCountMin, mediaVideosCountMax, authorId, authorName, sourceId, sourceName, sourceDomain, sourceLocationsCountry, sourceLocationsState, sourceLocationsCity, sourceScopesCountry, sourceScopesState, sourceScopesCity, sourceScopesLevel, sourceLinksInCountMin, sourceLinksInCountMax, sourceRankingsAlexaRankMin, sourceRankingsAlexaRankMax, sourceRankingsAlexaCountry, publishedAtStart, publishedAtEnd, period);
+             return localVarResponse.Data;
         }
 
         /// <summary>
@@ -3607,11 +3910,16 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="publishedAtStart">This parameter is used for finding stories whose published at time is less than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional, default to NOW-7DAYS/DAY)</param>
         /// <param name="publishedAtEnd">This parameter is used for finding stories whose published at time is greater than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional, default to NOW/DAY)</param>
         /// <param name="period">The size of each date range is expressed as an interval to be added to the lower bound. It supports Date Math Syntax. Valid options are &#x60;+&#x60; following an integer number greater than 0 and one of the Date Math keywords. e.g. &#x60;+1DAY&#x60;, &#x60;+2MINUTES&#x60; and &#x60;+1MONTH&#x60;. Here are [Supported keywords](https://newsapi.aylien.com/docs/working-with-dates#date-math). (optional, default to +1DAY)</param>
         /// <returns>ApiResponse of TimeSeriesList</returns>
-        public ApiResponse<TimeSeriesList> ListTimeSeriesWithHttpInfo(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, string publishedAtStart = null, string publishedAtEnd = null, string period = null)
+        public ApiResponse< TimeSeriesList > ListTimeSeriesWithHttpInfo (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, string publishedAtStart = null, string publishedAtEnd = null, string period = null)
         {
 
             var localVarPath = "/time_series";
@@ -3642,81 +3950,88 @@ namespace Aylien.NewsApi.Api
             localVarPathParams.Add("format", "json");
             if (id != null)
                 foreach (var val in id)
-                    localVarQueryParams .Add(new Tuple<String, String>("id[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (title != null) localVarQueryParams .Add(new Tuple<String, String>("title", Configuration.ApiClient.ParameterToString(title))); // query parameter
-            if (body != null) localVarQueryParams .Add(new Tuple<String, String>("body", Configuration.ApiClient.ParameterToString(body))); // query parameter
-            if (text != null) localVarQueryParams .Add(new Tuple<String, String>("text", Configuration.ApiClient.ParameterToString(text))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("id[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (title != null) localVarQueryParams.Add(new Tuple<String, String>("title", Configuration.ApiClient.ParameterToString(title))); // query parameter
+            if (body != null) localVarQueryParams.Add(new Tuple<String, String>("body", Configuration.ApiClient.ParameterToString(body))); // query parameter
+            if (text != null) localVarQueryParams.Add(new Tuple<String, String>("text", Configuration.ApiClient.ParameterToString(text))); // query parameter
             if (language != null)
                 foreach (var val in language)
-                    localVarQueryParams .Add(new Tuple<String, String>("language[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (categoriesTaxonomy != null) localVarQueryParams .Add(new Tuple<String, String>("categories.taxonomy", Configuration.ApiClient.ParameterToString(categoriesTaxonomy))); // query parameter
-            if (categoriesConfident != null) localVarQueryParams .Add(new Tuple<String, String>("categories.confident", Configuration.ApiClient.ParameterToString(categoriesConfident))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("language[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (categoriesTaxonomy != null) localVarQueryParams.Add(new Tuple<String, String>("categories.taxonomy", Configuration.ApiClient.ParameterToString(categoriesTaxonomy))); // query parameter
+            if (categoriesConfident != null) localVarQueryParams.Add(new Tuple<String, String>("categories.confident", Configuration.ApiClient.ParameterToString(categoriesConfident))); // query parameter
             if (categoriesId != null)
                 foreach (var val in categoriesId)
-                    localVarQueryParams .Add(new Tuple<String, String>("categories.id[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("categories.id[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (categoriesLevel != null)
                 foreach (var val in categoriesLevel)
-                    localVarQueryParams .Add(new Tuple<String, String>("categories.level[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("categories.level[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (entitiesTitleText != null)
                 foreach (var val in entitiesTitleText)
-                    localVarQueryParams .Add(new Tuple<String, String>("entities.title.text[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("entities.title.text[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (entitiesTitleType != null)
                 foreach (var val in entitiesTitleType)
-                    localVarQueryParams .Add(new Tuple<String, String>("entities.title.type[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("entities.title.type[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (entitiesTitleLinksDbpedia != null)
                 foreach (var val in entitiesTitleLinksDbpedia)
-                    localVarQueryParams .Add(new Tuple<String, String>("entities.title.links.dbpedia[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("entities.title.links.dbpedia[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (entitiesBodyText != null)
                 foreach (var val in entitiesBodyText)
-                    localVarQueryParams .Add(new Tuple<String, String>("entities.body.text[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("entities.body.text[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (entitiesBodyType != null)
                 foreach (var val in entitiesBodyType)
-                    localVarQueryParams .Add(new Tuple<String, String>("entities.body.type[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("entities.body.type[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (entitiesBodyLinksDbpedia != null)
                 foreach (var val in entitiesBodyLinksDbpedia)
-                    localVarQueryParams .Add(new Tuple<String, String>("entities.body.links.dbpedia[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (sentimentTitlePolarity != null) localVarQueryParams .Add(new Tuple<String, String>("sentiment.title.polarity", Configuration.ApiClient.ParameterToString(sentimentTitlePolarity))); // query parameter
-            if (sentimentBodyPolarity != null) localVarQueryParams .Add(new Tuple<String, String>("sentiment.body.polarity", Configuration.ApiClient.ParameterToString(sentimentBodyPolarity))); // query parameter
-            if (mediaImagesCountMin != null) localVarQueryParams .Add(new Tuple<String, String>("media.images.count.min", Configuration.ApiClient.ParameterToString(mediaImagesCountMin))); // query parameter
-            if (mediaImagesCountMax != null) localVarQueryParams .Add(new Tuple<String, String>("media.images.count.max", Configuration.ApiClient.ParameterToString(mediaImagesCountMax))); // query parameter
-            if (mediaVideosCountMin != null) localVarQueryParams .Add(new Tuple<String, String>("media.videos.count.min", Configuration.ApiClient.ParameterToString(mediaVideosCountMin))); // query parameter
-            if (mediaVideosCountMax != null) localVarQueryParams .Add(new Tuple<String, String>("media.videos.count.max", Configuration.ApiClient.ParameterToString(mediaVideosCountMax))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("entities.body.links.dbpedia[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (sentimentTitlePolarity != null) localVarQueryParams.Add(new Tuple<String, String>("sentiment.title.polarity", Configuration.ApiClient.ParameterToString(sentimentTitlePolarity))); // query parameter
+            if (sentimentBodyPolarity != null) localVarQueryParams.Add(new Tuple<String, String>("sentiment.body.polarity", Configuration.ApiClient.ParameterToString(sentimentBodyPolarity))); // query parameter
+            if (mediaImagesCountMin != null) localVarQueryParams.Add(new Tuple<String, String>("media.images.count.min", Configuration.ApiClient.ParameterToString(mediaImagesCountMin))); // query parameter
+            if (mediaImagesCountMax != null) localVarQueryParams.Add(new Tuple<String, String>("media.images.count.max", Configuration.ApiClient.ParameterToString(mediaImagesCountMax))); // query parameter
+            if (mediaVideosCountMin != null) localVarQueryParams.Add(new Tuple<String, String>("media.videos.count.min", Configuration.ApiClient.ParameterToString(mediaVideosCountMin))); // query parameter
+            if (mediaVideosCountMax != null) localVarQueryParams.Add(new Tuple<String, String>("media.videos.count.max", Configuration.ApiClient.ParameterToString(mediaVideosCountMax))); // query parameter
             if (authorId != null)
                 foreach (var val in authorId)
-                    localVarQueryParams .Add(new Tuple<String, String>("author.id[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (authorName != null) localVarQueryParams .Add(new Tuple<String, String>("author.name", Configuration.ApiClient.ParameterToString(authorName))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("author.id[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (authorName != null) localVarQueryParams.Add(new Tuple<String, String>("author.name", Configuration.ApiClient.ParameterToString(authorName))); // query parameter
             if (sourceId != null)
                 foreach (var val in sourceId)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.id[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("source.id[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (sourceName != null)
                 foreach (var val in sourceName)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.name[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("source.name[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (sourceDomain != null)
                 foreach (var val in sourceDomain)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.domain[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("source.domain[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (sourceLocationsCountry != null)
                 foreach (var val in sourceLocationsCountry)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.locations.country[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("source.locations.country[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (sourceLocationsState != null)
                 foreach (var val in sourceLocationsState)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.locations.state[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("source.locations.state[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (sourceLocationsCity != null)
                 foreach (var val in sourceLocationsCity)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.locations.city[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("source.locations.city[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (sourceScopesCountry != null)
                 foreach (var val in sourceScopesCountry)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.scopes.country[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("source.scopes.country[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (sourceScopesState != null)
                 foreach (var val in sourceScopesState)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.scopes.state[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("source.scopes.state[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (sourceScopesCity != null)
                 foreach (var val in sourceScopesCity)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.scopes.city[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("source.scopes.city[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (sourceScopesLevel != null)
                 foreach (var val in sourceScopesLevel)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.scopes.level[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (publishedAtStart != null) localVarQueryParams .Add(new Tuple<String, String>("published_at.start", Configuration.ApiClient.ParameterToString(publishedAtStart))); // query parameter
-            if (publishedAtEnd != null) localVarQueryParams .Add(new Tuple<String, String>("published_at.end", Configuration.ApiClient.ParameterToString(publishedAtEnd))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("source.scopes.level[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (sourceLinksInCountMin != null) localVarQueryParams.Add(new Tuple<String, String>("source.links_in_count.min", Configuration.ApiClient.ParameterToString(sourceLinksInCountMin))); // query parameter
+            if (sourceLinksInCountMax != null) localVarQueryParams.Add(new Tuple<String, String>("source.links_in_count.max", Configuration.ApiClient.ParameterToString(sourceLinksInCountMax))); // query parameter
+            if (sourceRankingsAlexaRankMin != null) localVarQueryParams.Add(new Tuple<String, String>("source.rankings.alexa.rank.min", Configuration.ApiClient.ParameterToString(sourceRankingsAlexaRankMin))); // query parameter
+            if (sourceRankingsAlexaRankMax != null) localVarQueryParams.Add(new Tuple<String, String>("source.rankings.alexa.rank.max", Configuration.ApiClient.ParameterToString(sourceRankingsAlexaRankMax))); // query parameter
+            if (sourceRankingsAlexaCountry != null)
+                foreach (var val in sourceRankingsAlexaCountry)
+                    localVarQueryParams.Add(new Tuple<String, String>("source.rankings.alexa.country[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (publishedAtStart != null) localVarQueryParams.Add(new Tuple<String, String>("published_at.start", Configuration.ApiClient.ParameterToString(publishedAtStart))); // query parameter
+            if (publishedAtEnd != null) localVarQueryParams.Add(new Tuple<String, String>("published_at.end", Configuration.ApiClient.ParameterToString(publishedAtEnd))); // query parameter
             if (period != null) localVarQueryParams.Add(new Tuple<String, String>("period", Configuration.ApiClient.ParameterToString(period))); // query parameter
 
             // authentication (app_key) required
@@ -3733,21 +4048,22 @@ namespace Aylien.NewsApi.Api
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse)Configuration.ApiClient.CallApi(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
                 Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (localVarStatusCode >= 400)
-                throw new ApiException(localVarStatusCode, "Error calling ListTimeSeries: " + localVarResponse.Content, localVarResponse.Content);
-            else if (localVarStatusCode == 0)
-                throw new ApiException(localVarStatusCode, "Error calling ListTimeSeries: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ListTimeSeries", localVarResponse);
+                if (exception != null) throw exception;
+            }
 
             return new ApiResponse<TimeSeriesList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (TimeSeriesList)Configuration.ApiClient.Deserialize(localVarResponse, typeof(TimeSeriesList)));
-
+                (TimeSeriesList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(TimeSeriesList)));
+            
         }
 
         /// <summary>
@@ -3787,14 +4103,19 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="publishedAtStart">This parameter is used for finding stories whose published at time is less than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional, default to NOW-7DAYS/DAY)</param>
         /// <param name="publishedAtEnd">This parameter is used for finding stories whose published at time is greater than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional, default to NOW/DAY)</param>
         /// <param name="period">The size of each date range is expressed as an interval to be added to the lower bound. It supports Date Math Syntax. Valid options are &#x60;+&#x60; following an integer number greater than 0 and one of the Date Math keywords. e.g. &#x60;+1DAY&#x60;, &#x60;+2MINUTES&#x60; and &#x60;+1MONTH&#x60;. Here are [Supported keywords](https://newsapi.aylien.com/docs/working-with-dates#date-math). (optional, default to +1DAY)</param>
         /// <returns>Task of TimeSeriesList</returns>
-        public async System.Threading.Tasks.Task<TimeSeriesList> ListTimeSeriesAsync(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, string publishedAtStart = null, string publishedAtEnd = null, string period = null)
+        public async System.Threading.Tasks.Task<TimeSeriesList> ListTimeSeriesAsync (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, string publishedAtStart = null, string publishedAtEnd = null, string period = null)
         {
-            ApiResponse<TimeSeriesList> localVarResponse = await ListTimeSeriesAsyncWithHttpInfo(id, title, body, text, language, categoriesTaxonomy, categoriesConfident, categoriesId, categoriesLevel, entitiesTitleText, entitiesTitleType, entitiesTitleLinksDbpedia, entitiesBodyText, entitiesBodyType, entitiesBodyLinksDbpedia, sentimentTitlePolarity, sentimentBodyPolarity, mediaImagesCountMin, mediaImagesCountMax, mediaVideosCountMin, mediaVideosCountMax, authorId, authorName, sourceId, sourceName, sourceDomain, sourceLocationsCountry, sourceLocationsState, sourceLocationsCity, sourceScopesCountry, sourceScopesState, sourceScopesCity, sourceScopesLevel, publishedAtStart, publishedAtEnd, period);
-            return localVarResponse.Data;
+             ApiResponse<TimeSeriesList> localVarResponse = await ListTimeSeriesAsyncWithHttpInfo(id, title, body, text, language, categoriesTaxonomy, categoriesConfident, categoriesId, categoriesLevel, entitiesTitleText, entitiesTitleType, entitiesTitleLinksDbpedia, entitiesBodyText, entitiesBodyType, entitiesBodyLinksDbpedia, sentimentTitlePolarity, sentimentBodyPolarity, mediaImagesCountMin, mediaImagesCountMax, mediaVideosCountMin, mediaVideosCountMax, authorId, authorName, sourceId, sourceName, sourceDomain, sourceLocationsCountry, sourceLocationsState, sourceLocationsCity, sourceScopesCountry, sourceScopesState, sourceScopesCity, sourceScopesLevel, sourceLinksInCountMin, sourceLinksInCountMax, sourceRankingsAlexaRankMin, sourceRankingsAlexaRankMax, sourceRankingsAlexaCountry, publishedAtStart, publishedAtEnd, period);
+             return localVarResponse.Data;
 
         }
 
@@ -3835,11 +4156,16 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="publishedAtStart">This parameter is used for finding stories whose published at time is less than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional, default to NOW-7DAYS/DAY)</param>
         /// <param name="publishedAtEnd">This parameter is used for finding stories whose published at time is greater than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional, default to NOW/DAY)</param>
         /// <param name="period">The size of each date range is expressed as an interval to be added to the lower bound. It supports Date Math Syntax. Valid options are &#x60;+&#x60; following an integer number greater than 0 and one of the Date Math keywords. e.g. &#x60;+1DAY&#x60;, &#x60;+2MINUTES&#x60; and &#x60;+1MONTH&#x60;. Here are [Supported keywords](https://newsapi.aylien.com/docs/working-with-dates#date-math). (optional, default to +1DAY)</param>
         /// <returns>Task of ApiResponse (TimeSeriesList)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<TimeSeriesList>> ListTimeSeriesAsyncWithHttpInfo(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, string publishedAtStart = null, string publishedAtEnd = null, string period = null)
+        public async System.Threading.Tasks.Task<ApiResponse<TimeSeriesList>> ListTimeSeriesAsyncWithHttpInfo (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, string publishedAtStart = null, string publishedAtEnd = null, string period = null)
         {
 
             var localVarPath = "/time_series";
@@ -3870,81 +4196,88 @@ namespace Aylien.NewsApi.Api
             localVarPathParams.Add("format", "json");
             if (id != null)
                 foreach (var val in id)
-                    localVarQueryParams .Add(new Tuple<String, String>("id[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (title != null) localVarQueryParams .Add(new Tuple<String, String>("title", Configuration.ApiClient.ParameterToString(title))); // query parameter
-            if (body != null) localVarQueryParams .Add(new Tuple<String, String>("body", Configuration.ApiClient.ParameterToString(body))); // query parameter
-            if (text != null) localVarQueryParams .Add(new Tuple<String, String>("text", Configuration.ApiClient.ParameterToString(text))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("id[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (title != null) localVarQueryParams.Add(new Tuple<String, String>("title", Configuration.ApiClient.ParameterToString(title))); // query parameter
+            if (body != null) localVarQueryParams.Add(new Tuple<String, String>("body", Configuration.ApiClient.ParameterToString(body))); // query parameter
+            if (text != null) localVarQueryParams.Add(new Tuple<String, String>("text", Configuration.ApiClient.ParameterToString(text))); // query parameter
             if (language != null)
                 foreach (var val in language)
-                    localVarQueryParams .Add(new Tuple<String, String>("language[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (categoriesTaxonomy != null) localVarQueryParams .Add(new Tuple<String, String>("categories.taxonomy", Configuration.ApiClient.ParameterToString(categoriesTaxonomy))); // query parameter
-            if (categoriesConfident != null) localVarQueryParams .Add(new Tuple<String, String>("categories.confident", Configuration.ApiClient.ParameterToString(categoriesConfident))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("language[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (categoriesTaxonomy != null) localVarQueryParams.Add(new Tuple<String, String>("categories.taxonomy", Configuration.ApiClient.ParameterToString(categoriesTaxonomy))); // query parameter
+            if (categoriesConfident != null) localVarQueryParams.Add(new Tuple<String, String>("categories.confident", Configuration.ApiClient.ParameterToString(categoriesConfident))); // query parameter
             if (categoriesId != null)
                 foreach (var val in categoriesId)
-                    localVarQueryParams .Add(new Tuple<String, String>("categories.id[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("categories.id[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (categoriesLevel != null)
                 foreach (var val in categoriesLevel)
-                    localVarQueryParams .Add(new Tuple<String, String>("categories.level[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("categories.level[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (entitiesTitleText != null)
                 foreach (var val in entitiesTitleText)
-                    localVarQueryParams .Add(new Tuple<String, String>("entities.title.text[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("entities.title.text[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (entitiesTitleType != null)
                 foreach (var val in entitiesTitleType)
-                    localVarQueryParams .Add(new Tuple<String, String>("entities.title.type[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("entities.title.type[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (entitiesTitleLinksDbpedia != null)
                 foreach (var val in entitiesTitleLinksDbpedia)
-                    localVarQueryParams .Add(new Tuple<String, String>("entities.title.links.dbpedia[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("entities.title.links.dbpedia[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (entitiesBodyText != null)
                 foreach (var val in entitiesBodyText)
-                    localVarQueryParams .Add(new Tuple<String, String>("entities.body.text[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("entities.body.text[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (entitiesBodyType != null)
                 foreach (var val in entitiesBodyType)
-                    localVarQueryParams .Add(new Tuple<String, String>("entities.body.type[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("entities.body.type[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (entitiesBodyLinksDbpedia != null)
                 foreach (var val in entitiesBodyLinksDbpedia)
-                    localVarQueryParams .Add(new Tuple<String, String>("entities.body.links.dbpedia[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (sentimentTitlePolarity != null) localVarQueryParams .Add(new Tuple<String, String>("sentiment.title.polarity", Configuration.ApiClient.ParameterToString(sentimentTitlePolarity))); // query parameter
-            if (sentimentBodyPolarity != null) localVarQueryParams .Add(new Tuple<String, String>("sentiment.body.polarity", Configuration.ApiClient.ParameterToString(sentimentBodyPolarity))); // query parameter
-            if (mediaImagesCountMin != null) localVarQueryParams .Add(new Tuple<String, String>("media.images.count.min", Configuration.ApiClient.ParameterToString(mediaImagesCountMin))); // query parameter
-            if (mediaImagesCountMax != null) localVarQueryParams .Add(new Tuple<String, String>("media.images.count.max", Configuration.ApiClient.ParameterToString(mediaImagesCountMax))); // query parameter
-            if (mediaVideosCountMin != null) localVarQueryParams .Add(new Tuple<String, String>("media.videos.count.min", Configuration.ApiClient.ParameterToString(mediaVideosCountMin))); // query parameter
-            if (mediaVideosCountMax != null) localVarQueryParams .Add(new Tuple<String, String>("media.videos.count.max", Configuration.ApiClient.ParameterToString(mediaVideosCountMax))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("entities.body.links.dbpedia[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (sentimentTitlePolarity != null) localVarQueryParams.Add(new Tuple<String, String>("sentiment.title.polarity", Configuration.ApiClient.ParameterToString(sentimentTitlePolarity))); // query parameter
+            if (sentimentBodyPolarity != null) localVarQueryParams.Add(new Tuple<String, String>("sentiment.body.polarity", Configuration.ApiClient.ParameterToString(sentimentBodyPolarity))); // query parameter
+            if (mediaImagesCountMin != null) localVarQueryParams.Add(new Tuple<String, String>("media.images.count.min", Configuration.ApiClient.ParameterToString(mediaImagesCountMin))); // query parameter
+            if (mediaImagesCountMax != null) localVarQueryParams.Add(new Tuple<String, String>("media.images.count.max", Configuration.ApiClient.ParameterToString(mediaImagesCountMax))); // query parameter
+            if (mediaVideosCountMin != null) localVarQueryParams.Add(new Tuple<String, String>("media.videos.count.min", Configuration.ApiClient.ParameterToString(mediaVideosCountMin))); // query parameter
+            if (mediaVideosCountMax != null) localVarQueryParams.Add(new Tuple<String, String>("media.videos.count.max", Configuration.ApiClient.ParameterToString(mediaVideosCountMax))); // query parameter
             if (authorId != null)
                 foreach (var val in authorId)
-                    localVarQueryParams .Add(new Tuple<String, String>("author.id[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (authorName != null) localVarQueryParams .Add(new Tuple<String, String>("author.name", Configuration.ApiClient.ParameterToString(authorName))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("author.id[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (authorName != null) localVarQueryParams.Add(new Tuple<String, String>("author.name", Configuration.ApiClient.ParameterToString(authorName))); // query parameter
             if (sourceId != null)
                 foreach (var val in sourceId)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.id[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("source.id[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (sourceName != null)
                 foreach (var val in sourceName)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.name[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("source.name[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (sourceDomain != null)
                 foreach (var val in sourceDomain)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.domain[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("source.domain[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (sourceLocationsCountry != null)
                 foreach (var val in sourceLocationsCountry)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.locations.country[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("source.locations.country[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (sourceLocationsState != null)
                 foreach (var val in sourceLocationsState)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.locations.state[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("source.locations.state[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (sourceLocationsCity != null)
                 foreach (var val in sourceLocationsCity)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.locations.city[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("source.locations.city[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (sourceScopesCountry != null)
                 foreach (var val in sourceScopesCountry)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.scopes.country[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("source.scopes.country[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (sourceScopesState != null)
                 foreach (var val in sourceScopesState)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.scopes.state[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("source.scopes.state[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (sourceScopesCity != null)
                 foreach (var val in sourceScopesCity)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.scopes.city[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("source.scopes.city[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (sourceScopesLevel != null)
                 foreach (var val in sourceScopesLevel)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.scopes.level[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (publishedAtStart != null) localVarQueryParams .Add(new Tuple<String, String>("published_at.start", Configuration.ApiClient.ParameterToString(publishedAtStart))); // query parameter
-            if (publishedAtEnd != null) localVarQueryParams .Add(new Tuple<String, String>("published_at.end", Configuration.ApiClient.ParameterToString(publishedAtEnd))); // query parameter
+                    localVarQueryParams.Add(new Tuple<String, String>("source.scopes.level[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (sourceLinksInCountMin != null) localVarQueryParams.Add(new Tuple<String, String>("source.links_in_count.min", Configuration.ApiClient.ParameterToString(sourceLinksInCountMin))); // query parameter
+            if (sourceLinksInCountMax != null) localVarQueryParams.Add(new Tuple<String, String>("source.links_in_count.max", Configuration.ApiClient.ParameterToString(sourceLinksInCountMax))); // query parameter
+            if (sourceRankingsAlexaRankMin != null) localVarQueryParams.Add(new Tuple<String, String>("source.rankings.alexa.rank.min", Configuration.ApiClient.ParameterToString(sourceRankingsAlexaRankMin))); // query parameter
+            if (sourceRankingsAlexaRankMax != null) localVarQueryParams.Add(new Tuple<String, String>("source.rankings.alexa.rank.max", Configuration.ApiClient.ParameterToString(sourceRankingsAlexaRankMax))); // query parameter
+            if (sourceRankingsAlexaCountry != null)
+                foreach (var val in sourceRankingsAlexaCountry)
+                    localVarQueryParams.Add(new Tuple<String, String>("source.rankings.alexa.country[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (publishedAtStart != null) localVarQueryParams.Add(new Tuple<String, String>("published_at.start", Configuration.ApiClient.ParameterToString(publishedAtStart))); // query parameter
+            if (publishedAtEnd != null) localVarQueryParams.Add(new Tuple<String, String>("published_at.end", Configuration.ApiClient.ParameterToString(publishedAtEnd))); // query parameter
             if (period != null) localVarQueryParams.Add(new Tuple<String, String>("period", Configuration.ApiClient.ParameterToString(period))); // query parameter
 
             // authentication (app_key) required
@@ -3959,21 +4292,22 @@ namespace Aylien.NewsApi.Api
             }
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
                 Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (localVarStatusCode >= 400)
-                throw new ApiException(localVarStatusCode, "Error calling ListTimeSeries: " + localVarResponse.Content, localVarResponse.Content);
-            else if (localVarStatusCode == 0)
-                throw new ApiException(localVarStatusCode, "Error calling ListTimeSeries: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ListTimeSeries", localVarResponse);
+                if (exception != null) throw exception;
+            }
 
             return new ApiResponse<TimeSeriesList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (TimeSeriesList)Configuration.ApiClient.Deserialize(localVarResponse, typeof(TimeSeriesList)));
-
+                (TimeSeriesList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(TimeSeriesList)));
+            
         }
 
         /// <summary>
@@ -4015,12 +4349,17 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="field">This parameter is used to specify the trend field. (optional)</param>
         /// <returns>Trends</returns>
-        public Trends ListTrends(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, string field = null)
+        public Trends ListTrends (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, string field = null)
         {
-            ApiResponse<Trends> localVarResponse = ListTrendsWithHttpInfo(id, title, body, text, language, publishedAtStart, publishedAtEnd, categoriesTaxonomy, categoriesConfident, categoriesId, categoriesLevel, entitiesTitleText, entitiesTitleType, entitiesTitleLinksDbpedia, entitiesBodyText, entitiesBodyType, entitiesBodyLinksDbpedia, sentimentTitlePolarity, sentimentBodyPolarity, mediaImagesCountMin, mediaImagesCountMax, mediaVideosCountMin, mediaVideosCountMax, authorId, authorName, sourceId, sourceName, sourceDomain, sourceLocationsCountry, sourceLocationsState, sourceLocationsCity, sourceScopesCountry, sourceScopesState, sourceScopesCity, sourceScopesLevel, field);
-            return localVarResponse.Data;
+             ApiResponse<Trends> localVarResponse = ListTrendsWithHttpInfo(id, title, body, text, language, publishedAtStart, publishedAtEnd, categoriesTaxonomy, categoriesConfident, categoriesId, categoriesLevel, entitiesTitleText, entitiesTitleType, entitiesTitleLinksDbpedia, entitiesBodyText, entitiesBodyType, entitiesBodyLinksDbpedia, sentimentTitlePolarity, sentimentBodyPolarity, mediaImagesCountMin, mediaImagesCountMax, mediaVideosCountMin, mediaVideosCountMax, authorId, authorName, sourceId, sourceName, sourceDomain, sourceLocationsCountry, sourceLocationsState, sourceLocationsCity, sourceScopesCountry, sourceScopesState, sourceScopesCity, sourceScopesLevel, sourceLinksInCountMin, sourceLinksInCountMax, sourceRankingsAlexaRankMin, sourceRankingsAlexaRankMax, sourceRankingsAlexaCountry, field);
+             return localVarResponse.Data;
         }
 
         /// <summary>
@@ -4062,237 +4401,14 @@ namespace Aylien.NewsApi.Api
         /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
         /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
         /// <param name="field">This parameter is used to specify the trend field. (optional)</param>
         /// <returns>ApiResponse of Trends</returns>
-        public ApiResponse<Trends> ListTrendsWithHttpInfo(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, string field = null)
-        {
-
-            var localVarPath = "/trends";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<Tuple<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new List<Tuple<String, String>>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/x-www-form-urlencoded"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json", 
-                "text/xml"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // set "format" to json by default
-            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
-            localVarPathParams.Add("format", "json");
-            if (id != null)
-                foreach (var val in id)
-                    localVarQueryParams .Add(new Tuple<String, String>("id[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (title != null) localVarQueryParams .Add(new Tuple<String, String>("title", Configuration.ApiClient.ParameterToString(title))); // query parameter
-            if (body != null) localVarQueryParams .Add(new Tuple<String, String>("body", Configuration.ApiClient.ParameterToString(body))); // query parameter
-            if (text != null) localVarQueryParams .Add(new Tuple<String, String>("text", Configuration.ApiClient.ParameterToString(text))); // query parameter
-            if (language != null)
-                foreach (var val in language)
-                    localVarQueryParams .Add(new Tuple<String, String>("language[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (publishedAtStart != null) localVarQueryParams .Add(new Tuple<String, String>("published_at.start", Configuration.ApiClient.ParameterToString(publishedAtStart))); // query parameter
-            if (publishedAtEnd != null) localVarQueryParams .Add(new Tuple<String, String>("published_at.end", Configuration.ApiClient.ParameterToString(publishedAtEnd))); // query parameter
-            if (categoriesTaxonomy != null) localVarQueryParams .Add(new Tuple<String, String>("categories.taxonomy", Configuration.ApiClient.ParameterToString(categoriesTaxonomy))); // query parameter
-            if (categoriesConfident != null) localVarQueryParams .Add(new Tuple<String, String>("categories.confident", Configuration.ApiClient.ParameterToString(categoriesConfident))); // query parameter
-            if (categoriesId != null)
-                foreach (var val in categoriesId)
-                    localVarQueryParams .Add(new Tuple<String, String>("categories.id[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (categoriesLevel != null)
-                foreach (var val in categoriesLevel)
-                    localVarQueryParams .Add(new Tuple<String, String>("categories.level[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (entitiesTitleText != null)
-                foreach (var val in entitiesTitleText)
-                    localVarQueryParams .Add(new Tuple<String, String>("entities.title.text[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (entitiesTitleType != null)
-                foreach (var val in entitiesTitleType)
-                    localVarQueryParams .Add(new Tuple<String, String>("entities.title.type[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (entitiesTitleLinksDbpedia != null)
-                foreach (var val in entitiesTitleLinksDbpedia)
-                    localVarQueryParams .Add(new Tuple<String, String>("entities.title.links.dbpedia[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (entitiesBodyText != null)
-                foreach (var val in entitiesBodyText)
-                    localVarQueryParams .Add(new Tuple<String, String>("entities.body.text[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (entitiesBodyType != null)
-                foreach (var val in entitiesBodyType)
-                    localVarQueryParams .Add(new Tuple<String, String>("entities.body.type[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (entitiesBodyLinksDbpedia != null)
-                foreach (var val in entitiesBodyLinksDbpedia)
-                    localVarQueryParams .Add(new Tuple<String, String>("entities.body.links.dbpedia[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (sentimentTitlePolarity != null) localVarQueryParams .Add(new Tuple<String, String>("sentiment.title.polarity", Configuration.ApiClient.ParameterToString(sentimentTitlePolarity))); // query parameter
-            if (sentimentBodyPolarity != null) localVarQueryParams .Add(new Tuple<String, String>("sentiment.body.polarity", Configuration.ApiClient.ParameterToString(sentimentBodyPolarity))); // query parameter
-            if (mediaImagesCountMin != null) localVarQueryParams .Add(new Tuple<String, String>("media.images.count.min", Configuration.ApiClient.ParameterToString(mediaImagesCountMin))); // query parameter
-            if (mediaImagesCountMax != null) localVarQueryParams .Add(new Tuple<String, String>("media.images.count.max", Configuration.ApiClient.ParameterToString(mediaImagesCountMax))); // query parameter
-            if (mediaVideosCountMin != null) localVarQueryParams .Add(new Tuple<String, String>("media.videos.count.min", Configuration.ApiClient.ParameterToString(mediaVideosCountMin))); // query parameter
-            if (mediaVideosCountMax != null) localVarQueryParams .Add(new Tuple<String, String>("media.videos.count.max", Configuration.ApiClient.ParameterToString(mediaVideosCountMax))); // query parameter
-            if (authorId != null)
-                foreach (var val in authorId)
-                    localVarQueryParams .Add(new Tuple<String, String>("author.id[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (authorName != null) localVarQueryParams .Add(new Tuple<String, String>("author.name", Configuration.ApiClient.ParameterToString(authorName))); // query parameter
-            if (sourceId != null)
-                foreach (var val in sourceId)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.id[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (sourceName != null)
-                foreach (var val in sourceName)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.name[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (sourceDomain != null)
-                foreach (var val in sourceDomain)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.domain[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (sourceLocationsCountry != null)
-                foreach (var val in sourceLocationsCountry)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.locations.country[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (sourceLocationsState != null)
-                foreach (var val in sourceLocationsState)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.locations.state[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (sourceLocationsCity != null)
-                foreach (var val in sourceLocationsCity)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.locations.city[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (sourceScopesCountry != null)
-                foreach (var val in sourceScopesCountry)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.scopes.country[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (sourceScopesState != null)
-                foreach (var val in sourceScopesState)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.scopes.state[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (sourceScopesCity != null)
-                foreach (var val in sourceScopesCity)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.scopes.city[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (sourceScopesLevel != null)
-                foreach (var val in sourceScopesLevel)
-                    localVarQueryParams .Add(new Tuple<String, String>("source.scopes.level[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
-            if (field != null) localVarQueryParams.Add(new Tuple<String, String>("field", Configuration.ApiClient.ParameterToString(field))); // query parameter
-
-            // authentication (app_key) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-AYLIEN-NewsAPI-Application-Key")))
-            {
-                localVarHeaderParams["X-AYLIEN-NewsAPI-Application-Key"] = Configuration.GetApiKeyWithPrefix("X-AYLIEN-NewsAPI-Application-Key");
-            }
-
-            // authentication (app_id) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-AYLIEN-NewsAPI-Application-ID")))
-            {
-                localVarHeaderParams["X-AYLIEN-NewsAPI-Application-ID"] = Configuration.GetApiKeyWithPrefix("X-AYLIEN-NewsAPI-Application-ID");
-            }
-
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse)Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
-
-            if (localVarStatusCode >= 400)
-                throw new ApiException(localVarStatusCode, "Error calling ListTrends: " + localVarResponse.Content, localVarResponse.Content);
-            else if (localVarStatusCode == 0)
-                throw new ApiException(localVarStatusCode, "Error calling ListTrends: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
-
-            return new ApiResponse<Trends>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Trends)Configuration.ApiClient.Deserialize(localVarResponse, typeof(Trends)));
-
-        }
-
-        /// <summary>
-        /// List trends This endpoint is used for finding trends based on stories.
-        /// </summary>
-        /// <exception cref="Aylien.NewsApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">This parameter is used for finding stroies by story id. (optional)</param>
-        /// <param name="title">This parameter is used for finding stories whose title contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional)</param>
-        /// <param name="body">This parameter is used for finding stories whose body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional)</param>
-        /// <param name="text">This parameter is used for finding stories whose title or body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional)</param>
-        /// <param name="language">This parameter is used for finding stories whose language is the specified value. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional)</param>
-        /// <param name="publishedAtStart">This parameter is used for finding stories whose published at time is greater than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional)</param>
-        /// <param name="publishedAtEnd">This parameter is used for finding stories whose published at time is less than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional)</param>
-        /// <param name="categoriesTaxonomy">This parameter is used for defining the type of the taxonomy for the rest of the categories queries. (optional)</param>
-        /// <param name="categoriesConfident">This parameter is used for finding stories whose categories are confident. (optional, default to true)</param>
-        /// <param name="categoriesId">This parameter is used for finding stories by categories id. (optional)</param>
-        /// <param name="categoriesLevel">This parameter is used for finding stories by categories level. (optional)</param>
-        /// <param name="entitiesTitleText">This parameter is used to find stories based on the specified entities &#x60;text&#x60; in story titles. (optional)</param>
-        /// <param name="entitiesTitleType">This parameter is used to find stories based on the specified entities &#x60;type&#x60; in story titles. (optional)</param>
-        /// <param name="entitiesTitleLinksDbpedia">This parameter is used to find stories based on the specified entities dbpedia URL in story titles. (optional)</param>
-        /// <param name="entitiesBodyText">This parameter is used to find stories based on the specified entities &#x60;text&#x60; in the body of stories. (optional)</param>
-        /// <param name="entitiesBodyType">This parameter is used to find stories based on the specified entities &#x60;type&#x60; in the body of stories. (optional)</param>
-        /// <param name="entitiesBodyLinksDbpedia">This parameter is used to find stories based on the specified entities dbpedia URL in the body of stories. (optional)</param>
-        /// <param name="sentimentTitlePolarity">This parameter is used for finding stories whose title sentiment is the specified value. (optional)</param>
-        /// <param name="sentimentBodyPolarity">This parameter is used for finding stories whose body sentiment is the specified value. (optional)</param>
-        /// <param name="mediaImagesCountMin">This parameter is used for finding stories whose number of images is greater than or equal to the specified value. (optional)</param>
-        /// <param name="mediaImagesCountMax">This parameter is used for finding stories whose number of images is less than or equal to the specified value. (optional)</param>
-        /// <param name="mediaVideosCountMin">This parameter is used for finding stories whose number of videos is greater than or equal to the specified value. (optional)</param>
-        /// <param name="mediaVideosCountMax">This parameter is used for finding stories whose number of videos is less than or equal to the specified value. (optional)</param>
-        /// <param name="authorId">This parameter is used for finding stories whose author id is the specified value. (optional)</param>
-        /// <param name="authorName">This parameter is used for finding stories whose author full name contains the specified value. (optional)</param>
-        /// <param name="sourceId">This parameter is used for finding stories whose source id is the specified value. (optional)</param>
-        /// <param name="sourceName">This parameter is used for finding stories whose source name contains the specified value. (optional)</param>
-        /// <param name="sourceDomain">This parameter is used for finding stories whose source domain is the specified value. (optional)</param>
-        /// <param name="sourceLocationsCountry">This parameter is used for finding stories whose source country is the specified value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
-        /// <param name="sourceLocationsState">This parameter is used for finding stories whose source state/province is the specified value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
-        /// <param name="sourceLocationsCity">This parameter is used for finding stories whose source city is the specified value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
-        /// <param name="sourceScopesCountry">This parameter is used for finding stories whose source scopes is the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
-        /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
-        /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
-        /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
-        /// <param name="field">This parameter is used to specify the trend field. (optional)</param>
-        /// <returns>Task of Trends</returns>
-        public async System.Threading.Tasks.Task<Trends> ListTrendsAsync(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, string field = null)
-        {
-            ApiResponse<Trends> localVarResponse = await ListTrendsAsyncWithHttpInfo(id, title, body, text, language, publishedAtStart, publishedAtEnd, categoriesTaxonomy, categoriesConfident, categoriesId, categoriesLevel, entitiesTitleText, entitiesTitleType, entitiesTitleLinksDbpedia, entitiesBodyText, entitiesBodyType, entitiesBodyLinksDbpedia, sentimentTitlePolarity, sentimentBodyPolarity, mediaImagesCountMin, mediaImagesCountMax, mediaVideosCountMin, mediaVideosCountMax, authorId, authorName, sourceId, sourceName, sourceDomain, sourceLocationsCountry, sourceLocationsState, sourceLocationsCity, sourceScopesCountry, sourceScopesState, sourceScopesCity, sourceScopesLevel, field);
-            return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        /// List trends This endpoint is used for finding trends based on stories.
-        /// </summary>
-        /// <exception cref="Aylien.NewsApi.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">This parameter is used for finding stroies by story id. (optional)</param>
-        /// <param name="title">This parameter is used for finding stories whose title contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional)</param>
-        /// <param name="body">This parameter is used for finding stories whose body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional)</param>
-        /// <param name="text">This parameter is used for finding stories whose title or body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional)</param>
-        /// <param name="language">This parameter is used for finding stories whose language is the specified value. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional)</param>
-        /// <param name="publishedAtStart">This parameter is used for finding stories whose published at time is greater than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional)</param>
-        /// <param name="publishedAtEnd">This parameter is used for finding stories whose published at time is less than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional)</param>
-        /// <param name="categoriesTaxonomy">This parameter is used for defining the type of the taxonomy for the rest of the categories queries. (optional)</param>
-        /// <param name="categoriesConfident">This parameter is used for finding stories whose categories are confident. (optional, default to true)</param>
-        /// <param name="categoriesId">This parameter is used for finding stories by categories id. (optional)</param>
-        /// <param name="categoriesLevel">This parameter is used for finding stories by categories level. (optional)</param>
-        /// <param name="entitiesTitleText">This parameter is used to find stories based on the specified entities &#x60;text&#x60; in story titles. (optional)</param>
-        /// <param name="entitiesTitleType">This parameter is used to find stories based on the specified entities &#x60;type&#x60; in story titles. (optional)</param>
-        /// <param name="entitiesTitleLinksDbpedia">This parameter is used to find stories based on the specified entities dbpedia URL in story titles. (optional)</param>
-        /// <param name="entitiesBodyText">This parameter is used to find stories based on the specified entities &#x60;text&#x60; in the body of stories. (optional)</param>
-        /// <param name="entitiesBodyType">This parameter is used to find stories based on the specified entities &#x60;type&#x60; in the body of stories. (optional)</param>
-        /// <param name="entitiesBodyLinksDbpedia">This parameter is used to find stories based on the specified entities dbpedia URL in the body of stories. (optional)</param>
-        /// <param name="sentimentTitlePolarity">This parameter is used for finding stories whose title sentiment is the specified value. (optional)</param>
-        /// <param name="sentimentBodyPolarity">This parameter is used for finding stories whose body sentiment is the specified value. (optional)</param>
-        /// <param name="mediaImagesCountMin">This parameter is used for finding stories whose number of images is greater than or equal to the specified value. (optional)</param>
-        /// <param name="mediaImagesCountMax">This parameter is used for finding stories whose number of images is less than or equal to the specified value. (optional)</param>
-        /// <param name="mediaVideosCountMin">This parameter is used for finding stories whose number of videos is greater than or equal to the specified value. (optional)</param>
-        /// <param name="mediaVideosCountMax">This parameter is used for finding stories whose number of videos is less than or equal to the specified value. (optional)</param>
-        /// <param name="authorId">This parameter is used for finding stories whose author id is the specified value. (optional)</param>
-        /// <param name="authorName">This parameter is used for finding stories whose author full name contains the specified value. (optional)</param>
-        /// <param name="sourceId">This parameter is used for finding stories whose source id is the specified value. (optional)</param>
-        /// <param name="sourceName">This parameter is used for finding stories whose source name contains the specified value. (optional)</param>
-        /// <param name="sourceDomain">This parameter is used for finding stories whose source domain is the specified value. (optional)</param>
-        /// <param name="sourceLocationsCountry">This parameter is used for finding stories whose source country is the specified value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
-        /// <param name="sourceLocationsState">This parameter is used for finding stories whose source state/province is the specified value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
-        /// <param name="sourceLocationsCity">This parameter is used for finding stories whose source city is the specified value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
-        /// <param name="sourceScopesCountry">This parameter is used for finding stories whose source scopes is the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
-        /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
-        /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
-        /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
-        /// <param name="field">This parameter is used to specify the trend field. (optional)</param>
-        /// <returns>Task of ApiResponse (Trends)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Trends>> ListTrendsAsyncWithHttpInfo(List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, string field = null)
+        public ApiResponse< Trends > ListTrendsWithHttpInfo (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, string field = null)
         {
 
             var localVarPath = "/trends";
@@ -4398,6 +4514,259 @@ namespace Aylien.NewsApi.Api
             if (sourceScopesLevel != null)
                 foreach (var val in sourceScopesLevel)
                     localVarQueryParams.Add(new Tuple<String, String>("source.scopes.level[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (sourceLinksInCountMin != null) localVarQueryParams.Add(new Tuple<String, String>("source.links_in_count.min", Configuration.ApiClient.ParameterToString(sourceLinksInCountMin))); // query parameter
+            if (sourceLinksInCountMax != null) localVarQueryParams.Add(new Tuple<String, String>("source.links_in_count.max", Configuration.ApiClient.ParameterToString(sourceLinksInCountMax))); // query parameter
+            if (sourceRankingsAlexaRankMin != null) localVarQueryParams.Add(new Tuple<String, String>("source.rankings.alexa.rank.min", Configuration.ApiClient.ParameterToString(sourceRankingsAlexaRankMin))); // query parameter
+            if (sourceRankingsAlexaRankMax != null) localVarQueryParams.Add(new Tuple<String, String>("source.rankings.alexa.rank.max", Configuration.ApiClient.ParameterToString(sourceRankingsAlexaRankMax))); // query parameter
+            if (sourceRankingsAlexaCountry != null)
+                foreach (var val in sourceRankingsAlexaCountry)
+                    localVarQueryParams.Add(new Tuple<String, String>("source.rankings.alexa.country[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (field != null) localVarQueryParams.Add(new Tuple<String, String>("field", Configuration.ApiClient.ParameterToString(field))); // query parameter
+
+            // authentication (app_key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-AYLIEN-NewsAPI-Application-Key")))
+            {
+                localVarHeaderParams["X-AYLIEN-NewsAPI-Application-Key"] = Configuration.GetApiKeyWithPrefix("X-AYLIEN-NewsAPI-Application-Key");
+            }
+
+            // authentication (app_id) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-AYLIEN-NewsAPI-Application-ID")))
+            {
+                localVarHeaderParams["X-AYLIEN-NewsAPI-Application-ID"] = Configuration.GetApiKeyWithPrefix("X-AYLIEN-NewsAPI-Application-ID");
+            }
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ListTrends", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Trends>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (Trends) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Trends)));
+            
+        }
+
+        /// <summary>
+        /// List trends This endpoint is used for finding trends based on stories.
+        /// </summary>
+        /// <exception cref="Aylien.NewsApi.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">This parameter is used for finding stroies by story id. (optional)</param>
+        /// <param name="title">This parameter is used for finding stories whose title contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional)</param>
+        /// <param name="body">This parameter is used for finding stories whose body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional)</param>
+        /// <param name="text">This parameter is used for finding stories whose title or body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional)</param>
+        /// <param name="language">This parameter is used for finding stories whose language is the specified value. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional)</param>
+        /// <param name="publishedAtStart">This parameter is used for finding stories whose published at time is greater than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional)</param>
+        /// <param name="publishedAtEnd">This parameter is used for finding stories whose published at time is less than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional)</param>
+        /// <param name="categoriesTaxonomy">This parameter is used for defining the type of the taxonomy for the rest of the categories queries. (optional)</param>
+        /// <param name="categoriesConfident">This parameter is used for finding stories whose categories are confident. (optional, default to true)</param>
+        /// <param name="categoriesId">This parameter is used for finding stories by categories id. (optional)</param>
+        /// <param name="categoriesLevel">This parameter is used for finding stories by categories level. (optional)</param>
+        /// <param name="entitiesTitleText">This parameter is used to find stories based on the specified entities &#x60;text&#x60; in story titles. (optional)</param>
+        /// <param name="entitiesTitleType">This parameter is used to find stories based on the specified entities &#x60;type&#x60; in story titles. (optional)</param>
+        /// <param name="entitiesTitleLinksDbpedia">This parameter is used to find stories based on the specified entities dbpedia URL in story titles. (optional)</param>
+        /// <param name="entitiesBodyText">This parameter is used to find stories based on the specified entities &#x60;text&#x60; in the body of stories. (optional)</param>
+        /// <param name="entitiesBodyType">This parameter is used to find stories based on the specified entities &#x60;type&#x60; in the body of stories. (optional)</param>
+        /// <param name="entitiesBodyLinksDbpedia">This parameter is used to find stories based on the specified entities dbpedia URL in the body of stories. (optional)</param>
+        /// <param name="sentimentTitlePolarity">This parameter is used for finding stories whose title sentiment is the specified value. (optional)</param>
+        /// <param name="sentimentBodyPolarity">This parameter is used for finding stories whose body sentiment is the specified value. (optional)</param>
+        /// <param name="mediaImagesCountMin">This parameter is used for finding stories whose number of images is greater than or equal to the specified value. (optional)</param>
+        /// <param name="mediaImagesCountMax">This parameter is used for finding stories whose number of images is less than or equal to the specified value. (optional)</param>
+        /// <param name="mediaVideosCountMin">This parameter is used for finding stories whose number of videos is greater than or equal to the specified value. (optional)</param>
+        /// <param name="mediaVideosCountMax">This parameter is used for finding stories whose number of videos is less than or equal to the specified value. (optional)</param>
+        /// <param name="authorId">This parameter is used for finding stories whose author id is the specified value. (optional)</param>
+        /// <param name="authorName">This parameter is used for finding stories whose author full name contains the specified value. (optional)</param>
+        /// <param name="sourceId">This parameter is used for finding stories whose source id is the specified value. (optional)</param>
+        /// <param name="sourceName">This parameter is used for finding stories whose source name contains the specified value. (optional)</param>
+        /// <param name="sourceDomain">This parameter is used for finding stories whose source domain is the specified value. (optional)</param>
+        /// <param name="sourceLocationsCountry">This parameter is used for finding stories whose source country is the specified value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLocationsState">This parameter is used for finding stories whose source state/province is the specified value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLocationsCity">This parameter is used for finding stories whose source city is the specified value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceScopesCountry">This parameter is used for finding stories whose source scopes is the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="field">This parameter is used to specify the trend field. (optional)</param>
+        /// <returns>Task of Trends</returns>
+        public async System.Threading.Tasks.Task<Trends> ListTrendsAsync (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, string field = null)
+        {
+             ApiResponse<Trends> localVarResponse = await ListTrendsAsyncWithHttpInfo(id, title, body, text, language, publishedAtStart, publishedAtEnd, categoriesTaxonomy, categoriesConfident, categoriesId, categoriesLevel, entitiesTitleText, entitiesTitleType, entitiesTitleLinksDbpedia, entitiesBodyText, entitiesBodyType, entitiesBodyLinksDbpedia, sentimentTitlePolarity, sentimentBodyPolarity, mediaImagesCountMin, mediaImagesCountMax, mediaVideosCountMin, mediaVideosCountMax, authorId, authorName, sourceId, sourceName, sourceDomain, sourceLocationsCountry, sourceLocationsState, sourceLocationsCity, sourceScopesCountry, sourceScopesState, sourceScopesCity, sourceScopesLevel, sourceLinksInCountMin, sourceLinksInCountMax, sourceRankingsAlexaRankMin, sourceRankingsAlexaRankMax, sourceRankingsAlexaCountry, field);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// List trends This endpoint is used for finding trends based on stories.
+        /// </summary>
+        /// <exception cref="Aylien.NewsApi.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">This parameter is used for finding stroies by story id. (optional)</param>
+        /// <param name="title">This parameter is used for finding stories whose title contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional)</param>
+        /// <param name="body">This parameter is used for finding stories whose body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional)</param>
+        /// <param name="text">This parameter is used for finding stories whose title or body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional)</param>
+        /// <param name="language">This parameter is used for finding stories whose language is the specified value. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional)</param>
+        /// <param name="publishedAtStart">This parameter is used for finding stories whose published at time is greater than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional)</param>
+        /// <param name="publishedAtEnd">This parameter is used for finding stories whose published at time is less than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional)</param>
+        /// <param name="categoriesTaxonomy">This parameter is used for defining the type of the taxonomy for the rest of the categories queries. (optional)</param>
+        /// <param name="categoriesConfident">This parameter is used for finding stories whose categories are confident. (optional, default to true)</param>
+        /// <param name="categoriesId">This parameter is used for finding stories by categories id. (optional)</param>
+        /// <param name="categoriesLevel">This parameter is used for finding stories by categories level. (optional)</param>
+        /// <param name="entitiesTitleText">This parameter is used to find stories based on the specified entities &#x60;text&#x60; in story titles. (optional)</param>
+        /// <param name="entitiesTitleType">This parameter is used to find stories based on the specified entities &#x60;type&#x60; in story titles. (optional)</param>
+        /// <param name="entitiesTitleLinksDbpedia">This parameter is used to find stories based on the specified entities dbpedia URL in story titles. (optional)</param>
+        /// <param name="entitiesBodyText">This parameter is used to find stories based on the specified entities &#x60;text&#x60; in the body of stories. (optional)</param>
+        /// <param name="entitiesBodyType">This parameter is used to find stories based on the specified entities &#x60;type&#x60; in the body of stories. (optional)</param>
+        /// <param name="entitiesBodyLinksDbpedia">This parameter is used to find stories based on the specified entities dbpedia URL in the body of stories. (optional)</param>
+        /// <param name="sentimentTitlePolarity">This parameter is used for finding stories whose title sentiment is the specified value. (optional)</param>
+        /// <param name="sentimentBodyPolarity">This parameter is used for finding stories whose body sentiment is the specified value. (optional)</param>
+        /// <param name="mediaImagesCountMin">This parameter is used for finding stories whose number of images is greater than or equal to the specified value. (optional)</param>
+        /// <param name="mediaImagesCountMax">This parameter is used for finding stories whose number of images is less than or equal to the specified value. (optional)</param>
+        /// <param name="mediaVideosCountMin">This parameter is used for finding stories whose number of videos is greater than or equal to the specified value. (optional)</param>
+        /// <param name="mediaVideosCountMax">This parameter is used for finding stories whose number of videos is less than or equal to the specified value. (optional)</param>
+        /// <param name="authorId">This parameter is used for finding stories whose author id is the specified value. (optional)</param>
+        /// <param name="authorName">This parameter is used for finding stories whose author full name contains the specified value. (optional)</param>
+        /// <param name="sourceId">This parameter is used for finding stories whose source id is the specified value. (optional)</param>
+        /// <param name="sourceName">This parameter is used for finding stories whose source name contains the specified value. (optional)</param>
+        /// <param name="sourceDomain">This parameter is used for finding stories whose source domain is the specified value. (optional)</param>
+        /// <param name="sourceLocationsCountry">This parameter is used for finding stories whose source country is the specified value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLocationsState">This parameter is used for finding stories whose source state/province is the specified value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLocationsCity">This parameter is used for finding stories whose source city is the specified value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceScopesCountry">This parameter is used for finding stories whose source scopes is the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceScopesState">This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceScopesCity">This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceScopesLevel">This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional)</param>
+        /// <param name="sourceLinksInCountMin">This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceLinksInCountMax">This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMin">This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaRankMax">This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="sourceRankingsAlexaCountry">This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional)</param>
+        /// <param name="field">This parameter is used to specify the trend field. (optional)</param>
+        /// <returns>Task of ApiResponse (Trends)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Trends>> ListTrendsAsyncWithHttpInfo (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, string field = null)
+        {
+
+            var localVarPath = "/trends";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<Tuple<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new List<Tuple<String, String>>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/x-www-form-urlencoded"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json", 
+                "text/xml"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (id != null)
+                foreach (var val in id)
+                    localVarQueryParams.Add(new Tuple<String, String>("id[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (title != null) localVarQueryParams.Add(new Tuple<String, String>("title", Configuration.ApiClient.ParameterToString(title))); // query parameter
+            if (body != null) localVarQueryParams.Add(new Tuple<String, String>("body", Configuration.ApiClient.ParameterToString(body))); // query parameter
+            if (text != null) localVarQueryParams.Add(new Tuple<String, String>("text", Configuration.ApiClient.ParameterToString(text))); // query parameter
+            if (language != null)
+                foreach (var val in language)
+                    localVarQueryParams.Add(new Tuple<String, String>("language[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (publishedAtStart != null) localVarQueryParams.Add(new Tuple<String, String>("published_at.start", Configuration.ApiClient.ParameterToString(publishedAtStart))); // query parameter
+            if (publishedAtEnd != null) localVarQueryParams.Add(new Tuple<String, String>("published_at.end", Configuration.ApiClient.ParameterToString(publishedAtEnd))); // query parameter
+            if (categoriesTaxonomy != null) localVarQueryParams.Add(new Tuple<String, String>("categories.taxonomy", Configuration.ApiClient.ParameterToString(categoriesTaxonomy))); // query parameter
+            if (categoriesConfident != null) localVarQueryParams.Add(new Tuple<String, String>("categories.confident", Configuration.ApiClient.ParameterToString(categoriesConfident))); // query parameter
+            if (categoriesId != null)
+                foreach (var val in categoriesId)
+                    localVarQueryParams.Add(new Tuple<String, String>("categories.id[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (categoriesLevel != null)
+                foreach (var val in categoriesLevel)
+                    localVarQueryParams.Add(new Tuple<String, String>("categories.level[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (entitiesTitleText != null)
+                foreach (var val in entitiesTitleText)
+                    localVarQueryParams.Add(new Tuple<String, String>("entities.title.text[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (entitiesTitleType != null)
+                foreach (var val in entitiesTitleType)
+                    localVarQueryParams.Add(new Tuple<String, String>("entities.title.type[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (entitiesTitleLinksDbpedia != null)
+                foreach (var val in entitiesTitleLinksDbpedia)
+                    localVarQueryParams.Add(new Tuple<String, String>("entities.title.links.dbpedia[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (entitiesBodyText != null)
+                foreach (var val in entitiesBodyText)
+                    localVarQueryParams.Add(new Tuple<String, String>("entities.body.text[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (entitiesBodyType != null)
+                foreach (var val in entitiesBodyType)
+                    localVarQueryParams.Add(new Tuple<String, String>("entities.body.type[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (entitiesBodyLinksDbpedia != null)
+                foreach (var val in entitiesBodyLinksDbpedia)
+                    localVarQueryParams.Add(new Tuple<String, String>("entities.body.links.dbpedia[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (sentimentTitlePolarity != null) localVarQueryParams.Add(new Tuple<String, String>("sentiment.title.polarity", Configuration.ApiClient.ParameterToString(sentimentTitlePolarity))); // query parameter
+            if (sentimentBodyPolarity != null) localVarQueryParams.Add(new Tuple<String, String>("sentiment.body.polarity", Configuration.ApiClient.ParameterToString(sentimentBodyPolarity))); // query parameter
+            if (mediaImagesCountMin != null) localVarQueryParams.Add(new Tuple<String, String>("media.images.count.min", Configuration.ApiClient.ParameterToString(mediaImagesCountMin))); // query parameter
+            if (mediaImagesCountMax != null) localVarQueryParams.Add(new Tuple<String, String>("media.images.count.max", Configuration.ApiClient.ParameterToString(mediaImagesCountMax))); // query parameter
+            if (mediaVideosCountMin != null) localVarQueryParams.Add(new Tuple<String, String>("media.videos.count.min", Configuration.ApiClient.ParameterToString(mediaVideosCountMin))); // query parameter
+            if (mediaVideosCountMax != null) localVarQueryParams.Add(new Tuple<String, String>("media.videos.count.max", Configuration.ApiClient.ParameterToString(mediaVideosCountMax))); // query parameter
+            if (authorId != null)
+                foreach (var val in authorId)
+                    localVarQueryParams.Add(new Tuple<String, String>("author.id[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (authorName != null) localVarQueryParams.Add(new Tuple<String, String>("author.name", Configuration.ApiClient.ParameterToString(authorName))); // query parameter
+            if (sourceId != null)
+                foreach (var val in sourceId)
+                    localVarQueryParams.Add(new Tuple<String, String>("source.id[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (sourceName != null)
+                foreach (var val in sourceName)
+                    localVarQueryParams.Add(new Tuple<String, String>("source.name[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (sourceDomain != null)
+                foreach (var val in sourceDomain)
+                    localVarQueryParams.Add(new Tuple<String, String>("source.domain[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (sourceLocationsCountry != null)
+                foreach (var val in sourceLocationsCountry)
+                    localVarQueryParams.Add(new Tuple<String, String>("source.locations.country[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (sourceLocationsState != null)
+                foreach (var val in sourceLocationsState)
+                    localVarQueryParams.Add(new Tuple<String, String>("source.locations.state[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (sourceLocationsCity != null)
+                foreach (var val in sourceLocationsCity)
+                    localVarQueryParams.Add(new Tuple<String, String>("source.locations.city[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (sourceScopesCountry != null)
+                foreach (var val in sourceScopesCountry)
+                    localVarQueryParams.Add(new Tuple<String, String>("source.scopes.country[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (sourceScopesState != null)
+                foreach (var val in sourceScopesState)
+                    localVarQueryParams.Add(new Tuple<String, String>("source.scopes.state[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (sourceScopesCity != null)
+                foreach (var val in sourceScopesCity)
+                    localVarQueryParams.Add(new Tuple<String, String>("source.scopes.city[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (sourceScopesLevel != null)
+                foreach (var val in sourceScopesLevel)
+                    localVarQueryParams.Add(new Tuple<String, String>("source.scopes.level[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
+            if (sourceLinksInCountMin != null) localVarQueryParams.Add(new Tuple<String, String>("source.links_in_count.min", Configuration.ApiClient.ParameterToString(sourceLinksInCountMin))); // query parameter
+            if (sourceLinksInCountMax != null) localVarQueryParams.Add(new Tuple<String, String>("source.links_in_count.max", Configuration.ApiClient.ParameterToString(sourceLinksInCountMax))); // query parameter
+            if (sourceRankingsAlexaRankMin != null) localVarQueryParams.Add(new Tuple<String, String>("source.rankings.alexa.rank.min", Configuration.ApiClient.ParameterToString(sourceRankingsAlexaRankMin))); // query parameter
+            if (sourceRankingsAlexaRankMax != null) localVarQueryParams.Add(new Tuple<String, String>("source.rankings.alexa.rank.max", Configuration.ApiClient.ParameterToString(sourceRankingsAlexaRankMax))); // query parameter
+            if (sourceRankingsAlexaCountry != null)
+                foreach (var val in sourceRankingsAlexaCountry)
+                    localVarQueryParams.Add(new Tuple<String, String>("source.rankings.alexa.country[]", Configuration.ApiClient.ParameterToString(val))); // query parameter
             if (field != null) localVarQueryParams.Add(new Tuple<String, String>("field", Configuration.ApiClient.ParameterToString(field))); // query parameter
 
             // authentication (app_key) required
@@ -4412,21 +4781,22 @@ namespace Aylien.NewsApi.Api
             }
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse)await Configuration.ApiClient.CallApiAsync(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
                 Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
-            int localVarStatusCode = (int)localVarResponse.StatusCode;
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
 
-            if (localVarStatusCode >= 400)
-                throw new ApiException(localVarStatusCode, "Error calling ListTrends: " + localVarResponse.Content, localVarResponse.Content);
-            else if (localVarStatusCode == 0)
-                throw new ApiException(localVarStatusCode, "Error calling ListTrends: " + localVarResponse.ErrorMessage, localVarResponse.ErrorMessage);
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ListTrends", localVarResponse);
+                if (exception != null) throw exception;
+            }
 
             return new ApiResponse<Trends>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (Trends)Configuration.ApiClient.Deserialize(localVarResponse, typeof(Trends)));
-
+                (Trends) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Trends)));
+            
         }
 
     }

@@ -33,7 +33,7 @@ namespace Aylien.NewsApi.Model
     /// Scope
     /// </summary>
     [DataContract]
-    public partial class Scope : IEquatable<Scope>
+    public partial class Scope :  IEquatable<Scope>
     {
         /// <summary>
         /// The scope by level
@@ -42,19 +42,19 @@ namespace Aylien.NewsApi.Model
         [JsonConverter(typeof(StringEnumConverter))]
         public enum LevelEnum
         {
-
+            
             /// <summary>
             /// Enum International for "international"
             /// </summary>
             [EnumMember(Value = "international")]
             International,
-
+            
             /// <summary>
             /// Enum National for "national"
             /// </summary>
             [EnumMember(Value = "national")]
             National,
-
+            
             /// <summary>
             /// Enum Local for "local"
             /// </summary>
@@ -66,7 +66,7 @@ namespace Aylien.NewsApi.Model
         /// The scope by level
         /// </summary>
         /// <value>The scope by level</value>
-        [DataMember(Name = "level", EmitDefaultValue = false)]
+        [DataMember(Name="level", EmitDefaultValue=false)]
         public LevelEnum? Level { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Scope" /> class.
@@ -82,24 +82,24 @@ namespace Aylien.NewsApi.Model
             this.City = City;
             this.Level = Level;
         }
-
+        
         /// <summary>
         /// The source scope by country code. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes.
         /// </summary>
         /// <value>The source scope by country code. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes.</value>
-        [DataMember(Name = "country", EmitDefaultValue = false)]
+        [DataMember(Name="country", EmitDefaultValue=false)]
         public string Country { get; set; }
         /// <summary>
         /// The scope by state
         /// </summary>
         /// <value>The scope by state</value>
-        [DataMember(Name = "state", EmitDefaultValue = false)]
+        [DataMember(Name="state", EmitDefaultValue=false)]
         public string State { get; set; }
         /// <summary>
         /// The scope by city
         /// </summary>
         /// <value>The scope by city</value>
-        [DataMember(Name = "city", EmitDefaultValue = false)]
+        [DataMember(Name="city", EmitDefaultValue=false)]
         public string City { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,7 +116,7 @@ namespace Aylien.NewsApi.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -148,22 +148,22 @@ namespace Aylien.NewsApi.Model
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
                     this.Country == other.Country ||
                     this.Country != null &&
                     this.Country.Equals(other.Country)
-                ) &&
+                ) && 
                 (
                     this.State == other.State ||
                     this.State != null &&
                     this.State.Equals(other.State)
-                ) &&
+                ) && 
                 (
                     this.City == other.City ||
                     this.City != null &&
                     this.City.Equals(other.City)
-                ) &&
+                ) && 
                 (
                     this.Level == other.Level ||
                     this.Level != null &&

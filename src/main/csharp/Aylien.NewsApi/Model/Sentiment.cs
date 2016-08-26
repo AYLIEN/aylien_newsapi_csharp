@@ -33,7 +33,7 @@ namespace Aylien.NewsApi.Model
     /// Sentiment
     /// </summary>
     [DataContract]
-    public partial class Sentiment : IEquatable<Sentiment>
+    public partial class Sentiment :  IEquatable<Sentiment>
     {
         /// <summary>
         /// Polarity of the sentiment
@@ -42,19 +42,19 @@ namespace Aylien.NewsApi.Model
         [JsonConverter(typeof(StringEnumConverter))]
         public enum PolarityEnum
         {
-
+            
             /// <summary>
             /// Enum Positive for "positive"
             /// </summary>
             [EnumMember(Value = "positive")]
             Positive,
-
+            
             /// <summary>
             /// Enum Neutral for "neutral"
             /// </summary>
             [EnumMember(Value = "neutral")]
             Neutral,
-
+            
             /// <summary>
             /// Enum Negative for "negative"
             /// </summary>
@@ -66,7 +66,7 @@ namespace Aylien.NewsApi.Model
         /// Polarity of the sentiment
         /// </summary>
         /// <value>Polarity of the sentiment</value>
-        [DataMember(Name = "polarity", EmitDefaultValue = false)]
+        [DataMember(Name="polarity", EmitDefaultValue=false)]
         public PolarityEnum? Polarity { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Sentiment" /> class.
@@ -78,12 +78,12 @@ namespace Aylien.NewsApi.Model
             this.Polarity = Polarity;
             this.Score = Score;
         }
-
+        
         /// <summary>
         /// Polarity score of the sentiment
         /// </summary>
         /// <value>Polarity score of the sentiment</value>
-        [DataMember(Name = "score", EmitDefaultValue = false)]
+        [DataMember(Name="score", EmitDefaultValue=false)]
         public double? Score { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
@@ -98,7 +98,7 @@ namespace Aylien.NewsApi.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -130,12 +130,12 @@ namespace Aylien.NewsApi.Model
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
                     this.Polarity == other.Polarity ||
                     this.Polarity != null &&
                     this.Polarity.Equals(other.Polarity)
-                ) &&
+                ) && 
                 (
                     this.Score == other.Score ||
                     this.Score != null &&

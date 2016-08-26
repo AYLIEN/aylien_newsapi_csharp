@@ -33,7 +33,7 @@ namespace Aylien.NewsApi.Model
     /// ShareCount
     /// </summary>
     [DataContract]
-    public partial class ShareCount : IEquatable<ShareCount>
+    public partial class ShareCount :  IEquatable<ShareCount>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ShareCount" /> class.
@@ -45,18 +45,18 @@ namespace Aylien.NewsApi.Model
             this.Count = Count;
             this.FetchedAt = FetchedAt;
         }
-
+        
         /// <summary>
         /// The number of shares
         /// </summary>
         /// <value>The number of shares</value>
-        [DataMember(Name = "count", EmitDefaultValue = false)]
+        [DataMember(Name="count", EmitDefaultValue=false)]
         public int? Count { get; set; }
         /// <summary>
         /// The fetched date of the shares
         /// </summary>
         /// <value>The fetched date of the shares</value>
-        [DataMember(Name = "fetched_at", EmitDefaultValue = false)]
+        [DataMember(Name="fetched_at", EmitDefaultValue=false)]
         public DateTime? FetchedAt { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
@@ -71,7 +71,7 @@ namespace Aylien.NewsApi.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -103,12 +103,12 @@ namespace Aylien.NewsApi.Model
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
                     this.Count == other.Count ||
                     this.Count != null &&
                     this.Count.Equals(other.Count)
-                ) &&
+                ) && 
                 (
                     this.FetchedAt == other.FetchedAt ||
                     this.FetchedAt != null &&

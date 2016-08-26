@@ -33,7 +33,7 @@ namespace Aylien.NewsApi.Model
     /// CategoryLinks
     /// </summary>
     [DataContract]
-    public partial class CategoryLinks : IEquatable<CategoryLinks>
+    public partial class CategoryLinks :  IEquatable<CategoryLinks>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CategoryLinks" /> class.
@@ -45,18 +45,18 @@ namespace Aylien.NewsApi.Model
             this.Self = Self;
             this.Parent = Parent;
         }
-
+        
         /// <summary>
         /// A URL pointing to the category
         /// </summary>
         /// <value>A URL pointing to the category</value>
-        [DataMember(Name = "self", EmitDefaultValue = false)]
+        [DataMember(Name="self", EmitDefaultValue=false)]
         public string Self { get; set; }
         /// <summary>
         /// A URL pointing to the parent category
         /// </summary>
         /// <value>A URL pointing to the parent category</value>
-        [DataMember(Name = "parent", EmitDefaultValue = false)]
+        [DataMember(Name="parent", EmitDefaultValue=false)]
         public string Parent { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
@@ -71,7 +71,7 @@ namespace Aylien.NewsApi.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -103,12 +103,12 @@ namespace Aylien.NewsApi.Model
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
                     this.Self == other.Self ||
                     this.Self != null &&
                     this.Self.Equals(other.Self)
-                ) &&
+                ) && 
                 (
                     this.Parent == other.Parent ||
                     this.Parent != null &&

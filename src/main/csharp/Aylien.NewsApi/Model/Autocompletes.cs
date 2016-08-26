@@ -33,7 +33,7 @@ namespace Aylien.NewsApi.Model
     /// Autocompletes
     /// </summary>
     [DataContract]
-    public partial class Autocompletes : IEquatable<Autocompletes>
+    public partial class Autocompletes :  IEquatable<Autocompletes>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Autocompletes" /> class.
@@ -43,12 +43,12 @@ namespace Aylien.NewsApi.Model
         {
             this._Autocompletes = _Autocompletes;
         }
-
+        
         /// <summary>
         /// An array of autocompletes
         /// </summary>
         /// <value>An array of autocompletes</value>
-        [DataMember(Name = "autocompletes", EmitDefaultValue = false)]
+        [DataMember(Name="autocompletes", EmitDefaultValue=false)]
         public List<Autocomplete> _Autocompletes { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
@@ -62,7 +62,7 @@ namespace Aylien.NewsApi.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -94,7 +94,7 @@ namespace Aylien.NewsApi.Model
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
                     this._Autocompletes == other._Autocompletes ||
                     this._Autocompletes != null &&

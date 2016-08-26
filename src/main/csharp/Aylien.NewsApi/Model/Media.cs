@@ -33,7 +33,7 @@ namespace Aylien.NewsApi.Model
     /// Media
     /// </summary>
     [DataContract]
-    public partial class Media : IEquatable<Media>
+    public partial class Media :  IEquatable<Media>
     {
         /// <summary>
         /// The type of media
@@ -42,13 +42,13 @@ namespace Aylien.NewsApi.Model
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
-
+            
             /// <summary>
             /// Enum Image for "image"
             /// </summary>
             [EnumMember(Value = "image")]
             Image,
-
+            
             /// <summary>
             /// Enum Video for "video"
             /// </summary>
@@ -60,7 +60,7 @@ namespace Aylien.NewsApi.Model
         /// The type of media
         /// </summary>
         /// <value>The type of media</value>
-        [DataMember(Name = "type", EmitDefaultValue = false)]
+        [DataMember(Name="type", EmitDefaultValue=false)]
         public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Media" /> class.
@@ -72,12 +72,12 @@ namespace Aylien.NewsApi.Model
             this.Type = Type;
             this.Url = Url;
         }
-
+        
         /// <summary>
         /// A URL which points to the media file
         /// </summary>
         /// <value>A URL which points to the media file</value>
-        [DataMember(Name = "url", EmitDefaultValue = false)]
+        [DataMember(Name="url", EmitDefaultValue=false)]
         public string Url { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
@@ -92,7 +92,7 @@ namespace Aylien.NewsApi.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -124,12 +124,12 @@ namespace Aylien.NewsApi.Model
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
                     this.Type == other.Type ||
                     this.Type != null &&
                     this.Type.Equals(other.Type)
-                ) &&
+                ) && 
                 (
                     this.Url == other.Url ||
                     this.Url != null &&

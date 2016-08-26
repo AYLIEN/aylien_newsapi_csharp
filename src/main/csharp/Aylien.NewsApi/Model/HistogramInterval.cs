@@ -33,7 +33,7 @@ namespace Aylien.NewsApi.Model
     /// HistogramInterval
     /// </summary>
     [DataContract]
-    public partial class HistogramInterval : IEquatable<HistogramInterval>
+    public partial class HistogramInterval :  IEquatable<HistogramInterval>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="HistogramInterval" /> class.
@@ -45,18 +45,18 @@ namespace Aylien.NewsApi.Model
             this.Bin = Bin;
             this.Count = Count;
         }
-
+        
         /// <summary>
         /// Histogram bin
         /// </summary>
         /// <value>Histogram bin</value>
-        [DataMember(Name = "bin", EmitDefaultValue = false)]
+        [DataMember(Name="bin", EmitDefaultValue=false)]
         public int? Bin { get; set; }
         /// <summary>
         /// Histogram bin size
         /// </summary>
         /// <value>Histogram bin size</value>
-        [DataMember(Name = "count", EmitDefaultValue = false)]
+        [DataMember(Name="count", EmitDefaultValue=false)]
         public int? Count { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
@@ -71,7 +71,7 @@ namespace Aylien.NewsApi.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -103,12 +103,12 @@ namespace Aylien.NewsApi.Model
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
                     this.Bin == other.Bin ||
                     this.Bin != null &&
                     this.Bin.Equals(other.Bin)
-                ) &&
+                ) && 
                 (
                     this.Count == other.Count ||
                     this.Count != null &&

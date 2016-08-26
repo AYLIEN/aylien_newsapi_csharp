@@ -30,34 +30,25 @@ using Newtonsoft.Json.Converters;
 namespace Aylien.NewsApi.Model
 {
     /// <summary>
-    /// Sentiments
+    /// Rankings
     /// </summary>
     [DataContract]
-    public partial class Sentiments :  IEquatable<Sentiments>
+    public partial class Rankings :  IEquatable<Rankings>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Sentiments" /> class.
+        /// Initializes a new instance of the <see cref="Rankings" /> class.
         /// </summary>
-        /// <param name="Title">The sentiment for the story title.</param>
-        /// <param name="Body">The sentiment for the story body.</param>
-        public Sentiments(Sentiment Title = null, Sentiment Body = null)
+        /// <param name="Alexa">Alexa.</param>
+        public Rankings(List<Rank> Alexa = null)
         {
-            this.Title = Title;
-            this.Body = Body;
+            this.Alexa = Alexa;
         }
         
         /// <summary>
-        /// The sentiment for the story title
+        /// Gets or Sets Alexa
         /// </summary>
-        /// <value>The sentiment for the story title</value>
-        [DataMember(Name="title", EmitDefaultValue=false)]
-        public Sentiment Title { get; set; }
-        /// <summary>
-        /// The sentiment for the story body
-        /// </summary>
-        /// <value>The sentiment for the story body</value>
-        [DataMember(Name="body", EmitDefaultValue=false)]
-        public Sentiment Body { get; set; }
+        [DataMember(Name="alexa", EmitDefaultValue=false)]
+        public List<Rank> Alexa { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -65,9 +56,8 @@ namespace Aylien.NewsApi.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class Sentiments {\n");
-            sb.Append("  Title: ").Append(Title).Append("\n");
-            sb.Append("  Body: ").Append(Body).Append("\n");
+            sb.Append("class Rankings {\n");
+            sb.Append("  Alexa: ").Append(Alexa).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -89,15 +79,15 @@ namespace Aylien.NewsApi.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as Sentiments);
+            return this.Equals(obj as Rankings);
         }
 
         /// <summary>
-        /// Returns true if Sentiments instances are equal
+        /// Returns true if Rankings instances are equal
         /// </summary>
-        /// <param name="other">Instance of Sentiments to be compared</param>
+        /// <param name="other">Instance of Rankings to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Sentiments other)
+        public bool Equals(Rankings other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -105,14 +95,9 @@ namespace Aylien.NewsApi.Model
 
             return 
                 (
-                    this.Title == other.Title ||
-                    this.Title != null &&
-                    this.Title.Equals(other.Title)
-                ) && 
-                (
-                    this.Body == other.Body ||
-                    this.Body != null &&
-                    this.Body.Equals(other.Body)
+                    this.Alexa == other.Alexa ||
+                    this.Alexa != null &&
+                    this.Alexa.SequenceEqual(other.Alexa)
                 );
         }
 
@@ -127,10 +112,8 @@ namespace Aylien.NewsApi.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.Title != null)
-                    hash = hash * 59 + this.Title.GetHashCode();
-                if (this.Body != null)
-                    hash = hash * 59 + this.Body.GetHashCode();
+                if (this.Alexa != null)
+                    hash = hash * 59 + this.Alexa.GetHashCode();
                 return hash;
             }
         }

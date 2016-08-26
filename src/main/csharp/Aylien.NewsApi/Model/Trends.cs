@@ -33,7 +33,7 @@ namespace Aylien.NewsApi.Model
     /// Trends
     /// </summary>
     [DataContract]
-    public partial class Trends : IEquatable<Trends>
+    public partial class Trends :  IEquatable<Trends>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Trends" /> class.
@@ -45,18 +45,18 @@ namespace Aylien.NewsApi.Model
             this._Trends = _Trends;
             this.Field = Field;
         }
-
+        
         /// <summary>
         /// An array of trends
         /// </summary>
         /// <value>An array of trends</value>
-        [DataMember(Name = "trends", EmitDefaultValue = false)]
+        [DataMember(Name="trends", EmitDefaultValue=false)]
         public List<Trend> _Trends { get; set; }
         /// <summary>
         /// The field of trends
         /// </summary>
         /// <value>The field of trends</value>
-        [DataMember(Name = "field", EmitDefaultValue = false)]
+        [DataMember(Name="field", EmitDefaultValue=false)]
         public string Field { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
@@ -71,7 +71,7 @@ namespace Aylien.NewsApi.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -103,12 +103,12 @@ namespace Aylien.NewsApi.Model
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
                     this._Trends == other._Trends ||
                     this._Trends != null &&
                     this._Trends.SequenceEqual(other._Trends)
-                ) &&
+                ) && 
                 (
                     this.Field == other.Field ||
                     this.Field != null &&

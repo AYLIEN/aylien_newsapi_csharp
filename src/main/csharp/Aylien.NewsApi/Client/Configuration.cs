@@ -54,7 +54,7 @@ namespace Aylien.NewsApi.Client
                              string tempFolderPath = null,
                              string dateTimeFormat = null,
                              int timeout = 100000,
-                             string userAgent = "aylien-news-api/1.1.0/csharp"
+                             string userAgent = "aylien-news-api/1.2.0/csharp"
                             )
         {
             setApiClientUsingDefault(apiClient);
@@ -89,13 +89,24 @@ namespace Aylien.NewsApi.Client
         /// Version of the package.
         /// </summary>
         /// <value>Version of the package.</value>
-        public const string Version = "1.1.0";
+        public const string Version = "1.2.0";
 
         /// <summary>
         /// Gets or sets the default Configuration.
         /// </summary>
         /// <value>Configuration.</value>
         public static Configuration Default = new Configuration();
+
+        /// <summary>
+        /// Default creation of exceptions for a given method name and response object
+        /// </summary>
+        public static readonly ExceptionFactory DefaultExceptionFactory = (methodName, response) =>
+        {
+            int status = (int) response.StatusCode;
+            if (status >= 400) return new ApiException(status, String.Format("Error calling {0}: {1}", methodName, response.Content), response.Content);
+            if (status == 0) return new ApiException(status, String.Format("Error calling {0}: {1}", methodName, response.ErrorMessage), response.ErrorMessage);
+            return null;
+        };
 
         /// <summary>
         /// Gets or sets the HTTP timeout (milliseconds) of ApiClient. Default to 100000 milliseconds.
@@ -123,7 +134,7 @@ namespace Aylien.NewsApi.Client
         /// </summary>
         /// <param name="apiClient">An instance of ApiClient.</param>
         /// <returns></returns>
-        public void setApiClientUsingDefault(ApiClient apiClient = null)
+        public void setApiClientUsingDefault (ApiClient apiClient = null)
         {
             if (apiClient == null)
             {
@@ -164,7 +175,28 @@ namespace Aylien.NewsApi.Client
         /// <returns></returns>
         public void AddDefaultHeader(string key, string value)
         {
-            _defaultHeaderMap.Add(key, value);
+            _defaultHeaderMap[key] = value;
+        }
+
+        /// <summary>
+        /// Add Api Key Header.
+        /// </summary>
+        /// <param name="key">Api Key name.</param>
+        /// <param name="value">Api Key value.</param>
+        /// <returns></returns>
+        public void AddApiKey(string key, string value)
+        {
+            ApiKey[key] = value;
+        }
+
+        /// <summary>
+        /// Sets the API key prefix.
+        /// </summary>
+        /// <param name="key">Api Key name.</param>
+        /// <param name="value">Api Key value.</param>
+        public void AddApiKeyPrefix(string key, string value)
+        {
+            ApiKeyPrefix[key] = value;
         }
 
         /// <summary>
@@ -208,12 +240,12 @@ namespace Aylien.NewsApi.Client
         /// </summary>
         /// <param name="apiKeyIdentifier">API key identifier (authentication scheme).</param>
         /// <returns>API key with prefix.</returns>
-        public string GetApiKeyWithPrefix(string apiKeyIdentifier)
+        public string GetApiKeyWithPrefix (string apiKeyIdentifier)
         {
             var apiKeyValue = "";
-            ApiKey.TryGetValue(apiKeyIdentifier, out apiKeyValue);
+            ApiKey.TryGetValue (apiKeyIdentifier, out apiKeyValue);
             var apiKeyPrefix = "";
-            if (ApiKeyPrefix.TryGetValue(apiKeyIdentifier, out apiKeyPrefix))
+            if (ApiKeyPrefix.TryGetValue (apiKeyIdentifier, out apiKeyPrefix))
                 return apiKeyPrefix + " " + apiKeyValue;
             else
                 return apiKeyValue;
@@ -245,7 +277,7 @@ namespace Aylien.NewsApi.Client
                 if (value[value.Length - 1] == Path.DirectorySeparatorChar)
                     _tempFolderPath = value;
                 else
-                    _tempFolderPath = value + Path.DirectorySeparatorChar;
+                    _tempFolderPath = value  + Path.DirectorySeparatorChar;
             }
         }
 
@@ -292,9 +324,9 @@ namespace Aylien.NewsApi.Client
             report += "    .NET Framework Version: " + Assembly
                      .GetExecutingAssembly()
                      .GetReferencedAssemblies()
-                     .Where(x => x.Name == "System.Core").First().Version.ToString() + "\n";
+                     .Where(x => x.Name == "System.Core").First().Version.ToString()  + "\n";
             report += "    Version of the API: 1.0\n";
-            report += "    SDK Package Version: 1.1.0\n";
+            report += "    SDK Package Version: 1.2.0\n";
 
             return report;
         }

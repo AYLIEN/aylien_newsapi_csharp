@@ -33,7 +33,7 @@ namespace Aylien.NewsApi.Model
     /// Category
     /// </summary>
     [DataContract]
-    public partial class Category : IEquatable<Category>
+    public partial class Category :  IEquatable<Category>
     {
         /// <summary>
         /// The taxonomy of the category
@@ -42,13 +42,13 @@ namespace Aylien.NewsApi.Model
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TaxonomyEnum
         {
-
+            
             /// <summary>
             /// Enum Iabqag for "iab-qag"
             /// </summary>
             [EnumMember(Value = "iab-qag")]
             Iabqag,
-
+            
             /// <summary>
             /// Enum Iptcsubjectcode for "iptc-subjectcode"
             /// </summary>
@@ -60,7 +60,7 @@ namespace Aylien.NewsApi.Model
         /// The taxonomy of the category
         /// </summary>
         /// <value>The taxonomy of the category</value>
-        [DataMember(Name = "taxonomy", EmitDefaultValue = false)]
+        [DataMember(Name="taxonomy", EmitDefaultValue=false)]
         public TaxonomyEnum? Taxonomy { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Category" /> class.
@@ -80,36 +80,36 @@ namespace Aylien.NewsApi.Model
             this.Confident = Confident;
             this.Links = Links;
         }
-
+        
         /// <summary>
         /// The ID of the category
         /// </summary>
         /// <value>The ID of the category</value>
-        [DataMember(Name = "id", EmitDefaultValue = false)]
+        [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
         /// <summary>
         /// The level of the category
         /// </summary>
         /// <value>The level of the category</value>
-        [DataMember(Name = "level", EmitDefaultValue = false)]
+        [DataMember(Name="level", EmitDefaultValue=false)]
         public int? Level { get; set; }
         /// <summary>
         /// The score of the category
         /// </summary>
         /// <value>The score of the category</value>
-        [DataMember(Name = "score", EmitDefaultValue = false)]
+        [DataMember(Name="score", EmitDefaultValue=false)]
         public double? Score { get; set; }
         /// <summary>
         /// It defines whether the extracted category is confident or not
         /// </summary>
         /// <value>It defines whether the extracted category is confident or not</value>
-        [DataMember(Name = "confident", EmitDefaultValue = false)]
+        [DataMember(Name="confident", EmitDefaultValue=false)]
         public bool? Confident { get; set; }
         /// <summary>
         /// Related links for the category
         /// </summary>
         /// <value>Related links for the category</value>
-        [DataMember(Name = "links", EmitDefaultValue = false)]
+        [DataMember(Name="links", EmitDefaultValue=false)]
         public CategoryLinks Links { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
@@ -128,7 +128,7 @@ namespace Aylien.NewsApi.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -160,32 +160,32 @@ namespace Aylien.NewsApi.Model
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
                     this.Id == other.Id ||
                     this.Id != null &&
                     this.Id.Equals(other.Id)
-                ) &&
+                ) && 
                 (
                     this.Taxonomy == other.Taxonomy ||
                     this.Taxonomy != null &&
                     this.Taxonomy.Equals(other.Taxonomy)
-                ) &&
+                ) && 
                 (
                     this.Level == other.Level ||
                     this.Level != null &&
                     this.Level.Equals(other.Level)
-                ) &&
+                ) && 
                 (
                     this.Score == other.Score ||
                     this.Score != null &&
                     this.Score.Equals(other.Score)
-                ) &&
+                ) && 
                 (
                     this.Confident == other.Confident ||
                     this.Confident != null &&
                     this.Confident.Equals(other.Confident)
-                ) &&
+                ) && 
                 (
                     this.Links == other.Links ||
                     this.Links != null &&

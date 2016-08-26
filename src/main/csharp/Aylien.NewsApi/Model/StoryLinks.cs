@@ -33,7 +33,7 @@ namespace Aylien.NewsApi.Model
     /// StoryLinks
     /// </summary>
     [DataContract]
-    public partial class StoryLinks : IEquatable<StoryLinks>
+    public partial class StoryLinks :  IEquatable<StoryLinks>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="StoryLinks" /> class.
@@ -47,24 +47,24 @@ namespace Aylien.NewsApi.Model
             this.RelatedStories = RelatedStories;
             this.Coverages = Coverages;
         }
-
+        
         /// <summary>
         /// The story permalink URL
         /// </summary>
         /// <value>The story permalink URL</value>
-        [DataMember(Name = "permalink", EmitDefaultValue = false)]
+        [DataMember(Name="permalink", EmitDefaultValue=false)]
         public string Permalink { get; set; }
         /// <summary>
         /// The related stories URL
         /// </summary>
         /// <value>The related stories URL</value>
-        [DataMember(Name = "related_stories", EmitDefaultValue = false)]
+        [DataMember(Name="related_stories", EmitDefaultValue=false)]
         public string RelatedStories { get; set; }
         /// <summary>
         /// The coverages URL
         /// </summary>
         /// <value>The coverages URL</value>
-        [DataMember(Name = "coverages", EmitDefaultValue = false)]
+        [DataMember(Name="coverages", EmitDefaultValue=false)]
         public string Coverages { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
@@ -80,7 +80,7 @@ namespace Aylien.NewsApi.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -112,17 +112,17 @@ namespace Aylien.NewsApi.Model
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
                     this.Permalink == other.Permalink ||
                     this.Permalink != null &&
                     this.Permalink.Equals(other.Permalink)
-                ) &&
+                ) && 
                 (
                     this.RelatedStories == other.RelatedStories ||
                     this.RelatedStories != null &&
                     this.RelatedStories.Equals(other.RelatedStories)
-                ) &&
+                ) && 
                 (
                     this.Coverages == other.Coverages ||
                     this.Coverages != null &&

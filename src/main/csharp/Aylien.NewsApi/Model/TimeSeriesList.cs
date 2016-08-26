@@ -33,7 +33,7 @@ namespace Aylien.NewsApi.Model
     /// TimeSeriesList
     /// </summary>
     [DataContract]
-    public partial class TimeSeriesList : IEquatable<TimeSeriesList>
+    public partial class TimeSeriesList :  IEquatable<TimeSeriesList>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TimeSeriesList" /> class.
@@ -49,30 +49,30 @@ namespace Aylien.NewsApi.Model
             this.PublishedAtStart = PublishedAtStart;
             this.PublishedAtEnd = PublishedAtEnd;
         }
-
+        
         /// <summary>
         /// An array of time series
         /// </summary>
         /// <value>An array of time series</value>
-        [DataMember(Name = "time_series", EmitDefaultValue = false)]
+        [DataMember(Name="time_series", EmitDefaultValue=false)]
         public List<TimeSeries> TimeSeries { get; set; }
         /// <summary>
         /// The size of each date range expressed as an interval to be added to the lower bound.
         /// </summary>
         /// <value>The size of each date range expressed as an interval to be added to the lower bound.</value>
-        [DataMember(Name = "period", EmitDefaultValue = false)]
+        [DataMember(Name="period", EmitDefaultValue=false)]
         public string Period { get; set; }
         /// <summary>
         /// The start published date of the time series
         /// </summary>
         /// <value>The start published date of the time series</value>
-        [DataMember(Name = "published_at.start", EmitDefaultValue = false)]
+        [DataMember(Name="published_at.start", EmitDefaultValue=false)]
         public DateTime? PublishedAtStart { get; set; }
         /// <summary>
         /// The end published date of the time series
         /// </summary>
         /// <value>The end published date of the time series</value>
-        [DataMember(Name = "published_at.end", EmitDefaultValue = false)]
+        [DataMember(Name="published_at.end", EmitDefaultValue=false)]
         public DateTime? PublishedAtEnd { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
@@ -89,7 +89,7 @@ namespace Aylien.NewsApi.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -121,22 +121,22 @@ namespace Aylien.NewsApi.Model
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
                     this.TimeSeries == other.TimeSeries ||
                     this.TimeSeries != null &&
                     this.TimeSeries.SequenceEqual(other.TimeSeries)
-                ) &&
+                ) && 
                 (
                     this.Period == other.Period ||
                     this.Period != null &&
                     this.Period.Equals(other.Period)
-                ) &&
+                ) && 
                 (
                     this.PublishedAtStart == other.PublishedAtStart ||
                     this.PublishedAtStart != null &&
                     this.PublishedAtStart.Equals(other.PublishedAtStart)
-                ) &&
+                ) && 
                 (
                     this.PublishedAtEnd == other.PublishedAtEnd ||
                     this.PublishedAtEnd != null &&

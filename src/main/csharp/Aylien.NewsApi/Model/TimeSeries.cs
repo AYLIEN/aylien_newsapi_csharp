@@ -33,7 +33,7 @@ namespace Aylien.NewsApi.Model
     /// TimeSeries
     /// </summary>
     [DataContract]
-    public partial class TimeSeries : IEquatable<TimeSeries>
+    public partial class TimeSeries :  IEquatable<TimeSeries>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TimeSeries" /> class.
@@ -45,18 +45,18 @@ namespace Aylien.NewsApi.Model
             this.PublishedAt = PublishedAt;
             this.Count = Count;
         }
-
+        
         /// <summary>
         /// The published date of the time series bin
         /// </summary>
         /// <value>The published date of the time series bin</value>
-        [DataMember(Name = "published_at", EmitDefaultValue = false)]
+        [DataMember(Name="published_at", EmitDefaultValue=false)]
         public DateTime? PublishedAt { get; set; }
         /// <summary>
         /// The count of time series bin
         /// </summary>
         /// <value>The count of time series bin</value>
-        [DataMember(Name = "count", EmitDefaultValue = false)]
+        [DataMember(Name="count", EmitDefaultValue=false)]
         public int? Count { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
@@ -71,7 +71,7 @@ namespace Aylien.NewsApi.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -103,12 +103,12 @@ namespace Aylien.NewsApi.Model
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
                     this.PublishedAt == other.PublishedAt ||
                     this.PublishedAt != null &&
                     this.PublishedAt.Equals(other.PublishedAt)
-                ) &&
+                ) && 
                 (
                     this.Count == other.Count ||
                     this.Count != null &&

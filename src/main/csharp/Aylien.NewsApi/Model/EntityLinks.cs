@@ -33,7 +33,7 @@ namespace Aylien.NewsApi.Model
     /// EntityLinks
     /// </summary>
     [DataContract]
-    public partial class EntityLinks : IEquatable<EntityLinks>
+    public partial class EntityLinks :  IEquatable<EntityLinks>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="EntityLinks" /> class.
@@ -43,12 +43,12 @@ namespace Aylien.NewsApi.Model
         {
             this.Dbpedia = Dbpedia;
         }
-
+        
         /// <summary>
         /// A dbpedia resource URL
         /// </summary>
         /// <value>A dbpedia resource URL</value>
-        [DataMember(Name = "dbpedia", EmitDefaultValue = false)]
+        [DataMember(Name="dbpedia", EmitDefaultValue=false)]
         public string Dbpedia { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
@@ -62,7 +62,7 @@ namespace Aylien.NewsApi.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -94,7 +94,7 @@ namespace Aylien.NewsApi.Model
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
                     this.Dbpedia == other.Dbpedia ||
                     this.Dbpedia != null &&

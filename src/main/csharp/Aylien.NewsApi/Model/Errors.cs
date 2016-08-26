@@ -33,7 +33,7 @@ namespace Aylien.NewsApi.Model
     /// Errors
     /// </summary>
     [DataContract]
-    public partial class Errors : IEquatable<Errors>
+    public partial class Errors :  IEquatable<Errors>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Errors" /> class.
@@ -43,11 +43,11 @@ namespace Aylien.NewsApi.Model
         {
             this._Errors = _Errors;
         }
-
+        
         /// <summary>
         /// Gets or Sets _Errors
         /// </summary>
-        [DataMember(Name = "errors", EmitDefaultValue = false)]
+        [DataMember(Name="errors", EmitDefaultValue=false)]
         public List<Error> _Errors { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
@@ -61,7 +61,7 @@ namespace Aylien.NewsApi.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -93,7 +93,7 @@ namespace Aylien.NewsApi.Model
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
                     this._Errors == other._Errors ||
                     this._Errors != null &&

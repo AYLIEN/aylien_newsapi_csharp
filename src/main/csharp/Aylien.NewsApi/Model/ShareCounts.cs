@@ -33,7 +33,7 @@ namespace Aylien.NewsApi.Model
     /// ShareCounts
     /// </summary>
     [DataContract]
-    public partial class ShareCounts : IEquatable<ShareCounts>
+    public partial class ShareCounts :  IEquatable<ShareCounts>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ShareCounts" /> class.
@@ -49,30 +49,30 @@ namespace Aylien.NewsApi.Model
             this.Linkedin = Linkedin;
             this.Reddit = Reddit;
         }
-
+        
         /// <summary>
         /// Facebook shares count
         /// </summary>
         /// <value>Facebook shares count</value>
-        [DataMember(Name = "facebook", EmitDefaultValue = false)]
+        [DataMember(Name="facebook", EmitDefaultValue=false)]
         public List<ShareCount> Facebook { get; set; }
         /// <summary>
         /// Google Plus shares count
         /// </summary>
         /// <value>Google Plus shares count</value>
-        [DataMember(Name = "google_plus", EmitDefaultValue = false)]
+        [DataMember(Name="google_plus", EmitDefaultValue=false)]
         public List<ShareCount> GooglePlus { get; set; }
         /// <summary>
         /// LinkedIn shares count
         /// </summary>
         /// <value>LinkedIn shares count</value>
-        [DataMember(Name = "linkedin", EmitDefaultValue = false)]
+        [DataMember(Name="linkedin", EmitDefaultValue=false)]
         public List<ShareCount> Linkedin { get; set; }
         /// <summary>
         /// Reddit shares count
         /// </summary>
         /// <value>Reddit shares count</value>
-        [DataMember(Name = "reddit", EmitDefaultValue = false)]
+        [DataMember(Name="reddit", EmitDefaultValue=false)]
         public List<ShareCount> Reddit { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
@@ -89,7 +89,7 @@ namespace Aylien.NewsApi.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -121,22 +121,22 @@ namespace Aylien.NewsApi.Model
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
                     this.Facebook == other.Facebook ||
                     this.Facebook != null &&
                     this.Facebook.SequenceEqual(other.Facebook)
-                ) &&
+                ) && 
                 (
                     this.GooglePlus == other.GooglePlus ||
                     this.GooglePlus != null &&
                     this.GooglePlus.SequenceEqual(other.GooglePlus)
-                ) &&
+                ) && 
                 (
                     this.Linkedin == other.Linkedin ||
                     this.Linkedin != null &&
                     this.Linkedin.SequenceEqual(other.Linkedin)
-                ) &&
+                ) && 
                 (
                     this.Reddit == other.Reddit ||
                     this.Reddit != null &&

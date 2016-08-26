@@ -33,7 +33,7 @@ namespace Aylien.NewsApi.Model
     /// Stories
     /// </summary>
     [DataContract]
-    public partial class Stories : IEquatable<Stories>
+    public partial class Stories :  IEquatable<Stories>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Stories" /> class.
@@ -47,24 +47,24 @@ namespace Aylien.NewsApi.Model
             this.Clusters = Clusters;
             this.NextPageCursor = NextPageCursor;
         }
-
+        
         /// <summary>
         /// An array of stories
         /// </summary>
         /// <value>An array of stories</value>
-        [DataMember(Name = "stories", EmitDefaultValue = false)]
+        [DataMember(Name="stories", EmitDefaultValue=false)]
         public List<Story> _Stories { get; set; }
         /// <summary>
         /// An array of clusters
         /// </summary>
         /// <value>An array of clusters</value>
-        [DataMember(Name = "clusters", EmitDefaultValue = false)]
+        [DataMember(Name="clusters", EmitDefaultValue=false)]
         public List<StoryCluster> Clusters { get; set; }
         /// <summary>
         /// The next page cursor
         /// </summary>
         /// <value>The next page cursor</value>
-        [DataMember(Name = "next_page_cursor", EmitDefaultValue = false)]
+        [DataMember(Name="next_page_cursor", EmitDefaultValue=false)]
         public string NextPageCursor { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
@@ -80,7 +80,7 @@ namespace Aylien.NewsApi.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -112,17 +112,17 @@ namespace Aylien.NewsApi.Model
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
                     this._Stories == other._Stories ||
                     this._Stories != null &&
                     this._Stories.SequenceEqual(other._Stories)
-                ) &&
+                ) && 
                 (
                     this.Clusters == other.Clusters ||
                     this.Clusters != null &&
                     this.Clusters.SequenceEqual(other.Clusters)
-                ) &&
+                ) && 
                 (
                     this.NextPageCursor == other.NextPageCursor ||
                     this.NextPageCursor != null &&

@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**ListTrends**](DefaultApi.md#listtrends) | **GET** /trends | List trends
 
 
+<a name="listautocompletes"></a>
 # **ListAutocompletes**
 > Autocompletes ListAutocompletes (string type, string term, string language = null, int? perPage = null)
 
@@ -43,9 +44,9 @@ namespace Example
 
             var apiInstance = new DefaultApi();
             
-            var type = "type_example";  // string | This parameter is used for defining the type of autocompletes.
-            var term = "term_example";  // string | This parameter is used for finding autocomplete objects that contain the specified value.
-            var language = "language_example";  // string | This parameter is used for autocompletes whose language is the specified value. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional)  (default to en)
+            var type = type_example;  // string | This parameter is used for defining the type of autocompletes.
+            var term = term_example;  // string | This parameter is used for finding autocomplete objects that contain the specified value.
+            var language = language_example;  // string | This parameter is used for autocompletes whose language is the specified value. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional)  (default to en)
             var perPage = 56;  // int? | This parameter is used for specifying number of items in each page. (optional)  (default to 3)
 
             try
@@ -56,7 +57,7 @@ namespace Example
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.ListAutocompletes: " + e.Message);
+                Debug.Print("Exception when calling DefaultApi.ListAutocompletes: " + e.Message );
             }
         }
     }
@@ -87,8 +88,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="listcoverages"></a>
 # **ListCoverages**
-> Coverages ListCoverages (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, long? storyId = null, string storyUrl = null, string storyTitle = null, string storyBody = null, DateTime? storyPublishedAt = null, string storyLanguage = null, int? perPage = null)
+> Coverages ListCoverages (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, long? storyId = null, string storyUrl = null, string storyTitle = null, string storyBody = null, DateTime? storyPublishedAt = null, string storyLanguage = null, int? perPage = null)
 
 List coverages
 
@@ -109,7 +111,7 @@ namespace Example
     {
         static void Main(string[] args)
         {
-            
+
             // Configure API key authorization: app_id
             Configuration.Default.ApiKey.Add("X-AYLIEN-NewsAPI-Application-ID", "YOUR_APP_ID");
 
@@ -119,13 +121,13 @@ namespace Example
             var apiInstance = new DefaultApi();
             
             var id = new List<long?>(); // List<long?> | This parameter is used for finding stroies by story id. (optional) 
-            var title = "title_example";  // string | This parameter is used for finding stories whose title contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional) 
-            var body = "body_example";  // string | This parameter is used for finding stories whose body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional) 
-            var text = "text_example";  // string | This parameter is used for finding stories whose title or body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional) 
+            var title = title_example;  // string | This parameter is used for finding stories whose title contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional) 
+            var body = body_example;  // string | This parameter is used for finding stories whose body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional) 
+            var text = text_example;  // string | This parameter is used for finding stories whose title or body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional) 
             var language = new List<string>(); // List<string> | This parameter is used for finding stories whose language is the specified value. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional) 
-            var publishedAtStart = "publishedAtStart_example";  // string | This parameter is used for finding stories whose published at time is greater than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional) 
-            var publishedAtEnd = "publishedAtEnd_example";  // string | This parameter is used for finding stories whose published at time is less than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional) 
-            var categoriesTaxonomy = "categoriesTaxonomy_example";  // string | This parameter is used for defining the type of the taxonomy for the rest of the categories queries. (optional) 
+            var publishedAtStart = publishedAtStart_example;  // string | This parameter is used for finding stories whose published at time is greater than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional) 
+            var publishedAtEnd = publishedAtEnd_example;  // string | This parameter is used for finding stories whose published at time is less than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional) 
+            var categoriesTaxonomy = categoriesTaxonomy_example;  // string | This parameter is used for defining the type of the taxonomy for the rest of the categories queries. (optional) 
             var categoriesConfident = true;  // bool? | This parameter is used for finding stories whose categories are confident. (optional)  (default to true)
             var categoriesId = new List<string>(); // List<string> | This parameter is used for finding stories by categories id. (optional) 
             var categoriesLevel = new List<int?>(); // List<int?> | This parameter is used for finding stories by categories level. (optional) 
@@ -135,14 +137,14 @@ namespace Example
             var entitiesBodyText = new List<string>(); // List<string> | This parameter is used to find stories based on the specified entities `text` in the body of stories. (optional) 
             var entitiesBodyType = new List<string>(); // List<string> | This parameter is used to find stories based on the specified entities `type` in the body of stories. (optional) 
             var entitiesBodyLinksDbpedia = new List<string>(); // List<string> | This parameter is used to find stories based on the specified entities dbpedia URL in the body of stories. (optional) 
-            var sentimentTitlePolarity = "sentimentTitlePolarity_example";  // string | This parameter is used for finding stories whose title sentiment is the specified value. (optional) 
-            var sentimentBodyPolarity = "sentimentBodyPolarity_example";  // string | This parameter is used for finding stories whose body sentiment is the specified value. (optional) 
+            var sentimentTitlePolarity = sentimentTitlePolarity_example;  // string | This parameter is used for finding stories whose title sentiment is the specified value. (optional) 
+            var sentimentBodyPolarity = sentimentBodyPolarity_example;  // string | This parameter is used for finding stories whose body sentiment is the specified value. (optional) 
             var mediaImagesCountMin = 56;  // int? | This parameter is used for finding stories whose number of images is greater than or equal to the specified value. (optional) 
             var mediaImagesCountMax = 56;  // int? | This parameter is used for finding stories whose number of images is less than or equal to the specified value. (optional) 
             var mediaVideosCountMin = 56;  // int? | This parameter is used for finding stories whose number of videos is greater than or equal to the specified value. (optional) 
             var mediaVideosCountMax = 56;  // int? | This parameter is used for finding stories whose number of videos is less than or equal to the specified value. (optional) 
             var authorId = new List<int?>(); // List<int?> | This parameter is used for finding stories whose author id is the specified value. (optional) 
-            var authorName = "authorName_example";  // string | This parameter is used for finding stories whose author full name contains the specified value. (optional) 
+            var authorName = authorName_example;  // string | This parameter is used for finding stories whose author full name contains the specified value. (optional) 
             var sourceId = new List<int?>(); // List<int?> | This parameter is used for finding stories whose source id is the specified value. (optional) 
             var sourceName = new List<string>(); // List<string> | This parameter is used for finding stories whose source name contains the specified value. (optional) 
             var sourceDomain = new List<string>(); // List<string> | This parameter is used for finding stories whose source domain is the specified value. (optional) 
@@ -153,13 +155,18 @@ namespace Example
             var sourceScopesState = new List<string>(); // List<string> | This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional) 
             var sourceScopesCity = new List<string>(); // List<string> | This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional) 
             var sourceScopesLevel = new List<string>(); // List<string> | This parameter is used for finding stories whose source scopes  is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional) 
+            var sourceLinksInCountMin = 56;  // int? | This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional) 
+            var sourceLinksInCountMax = 56;  // int? | This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional) 
+            var sourceRankingsAlexaRankMin = 56;  // int? | This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional) 
+            var sourceRankingsAlexaRankMax = 56;  // int? | This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional) 
+            var sourceRankingsAlexaCountry = new List<string>(); // List<string> | This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional) 
             var cluster = true;  // bool? | This parameter enables clustering for the returned stories. (optional)  (default to false)
-            var clusterAlgorithm = "clusterAlgorithm_example";  // string | This parameter is used for specifying the clustering algorithm you wish to use. It supprts STC, Lingo and [k-means](https://en.wikipedia.org/wiki/K-means_clustering) algorithms. (optional)  (default to lingo)
+            var clusterAlgorithm = clusterAlgorithm_example;  // string | This parameter is used for specifying the clustering algorithm you wish to use. It supprts STC, Lingo and [k-means](https://en.wikipedia.org/wiki/K-means_clustering) algorithms. (optional)  (default to lingo)
             var _return = new List<string>(); // List<string> | This parameter is used for specifying return fields. (optional) 
             var storyId = 789;  // long? | A story id (optional) 
-            var storyUrl = "storyUrl_example";  // string | An article or webpage (optional) 
-            var storyTitle = "storyTitle_example";  // string | Title of the article (optional) 
-            var storyBody = "storyBody_example";  // string | Body of the article (optional) 
+            var storyUrl = storyUrl_example;  // string | An article or webpage (optional) 
+            var storyTitle = storyTitle_example;  // string | Title of the article (optional) 
+            var storyBody = storyBody_example;  // string | Body of the article (optional) 
             var storyPublishedAt = 2013-10-20T19:20:30+01:00;  // DateTime? | Publish date of the article. If you use a url or title and body of an article for getting coverages, this parameter is required. The format used is a restricted form of the canonical representation of dateTime in the [XML Schema specification (ISO 8601)](https://www.w3.org/TR/xmlschema-2/#dateTime). (optional) 
             var storyLanguage = storyLanguage_example;  // string | This parameter is used for setting the language of the story. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional)  (default to auto)
             var perPage = 56;  // int? | This parameter is used for specifying number of items in each page. (optional)  (default to 3)
@@ -167,13 +174,12 @@ namespace Example
             try
             {
                 // List coverages
-                Coverages result = apiInstance.ListCoverages(id, title, body, text, language, publishedAtStart, publishedAtEnd, categoriesTaxonomy, categoriesConfident, categoriesId, categoriesLevel, entitiesTitleText, entitiesTitleType, entitiesTitleLinksDbpedia, entitiesBodyText, entitiesBodyType, entitiesBodyLinksDbpedia, sentimentTitlePolarity, sentimentBodyPolarity, mediaImagesCountMin, mediaImagesCountMax, mediaVideosCountMin, mediaVideosCountMax, authorId, authorName, sourceId, sourceName, sourceDomain, sourceLocationsCountry, sourceLocationsState, sourceLocationsCity, sourceScopesCountry, sourceScopesState, sourceScopesCity, sourceScopesLevel, cluster, clusterAlgorithm, _return, storyId, storyUrl, storyTitle, storyBody, storyPublishedAt, storyLanguage, perPage);
-                
+                Coverages result = apiInstance.ListCoverages(id, title, body, text, language, publishedAtStart, publishedAtEnd, categoriesTaxonomy, categoriesConfident, categoriesId, categoriesLevel, entitiesTitleText, entitiesTitleType, entitiesTitleLinksDbpedia, entitiesBodyText, entitiesBodyType, entitiesBodyLinksDbpedia, sentimentTitlePolarity, sentimentBodyPolarity, mediaImagesCountMin, mediaImagesCountMax, mediaVideosCountMin, mediaVideosCountMax, authorId, authorName, sourceId, sourceName, sourceDomain, sourceLocationsCountry, sourceLocationsState, sourceLocationsCity, sourceScopesCountry, sourceScopesState, sourceScopesCity, sourceScopesLevel, sourceLinksInCountMin, sourceLinksInCountMax, sourceRankingsAlexaRankMin, sourceRankingsAlexaRankMax, sourceRankingsAlexaCountry, cluster, clusterAlgorithm, _return, storyId, storyUrl, storyTitle, storyBody, storyPublishedAt, storyLanguage, perPage);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.ListCoverages: " + e.Message);
+                Debug.Print("Exception when calling DefaultApi.ListCoverages: " + e.Message );
             }
         }
     }
@@ -219,6 +225,11 @@ Name | Type | Description  | Notes
  **sourceScopesState** | [**List<string>**](string.md)| This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). | [optional] 
  **sourceScopesCity** | [**List<string>**](string.md)| This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). | [optional] 
  **sourceScopesLevel** | [**List<string>**](string.md)| This parameter is used for finding stories whose source scopes  is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). | [optional] 
+ **sourceLinksInCountMin** | **int?**| This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). | [optional] 
+ **sourceLinksInCountMax** | **int?**| This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). | [optional] 
+ **sourceRankingsAlexaRankMin** | **int?**| This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). | [optional] 
+ **sourceRankingsAlexaRankMax** | **int?**| This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). | [optional] 
+ **sourceRankingsAlexaCountry** | [**List<string>**](string.md)| This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). | [optional] 
  **cluster** | **bool?**| This parameter enables clustering for the returned stories. | [optional] [default to false]
  **clusterAlgorithm** | **string**| This parameter is used for specifying the clustering algorithm you wish to use. It supprts STC, Lingo and [k-means](https://en.wikipedia.org/wiki/K-means_clustering) algorithms. | [optional] [default to lingo]
  **_return** | [**List<string>**](string.md)| This parameter is used for specifying return fields. | [optional] 
@@ -245,8 +256,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="listhistograms"></a>
 # **ListHistograms**
-> Histograms ListHistograms (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? intervalStart = null, int? intervalEnd = null, int? intervalWidth = null, string field = null)
+> Histograms ListHistograms (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, int? intervalStart = null, int? intervalEnd = null, int? intervalWidth = null, string field = null)
 
 List histograms
 
@@ -267,7 +279,7 @@ namespace Example
     {
         static void Main(string[] args)
         {
-            
+
             // Configure API key authorization: app_id
             Configuration.Default.ApiKey.Add("X-AYLIEN-NewsAPI-Application-ID", "YOUR_APP_ID");
 
@@ -277,13 +289,13 @@ namespace Example
             var apiInstance = new DefaultApi();
             
             var id = new List<long?>(); // List<long?> | This parameter is used for finding stroies by story id. (optional) 
-            var title = "title_example";  // string | This parameter is used for finding stories whose title contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional) 
-            var body = "body_example";  // string | This parameter is used for finding stories whose body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional) 
-            var text = "text_example";  // string | This parameter is used for finding stories whose title or body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional) 
+            var title = title_example;  // string | This parameter is used for finding stories whose title contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional) 
+            var body = body_example;  // string | This parameter is used for finding stories whose body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional) 
+            var text = text_example;  // string | This parameter is used for finding stories whose title or body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional) 
             var language = new List<string>(); // List<string> | This parameter is used for finding stories whose language is the specified value. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional) 
-            var publishedAtStart = "publishedAtStart_example";  // string | This parameter is used for finding stories whose published at time is greater than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional) 
-            var publishedAtEnd = "publishedAtEnd_example";  // string | This parameter is used for finding stories whose published at time is less than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional) 
-            var categoriesTaxonomy = "categoriesTaxonomy_example";  // string | This parameter is used for defining the type of the taxonomy for the rest of the categories queries. (optional) 
+            var publishedAtStart = publishedAtStart_example;  // string | This parameter is used for finding stories whose published at time is greater than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional) 
+            var publishedAtEnd = publishedAtEnd_example;  // string | This parameter is used for finding stories whose published at time is less than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional) 
+            var categoriesTaxonomy = categoriesTaxonomy_example;  // string | This parameter is used for defining the type of the taxonomy for the rest of the categories queries. (optional) 
             var categoriesConfident = true;  // bool? | This parameter is used for finding stories whose categories are confident. (optional)  (default to true)
             var categoriesId = new List<string>(); // List<string> | This parameter is used for finding stories by categories id. (optional) 
             var categoriesLevel = new List<int?>(); // List<int?> | This parameter is used for finding stories by categories level. (optional) 
@@ -293,14 +305,14 @@ namespace Example
             var entitiesBodyText = new List<string>(); // List<string> | This parameter is used to find stories based on the specified entities `text` in the body of stories. (optional) 
             var entitiesBodyType = new List<string>(); // List<string> | This parameter is used to find stories based on the specified entities `type` in the body of stories. (optional) 
             var entitiesBodyLinksDbpedia = new List<string>(); // List<string> | This parameter is used to find stories based on the specified entities dbpedia URL in the body of stories. (optional) 
-            var sentimentTitlePolarity = "sentimentTitlePolarity_example";  // string | This parameter is used for finding stories whose title sentiment is the specified value. (optional) 
-            var sentimentBodyPolarity = "sentimentBodyPolarity_example";  // string | This parameter is used for finding stories whose body sentiment is the specified value. (optional) 
+            var sentimentTitlePolarity = sentimentTitlePolarity_example;  // string | This parameter is used for finding stories whose title sentiment is the specified value. (optional) 
+            var sentimentBodyPolarity = sentimentBodyPolarity_example;  // string | This parameter is used for finding stories whose body sentiment is the specified value. (optional) 
             var mediaImagesCountMin = 56;  // int? | This parameter is used for finding stories whose number of images is greater than or equal to the specified value. (optional) 
             var mediaImagesCountMax = 56;  // int? | This parameter is used for finding stories whose number of images is less than or equal to the specified value. (optional) 
             var mediaVideosCountMin = 56;  // int? | This parameter is used for finding stories whose number of videos is greater than or equal to the specified value. (optional) 
             var mediaVideosCountMax = 56;  // int? | This parameter is used for finding stories whose number of videos is less than or equal to the specified value. (optional) 
             var authorId = new List<int?>(); // List<int?> | This parameter is used for finding stories whose author id is the specified value. (optional) 
-            var authorName = "authorName_example";  // string | This parameter is used for finding stories whose author full name contains the specified value. (optional) 
+            var authorName = authorName_example;  // string | This parameter is used for finding stories whose author full name contains the specified value. (optional) 
             var sourceId = new List<int?>(); // List<int?> | This parameter is used for finding stories whose source id is the specified value. (optional) 
             var sourceName = new List<string>(); // List<string> | This parameter is used for finding stories whose source name contains the specified value. (optional) 
             var sourceDomain = new List<string>(); // List<string> | This parameter is used for finding stories whose source domain is the specified value. (optional) 
@@ -311,21 +323,25 @@ namespace Example
             var sourceScopesState = new List<string>(); // List<string> | This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional) 
             var sourceScopesCity = new List<string>(); // List<string> | This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional) 
             var sourceScopesLevel = new List<string>(); // List<string> | This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional) 
+            var sourceLinksInCountMin = 56;  // int? | This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional) 
+            var sourceLinksInCountMax = 56;  // int? | This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional) 
+            var sourceRankingsAlexaRankMin = 56;  // int? | This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional) 
+            var sourceRankingsAlexaRankMax = 56;  // int? | This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional) 
+            var sourceRankingsAlexaCountry = new List<string>(); // List<string> | This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional) 
             var intervalStart = 56;  // int? | This parameter is used for setting the start data point of histogram intervals. (optional) 
             var intervalEnd = 56;  // int? | This parameter is used for setting the end data point of histogram intervals. (optional) 
             var intervalWidth = 56;  // int? | This parameter is used for setting the width of histogram intervals. (optional) 
-            var field = "field_example";  // string | This parameter is used for specifying the y-axis variable for the histogram. (optional)  (default to social_shares_count)
+            var field = field_example;  // string | This parameter is used for specifying the y-axis variable for the histogram. (optional)  (default to social_shares_count)
 
             try
             {
                 // List histograms
-                Histograms result = apiInstance.ListHistograms(id, title, body, text, language, publishedAtStart, publishedAtEnd, categoriesTaxonomy, categoriesConfident, categoriesId, categoriesLevel, entitiesTitleText, entitiesTitleType, entitiesTitleLinksDbpedia, entitiesBodyText, entitiesBodyType, entitiesBodyLinksDbpedia, sentimentTitlePolarity, sentimentBodyPolarity, mediaImagesCountMin, mediaImagesCountMax, mediaVideosCountMin, mediaVideosCountMax, authorId, authorName, sourceId, sourceName, sourceDomain, sourceLocationsCountry, sourceLocationsState, sourceLocationsCity, sourceScopesCountry, sourceScopesState, sourceScopesCity, sourceScopesLevel, intervalStart, intervalEnd, intervalWidth, field);
-                
+                Histograms result = apiInstance.ListHistograms(id, title, body, text, language, publishedAtStart, publishedAtEnd, categoriesTaxonomy, categoriesConfident, categoriesId, categoriesLevel, entitiesTitleText, entitiesTitleType, entitiesTitleLinksDbpedia, entitiesBodyText, entitiesBodyType, entitiesBodyLinksDbpedia, sentimentTitlePolarity, sentimentBodyPolarity, mediaImagesCountMin, mediaImagesCountMax, mediaVideosCountMin, mediaVideosCountMax, authorId, authorName, sourceId, sourceName, sourceDomain, sourceLocationsCountry, sourceLocationsState, sourceLocationsCity, sourceScopesCountry, sourceScopesState, sourceScopesCity, sourceScopesLevel, sourceLinksInCountMin, sourceLinksInCountMax, sourceRankingsAlexaRankMin, sourceRankingsAlexaRankMax, sourceRankingsAlexaCountry, intervalStart, intervalEnd, intervalWidth, field);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.ListHistograms: " + e.Message);
+                Debug.Print("Exception when calling DefaultApi.ListHistograms: " + e.Message );
             }
         }
     }
@@ -371,6 +387,11 @@ Name | Type | Description  | Notes
  **sourceScopesState** | [**List<string>**](string.md)| This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). | [optional] 
  **sourceScopesCity** | [**List<string>**](string.md)| This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). | [optional] 
  **sourceScopesLevel** | [**List<string>**](string.md)| This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). | [optional] 
+ **sourceLinksInCountMin** | **int?**| This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). | [optional] 
+ **sourceLinksInCountMax** | **int?**| This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). | [optional] 
+ **sourceRankingsAlexaRankMin** | **int?**| This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). | [optional] 
+ **sourceRankingsAlexaRankMax** | **int?**| This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). | [optional] 
+ **sourceRankingsAlexaCountry** | [**List<string>**](string.md)| This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). | [optional] 
  **intervalStart** | **int?**| This parameter is used for setting the start data point of histogram intervals. | [optional] 
  **intervalEnd** | **int?**| This parameter is used for setting the end data point of histogram intervals. | [optional] 
  **intervalWidth** | **int?**| This parameter is used for setting the width of histogram intervals. | [optional] 
@@ -391,8 +412,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="listrelatedstories"></a>
 # **ListRelatedStories**
-> RelatedStories ListRelatedStories (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, long? storyId = null, string storyUrl = null, string storyTitle = null, string storyBody = null, string boostBy = null, string storyLanguage = null, int? perPage = null)
+> RelatedStories ListRelatedStories (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, long? storyId = null, string storyUrl = null, string storyTitle = null, string storyBody = null, string boostBy = null, string storyLanguage = null, int? perPage = null)
 
 List related stories
 
@@ -413,7 +435,7 @@ namespace Example
     {
         static void Main(string[] args)
         {
-            
+
             // Configure API key authorization: app_id
             Configuration.Default.ApiKey.Add("X-AYLIEN-NewsAPI-Application-ID", "YOUR_APP_ID");
 
@@ -423,13 +445,13 @@ namespace Example
             var apiInstance = new DefaultApi();
             
             var id = new List<long?>(); // List<long?> | This parameter is used for finding stroies by story id. (optional) 
-            var title = "title_example";  // string | This parameter is used for finding stories whose title contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional) 
-            var body = "body_example";  // string | This parameter is used for finding stories whose body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional) 
-            var text = "text_example";  // string | This parameter is used for finding stories whose title or body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional) 
+            var title = title_example;  // string | This parameter is used for finding stories whose title contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional) 
+            var body = body_example;  // string | This parameter is used for finding stories whose body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional) 
+            var text = text_example;  // string | This parameter is used for finding stories whose title or body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional) 
             var language = new List<string>(); // List<string> | This parameter is used for finding stories whose language is the specified value. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional) 
-            var publishedAtStart = "publishedAtStart_example";  // string | This parameter is used for finding stories whose published at time is greater than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional) 
-            var publishedAtEnd = "publishedAtEnd_example";  // string | This parameter is used for finding stories whose published at time is less than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional) 
-            var categoriesTaxonomy = "categoriesTaxonomy_example";  // string | This parameter is used for defining the type of the taxonomy for the rest of the categories queries. (optional) 
+            var publishedAtStart = publishedAtStart_example;  // string | This parameter is used for finding stories whose published at time is greater than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional) 
+            var publishedAtEnd = publishedAtEnd_example;  // string | This parameter is used for finding stories whose published at time is less than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional) 
+            var categoriesTaxonomy = categoriesTaxonomy_example;  // string | This parameter is used for defining the type of the taxonomy for the rest of the categories queries. (optional) 
             var categoriesConfident = true;  // bool? | This parameter is used for finding stories whose categories are confident. (optional)  (default to true)
             var categoriesId = new List<string>(); // List<string> | This parameter is used for finding stories by categories id. (optional) 
             var categoriesLevel = new List<int?>(); // List<int?> | This parameter is used for finding stories by categories level. (optional) 
@@ -439,14 +461,14 @@ namespace Example
             var entitiesBodyText = new List<string>(); // List<string> | This parameter is used to find stories based on the specified entities `text` in the body of stories. (optional) 
             var entitiesBodyType = new List<string>(); // List<string> | This parameter is used to find stories based on the specified entities `type` in the body of stories. (optional) 
             var entitiesBodyLinksDbpedia = new List<string>(); // List<string> | This parameter is used to find stories based on the specified entities dbpedia URL in the body of stories. (optional) 
-            var sentimentTitlePolarity = "sentimentTitlePolarity_example";  // string | This parameter is used for finding stories whose title sentiment is the specified value. (optional) 
-            var sentimentBodyPolarity = "sentimentBodyPolarity_example";  // string | This parameter is used for finding stories whose body sentiment is the specified value. (optional) 
+            var sentimentTitlePolarity = sentimentTitlePolarity_example;  // string | This parameter is used for finding stories whose title sentiment is the specified value. (optional) 
+            var sentimentBodyPolarity = sentimentBodyPolarity_example;  // string | This parameter is used for finding stories whose body sentiment is the specified value. (optional) 
             var mediaImagesCountMin = 56;  // int? | This parameter is used for finding stories whose number of images is greater than or equal to the specified value. (optional) 
             var mediaImagesCountMax = 56;  // int? | This parameter is used for finding stories whose number of images is less than or equal to the specified value. (optional) 
             var mediaVideosCountMin = 56;  // int? | This parameter is used for finding stories whose number of videos is greater than or equal to the specified value. (optional) 
             var mediaVideosCountMax = 56;  // int? | This parameter is used for finding stories whose number of videos is less than or equal to the specified value. (optional) 
             var authorId = new List<int?>(); // List<int?> | This parameter is used for finding stories whose author id is the specified value. (optional) 
-            var authorName = "authorName_example";  // string | This parameter is used for finding stories whose author full name contains the specified value. (optional) 
+            var authorName = authorName_example;  // string | This parameter is used for finding stories whose author full name contains the specified value. (optional) 
             var sourceId = new List<int?>(); // List<int?> | This parameter is used for finding stories whose source id is the specified value. (optional) 
             var sourceName = new List<string>(); // List<string> | This parameter is used for finding stories whose source name contains the specified value. (optional) 
             var sourceDomain = new List<string>(); // List<string> | This parameter is used for finding stories whose source domain is the specified value. (optional) 
@@ -457,27 +479,31 @@ namespace Example
             var sourceScopesState = new List<string>(); // List<string> | This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional) 
             var sourceScopesCity = new List<string>(); // List<string> | This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional) 
             var sourceScopesLevel = new List<string>(); // List<string> | This parameter is used for finding stories whose source scopes  is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional) 
+            var sourceLinksInCountMin = 56;  // int? | This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional) 
+            var sourceLinksInCountMax = 56;  // int? | This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional) 
+            var sourceRankingsAlexaRankMin = 56;  // int? | This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional) 
+            var sourceRankingsAlexaRankMax = 56;  // int? | This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional) 
+            var sourceRankingsAlexaCountry = new List<string>(); // List<string> | This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional) 
             var cluster = true;  // bool? | This parameter enables clustering for the returned stories. (optional)  (default to false)
-            var clusterAlgorithm = "clusterAlgorithm_example";  // string | This parameter is used for specifying the clustering algorithm you wish to use. It supprts STC, Lingo and [k-means](https://en.wikipedia.org/wiki/K-means_clustering) algorithms. (optional)  (default to lingo)
+            var clusterAlgorithm = clusterAlgorithm_example;  // string | This parameter is used for specifying the clustering algorithm you wish to use. It supprts STC, Lingo and [k-means](https://en.wikipedia.org/wiki/K-means_clustering) algorithms. (optional)  (default to lingo)
             var _return = new List<string>(); // List<string> | This parameter is used for specifying return fields. (optional) 
             var storyId = 789;  // long? | A story id (optional) 
-            var storyUrl = "storyUrl_example";  // string | An article or webpage (optional) 
-            var storyTitle = "storyTitle_example";  // string | Title of the article (optional) 
-            var storyBody = "storyBody_example";  // string | Body of the article (optional) 
-            var boostBy = "boostBy_example";  // string | This parameter is used for boosting the result by the specified value. (optional) 
-            var storyLanguage = "storyLanguage_example";  // string | This parameter is used for setting the language of the story. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional)  (default to auto)
+            var storyUrl = storyUrl_example;  // string | An article or webpage (optional) 
+            var storyTitle = storyTitle_example;  // string | Title of the article (optional) 
+            var storyBody = storyBody_example;  // string | Body of the article (optional) 
+            var boostBy = boostBy_example;  // string | This parameter is used for boosting the result by the specified value. (optional) 
+            var storyLanguage = storyLanguage_example;  // string | This parameter is used for setting the language of the story. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional)  (default to auto)
             var perPage = 56;  // int? | This parameter is used for specifying number of items in each page. (optional)  (default to 3)
 
             try
             {
                 // List related stories
-                RelatedStories result = apiInstance.ListRelatedStories(id, title, body, text, language, publishedAtStart, publishedAtEnd, categoriesTaxonomy, categoriesConfident, categoriesId, categoriesLevel, entitiesTitleText, entitiesTitleType, entitiesTitleLinksDbpedia, entitiesBodyText, entitiesBodyType, entitiesBodyLinksDbpedia, sentimentTitlePolarity, sentimentBodyPolarity, mediaImagesCountMin, mediaImagesCountMax, mediaVideosCountMin, mediaVideosCountMax, authorId, authorName, sourceId, sourceName, sourceDomain, sourceLocationsCountry, sourceLocationsState, sourceLocationsCity, sourceScopesCountry, sourceScopesState, sourceScopesCity, sourceScopesLevel, cluster, clusterAlgorithm, _return, storyId, storyUrl, storyTitle, storyBody, boostBy, storyLanguage, perPage);
-                
+                RelatedStories result = apiInstance.ListRelatedStories(id, title, body, text, language, publishedAtStart, publishedAtEnd, categoriesTaxonomy, categoriesConfident, categoriesId, categoriesLevel, entitiesTitleText, entitiesTitleType, entitiesTitleLinksDbpedia, entitiesBodyText, entitiesBodyType, entitiesBodyLinksDbpedia, sentimentTitlePolarity, sentimentBodyPolarity, mediaImagesCountMin, mediaImagesCountMax, mediaVideosCountMin, mediaVideosCountMax, authorId, authorName, sourceId, sourceName, sourceDomain, sourceLocationsCountry, sourceLocationsState, sourceLocationsCity, sourceScopesCountry, sourceScopesState, sourceScopesCity, sourceScopesLevel, sourceLinksInCountMin, sourceLinksInCountMax, sourceRankingsAlexaRankMin, sourceRankingsAlexaRankMax, sourceRankingsAlexaCountry, cluster, clusterAlgorithm, _return, storyId, storyUrl, storyTitle, storyBody, boostBy, storyLanguage, perPage);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.ListRelatedStories: " + e.Message);
+                Debug.Print("Exception when calling DefaultApi.ListRelatedStories: " + e.Message );
             }
         }
     }
@@ -523,6 +549,11 @@ Name | Type | Description  | Notes
  **sourceScopesState** | [**List<string>**](string.md)| This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). | [optional] 
  **sourceScopesCity** | [**List<string>**](string.md)| This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). | [optional] 
  **sourceScopesLevel** | [**List<string>**](string.md)| This parameter is used for finding stories whose source scopes  is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). | [optional] 
+ **sourceLinksInCountMin** | **int?**| This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). | [optional] 
+ **sourceLinksInCountMax** | **int?**| This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). | [optional] 
+ **sourceRankingsAlexaRankMin** | **int?**| This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). | [optional] 
+ **sourceRankingsAlexaRankMax** | **int?**| This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). | [optional] 
+ **sourceRankingsAlexaCountry** | [**List<string>**](string.md)| This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). | [optional] 
  **cluster** | **bool?**| This parameter enables clustering for the returned stories. | [optional] [default to false]
  **clusterAlgorithm** | **string**| This parameter is used for specifying the clustering algorithm you wish to use. It supprts STC, Lingo and [k-means](https://en.wikipedia.org/wiki/K-means_clustering) algorithms. | [optional] [default to lingo]
  **_return** | [**List<string>**](string.md)| This parameter is used for specifying return fields. | [optional] 
@@ -549,8 +580,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="liststories"></a>
 # **ListStories**
-> Stories ListStories (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, string sortBy = null, string sortDirection = null, string cursor = null, int? perPage = null)
+> Stories ListStories (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, bool? cluster = null, string clusterAlgorithm = null, List<string> _return = null, string sortBy = null, string sortDirection = null, string cursor = null, int? perPage = null)
 
 List Stories
 
@@ -571,7 +603,7 @@ namespace Example
     {
         static void Main(string[] args)
         {
-            
+
             // Configure API key authorization: app_id
             Configuration.Default.ApiKey.Add("X-AYLIEN-NewsAPI-Application-ID", "YOUR_APP_ID");
 
@@ -581,13 +613,13 @@ namespace Example
             var apiInstance = new DefaultApi();
             
             var id = new List<long?>(); // List<long?> | This parameter is used for finding stroies by story id. (optional) 
-            var title = "title_example";  // string | This parameter is used for finding stories whose title contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional) 
-            var body = "body_example";  // string | This parameter is used for finding stories whose body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional) 
-            var text = "text_example";  // string | This parameter is used for finding stories whose title or body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional) 
+            var title = title_example;  // string | This parameter is used for finding stories whose title contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional) 
+            var body = body_example;  // string | This parameter is used for finding stories whose body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional) 
+            var text = text_example;  // string | This parameter is used for finding stories whose title or body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional) 
             var language = new List<string>(); // List<string> | This parameter is used for finding stories whose language is the specified value. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional) 
-            var publishedAtStart = "publishedAtStart_example";  // string | This parameter is used for finding stories whose published at time is greater than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional) 
-            var publishedAtEnd = "publishedAtEnd_example";  // string | This parameter is used for finding stories whose published at time is less than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional) 
-            var categoriesTaxonomy = "categoriesTaxonomy_example";  // string | This parameter is used for defining the type of the taxonomy for the rest of the categories queries. (optional) 
+            var publishedAtStart = publishedAtStart_example;  // string | This parameter is used for finding stories whose published at time is greater than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional) 
+            var publishedAtEnd = publishedAtEnd_example;  // string | This parameter is used for finding stories whose published at time is less than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional) 
+            var categoriesTaxonomy = categoriesTaxonomy_example;  // string | This parameter is used for defining the type of the taxonomy for the rest of the categories queries. (optional) 
             var categoriesConfident = true;  // bool? | This parameter is used for finding stories whose categories are confident. (optional)  (default to true)
             var categoriesId = new List<string>(); // List<string> | This parameter is used for finding stories by categories id. (optional) 
             var categoriesLevel = new List<int?>(); // List<int?> | This parameter is used for finding stories by categories level. (optional) 
@@ -597,14 +629,14 @@ namespace Example
             var entitiesBodyText = new List<string>(); // List<string> | This parameter is used to find stories based on the specified entities `text` in the body of stories. (optional) 
             var entitiesBodyType = new List<string>(); // List<string> | This parameter is used to find stories based on the specified entities `type` in the body of stories. (optional) 
             var entitiesBodyLinksDbpedia = new List<string>(); // List<string> | This parameter is used to find stories based on the specified entities dbpedia URL in the body of stories. (optional) 
-            var sentimentTitlePolarity = "sentimentTitlePolarity_example";  // string | This parameter is used for finding stories whose title sentiment is the specified value. (optional) 
-            var sentimentBodyPolarity = "sentimentBodyPolarity_example";  // string | This parameter is used for finding stories whose body sentiment is the specified value. (optional) 
+            var sentimentTitlePolarity = sentimentTitlePolarity_example;  // string | This parameter is used for finding stories whose title sentiment is the specified value. (optional) 
+            var sentimentBodyPolarity = sentimentBodyPolarity_example;  // string | This parameter is used for finding stories whose body sentiment is the specified value. (optional) 
             var mediaImagesCountMin = 56;  // int? | This parameter is used for finding stories whose number of images is greater than or equal to the specified value. (optional) 
             var mediaImagesCountMax = 56;  // int? | This parameter is used for finding stories whose number of images is less than or equal to the specified value. (optional) 
             var mediaVideosCountMin = 56;  // int? | This parameter is used for finding stories whose number of videos is greater than or equal to the specified value. (optional) 
             var mediaVideosCountMax = 56;  // int? | This parameter is used for finding stories whose number of videos is less than or equal to the specified value. (optional) 
             var authorId = new List<int?>(); // List<int?> | This parameter is used for finding stories whose author id is the specified value. (optional) 
-            var authorName = "authorName_example";  // string | This parameter is used for finding stories whose author full name contains the specified value. (optional) 
+            var authorName = authorName_example;  // string | This parameter is used for finding stories whose author full name contains the specified value. (optional) 
             var sourceId = new List<int?>(); // List<int?> | This parameter is used for finding stories whose source id is the specified value. (optional) 
             var sourceName = new List<string>(); // List<string> | This parameter is used for finding stories whose source name contains the specified value. (optional) 
             var sourceDomain = new List<string>(); // List<string> | This parameter is used for finding stories whose source domain is the specified value. (optional) 
@@ -615,24 +647,28 @@ namespace Example
             var sourceScopesState = new List<string>(); // List<string> | This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional) 
             var sourceScopesCity = new List<string>(); // List<string> | This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional) 
             var sourceScopesLevel = new List<string>(); // List<string> | This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional) 
+            var sourceLinksInCountMin = 56;  // int? | This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional) 
+            var sourceLinksInCountMax = 56;  // int? | This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional) 
+            var sourceRankingsAlexaRankMin = 56;  // int? | This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional) 
+            var sourceRankingsAlexaRankMax = 56;  // int? | This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional) 
+            var sourceRankingsAlexaCountry = new List<string>(); // List<string> | This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional) 
             var cluster = true;  // bool? | This parameter enables clustering for the returned stories. (optional)  (default to false)
-            var clusterAlgorithm = "clusterAlgorithm_example";  // string | This parameter is used for specifying the clustering algorithm you wish to use. It supprts STC, Lingo and [k-means](https://en.wikipedia.org/wiki/K-means_clustering) algorithms. (optional)  (default to lingo)
+            var clusterAlgorithm = clusterAlgorithm_example;  // string | This parameter is used for specifying the clustering algorithm you wish to use. It supprts STC, Lingo and [k-means](https://en.wikipedia.org/wiki/K-means_clustering) algorithms. (optional)  (default to lingo)
             var _return = new List<string>(); // List<string> | This parameter is used for specifying return fields. (optional) 
-            var sortBy = "sortBy_example";  // string | This parameter is used for changing the order column of the results. (optional)  (default to published_at)
-            var sortDirection = "sortDirection_example";  // string | This parameter is used for changing the order direction of the result. (optional)  (default to desc)
-            var cursor = "cursor_example";  // string | This parameter is used for finding a specific page. (optional)  (default to *)
+            var sortBy = sortBy_example;  // string | This parameter is used for changing the order column of the results. (optional)  (default to published_at)
+            var sortDirection = sortDirection_example;  // string | This parameter is used for changing the order direction of the result. (optional)  (default to desc)
+            var cursor = cursor_example;  // string | This parameter is used for finding a specific page. (optional)  (default to *)
             var perPage = 56;  // int? | This parameter is used for specifying number of items in each page. (optional)  (default to 10)
 
             try
             {
                 // List Stories
-                Stories result = apiInstance.ListStories(id, title, body, text, language, publishedAtStart, publishedAtEnd, categoriesTaxonomy, categoriesConfident, categoriesId, categoriesLevel, entitiesTitleText, entitiesTitleType, entitiesTitleLinksDbpedia, entitiesBodyText, entitiesBodyType, entitiesBodyLinksDbpedia, sentimentTitlePolarity, sentimentBodyPolarity, mediaImagesCountMin, mediaImagesCountMax, mediaVideosCountMin, mediaVideosCountMax, authorId, authorName, sourceId, sourceName, sourceDomain, sourceLocationsCountry, sourceLocationsState, sourceLocationsCity, sourceScopesCountry, sourceScopesState, sourceScopesCity, sourceScopesLevel, cluster, clusterAlgorithm, _return, sortBy, sortDirection, cursor, perPage);
-                
+                Stories result = apiInstance.ListStories(id, title, body, text, language, publishedAtStart, publishedAtEnd, categoriesTaxonomy, categoriesConfident, categoriesId, categoriesLevel, entitiesTitleText, entitiesTitleType, entitiesTitleLinksDbpedia, entitiesBodyText, entitiesBodyType, entitiesBodyLinksDbpedia, sentimentTitlePolarity, sentimentBodyPolarity, mediaImagesCountMin, mediaImagesCountMax, mediaVideosCountMin, mediaVideosCountMax, authorId, authorName, sourceId, sourceName, sourceDomain, sourceLocationsCountry, sourceLocationsState, sourceLocationsCity, sourceScopesCountry, sourceScopesState, sourceScopesCity, sourceScopesLevel, sourceLinksInCountMin, sourceLinksInCountMax, sourceRankingsAlexaRankMin, sourceRankingsAlexaRankMax, sourceRankingsAlexaCountry, cluster, clusterAlgorithm, _return, sortBy, sortDirection, cursor, perPage);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.ListStories: " + e.Message);
+                Debug.Print("Exception when calling DefaultApi.ListStories: " + e.Message );
             }
         }
     }
@@ -678,6 +714,11 @@ Name | Type | Description  | Notes
  **sourceScopesState** | [**List<string>**](string.md)| This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). | [optional] 
  **sourceScopesCity** | [**List<string>**](string.md)| This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). | [optional] 
  **sourceScopesLevel** | [**List<string>**](string.md)| This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). | [optional] 
+ **sourceLinksInCountMin** | **int?**| This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). | [optional] 
+ **sourceLinksInCountMax** | **int?**| This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). | [optional] 
+ **sourceRankingsAlexaRankMin** | **int?**| This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). | [optional] 
+ **sourceRankingsAlexaRankMax** | **int?**| This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). | [optional] 
+ **sourceRankingsAlexaCountry** | [**List<string>**](string.md)| This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). | [optional] 
  **cluster** | **bool?**| This parameter enables clustering for the returned stories. | [optional] [default to false]
  **clusterAlgorithm** | **string**| This parameter is used for specifying the clustering algorithm you wish to use. It supprts STC, Lingo and [k-means](https://en.wikipedia.org/wiki/K-means_clustering) algorithms. | [optional] [default to lingo]
  **_return** | [**List<string>**](string.md)| This parameter is used for specifying return fields. | [optional] 
@@ -701,8 +742,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="listtimeseries"></a>
 # **ListTimeSeries**
-> TimeSeriesList ListTimeSeries (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, string publishedAtStart = null, string publishedAtEnd = null, string period = null)
+> TimeSeriesList ListTimeSeries (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, string publishedAtStart = null, string publishedAtEnd = null, string period = null)
 
 List time series
 
@@ -723,7 +765,7 @@ namespace Example
     {
         static void Main(string[] args)
         {
-            
+
             // Configure API key authorization: app_id
             Configuration.Default.ApiKey.Add("X-AYLIEN-NewsAPI-Application-ID", "YOUR_APP_ID");
 
@@ -733,11 +775,11 @@ namespace Example
             var apiInstance = new DefaultApi();
             
             var id = new List<long?>(); // List<long?> | This parameter is used for finding stroies by story id. (optional) 
-            var title = "title_example";  // string | This parameter is used for finding stories whose title contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional) 
-            var body = "body_example";  // string | This parameter is used for finding stories whose body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional) 
-            var text = "text_example";  // string | This parameter is used for finding stories whose title or body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional) 
+            var title = title_example;  // string | This parameter is used for finding stories whose title contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional) 
+            var body = body_example;  // string | This parameter is used for finding stories whose body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional) 
+            var text = text_example;  // string | This parameter is used for finding stories whose title or body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional) 
             var language = new List<string>(); // List<string> | This parameter is used for finding stories whose language is the specified value. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional) 
-            var categoriesTaxonomy = "categoriesTaxonomy_example";  // string | This parameter is used for defining the type of the taxonomy for the rest of the categories queries. (optional) 
+            var categoriesTaxonomy = categoriesTaxonomy_example;  // string | This parameter is used for defining the type of the taxonomy for the rest of the categories queries. (optional) 
             var categoriesConfident = true;  // bool? | This parameter is used for finding stories whose categories are confident. (optional)  (default to true)
             var categoriesId = new List<string>(); // List<string> | This parameter is used for finding stories by categories id. (optional) 
             var categoriesLevel = new List<int?>(); // List<int?> | This parameter is used for finding stories by categories level. (optional) 
@@ -747,14 +789,14 @@ namespace Example
             var entitiesBodyText = new List<string>(); // List<string> | This parameter is used to find stories based on the specified entities `text` in the body of stories. (optional) 
             var entitiesBodyType = new List<string>(); // List<string> | This parameter is used to find stories based on the specified entities `type` in the body of stories. (optional) 
             var entitiesBodyLinksDbpedia = new List<string>(); // List<string> | This parameter is used to find stories based on the specified entities dbpedia URL in the body of stories. (optional) 
-            var sentimentTitlePolarity = "sentimentTitlePolarity_example";  // string | This parameter is used for finding stories whose title sentiment is the specified value. (optional) 
-            var sentimentBodyPolarity = "sentimentBodyPolarity_example";  // string | This parameter is used for finding stories whose body sentiment is the specified value. (optional) 
+            var sentimentTitlePolarity = sentimentTitlePolarity_example;  // string | This parameter is used for finding stories whose title sentiment is the specified value. (optional) 
+            var sentimentBodyPolarity = sentimentBodyPolarity_example;  // string | This parameter is used for finding stories whose body sentiment is the specified value. (optional) 
             var mediaImagesCountMin = 56;  // int? | This parameter is used for finding stories whose number of images is greater than or equal to the specified value. (optional) 
             var mediaImagesCountMax = 56;  // int? | This parameter is used for finding stories whose number of images is less than or equal to the specified value. (optional) 
             var mediaVideosCountMin = 56;  // int? | This parameter is used for finding stories whose number of videos is greater than or equal to the specified value. (optional) 
             var mediaVideosCountMax = 56;  // int? | This parameter is used for finding stories whose number of videos is less than or equal to the specified value. (optional) 
             var authorId = new List<int?>(); // List<int?> | This parameter is used for finding stories whose author id is the specified value. (optional) 
-            var authorName = "authorName_example";  // string | This parameter is used for finding stories whose author full name contains the specified value. (optional) 
+            var authorName = authorName_example;  // string | This parameter is used for finding stories whose author full name contains the specified value. (optional) 
             var sourceId = new List<int?>(); // List<int?> | This parameter is used for finding stories whose source id is the specified value. (optional) 
             var sourceName = new List<string>(); // List<string> | This parameter is used for finding stories whose source name contains the specified value. (optional) 
             var sourceDomain = new List<string>(); // List<string> | This parameter is used for finding stories whose source domain is the specified value. (optional) 
@@ -765,20 +807,24 @@ namespace Example
             var sourceScopesState = new List<string>(); // List<string> | This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional) 
             var sourceScopesCity = new List<string>(); // List<string> | This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional) 
             var sourceScopesLevel = new List<string>(); // List<string> | This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional) 
-            var publishedAtStart = "publishedAtStart_example";  // string | This parameter is used for finding stories whose published at time is less than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional)  (default to NOW-7DAYS/DAY)
-            var publishedAtEnd = "publishedAtEnd_example";  // string | This parameter is used for finding stories whose published at time is greater than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional)  (default to NOW/DAY)
-            var period = "period_example";  // string | The size of each date range is expressed as an interval to be added to the lower bound. It supports Date Math Syntax. Valid options are `+` following an integer number greater than 0 and one of the Date Math keywords. e.g. `+1DAY`, `+2MINUTES` and `+1MONTH`. Here are [Supported keywords](https://newsapi.aylien.com/docs/working-with-dates#date-math). (optional)  (default to +1DAY)
+            var sourceLinksInCountMin = 56;  // int? | This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional) 
+            var sourceLinksInCountMax = 56;  // int? | This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional) 
+            var sourceRankingsAlexaRankMin = 56;  // int? | This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional) 
+            var sourceRankingsAlexaRankMax = 56;  // int? | This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional) 
+            var sourceRankingsAlexaCountry = new List<string>(); // List<string> | This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional) 
+            var publishedAtStart = publishedAtStart_example;  // string | This parameter is used for finding stories whose published at time is less than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional)  (default to NOW-7DAYS/DAY)
+            var publishedAtEnd = publishedAtEnd_example;  // string | This parameter is used for finding stories whose published at time is greater than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional)  (default to NOW/DAY)
+            var period = period_example;  // string | The size of each date range is expressed as an interval to be added to the lower bound. It supports Date Math Syntax. Valid options are `+` following an integer number greater than 0 and one of the Date Math keywords. e.g. `+1DAY`, `+2MINUTES` and `+1MONTH`. Here are [Supported keywords](https://newsapi.aylien.com/docs/working-with-dates#date-math). (optional)  (default to +1DAY)
 
             try
             {
                 // List time series
-                TimeSeriesList result = apiInstance.ListTimeSeries(id, title, body, text, language, categoriesTaxonomy, categoriesConfident, categoriesId, categoriesLevel, entitiesTitleText, entitiesTitleType, entitiesTitleLinksDbpedia, entitiesBodyText, entitiesBodyType, entitiesBodyLinksDbpedia, sentimentTitlePolarity, sentimentBodyPolarity, mediaImagesCountMin, mediaImagesCountMax, mediaVideosCountMin, mediaVideosCountMax, authorId, authorName, sourceId, sourceName, sourceDomain, sourceLocationsCountry, sourceLocationsState, sourceLocationsCity, sourceScopesCountry, sourceScopesState, sourceScopesCity, sourceScopesLevel, publishedAtStart, publishedAtEnd, period);
-                
+                TimeSeriesList result = apiInstance.ListTimeSeries(id, title, body, text, language, categoriesTaxonomy, categoriesConfident, categoriesId, categoriesLevel, entitiesTitleText, entitiesTitleType, entitiesTitleLinksDbpedia, entitiesBodyText, entitiesBodyType, entitiesBodyLinksDbpedia, sentimentTitlePolarity, sentimentBodyPolarity, mediaImagesCountMin, mediaImagesCountMax, mediaVideosCountMin, mediaVideosCountMax, authorId, authorName, sourceId, sourceName, sourceDomain, sourceLocationsCountry, sourceLocationsState, sourceLocationsCity, sourceScopesCountry, sourceScopesState, sourceScopesCity, sourceScopesLevel, sourceLinksInCountMin, sourceLinksInCountMax, sourceRankingsAlexaRankMin, sourceRankingsAlexaRankMax, sourceRankingsAlexaCountry, publishedAtStart, publishedAtEnd, period);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.ListTimeSeries: " + e.Message);
+                Debug.Print("Exception when calling DefaultApi.ListTimeSeries: " + e.Message );
             }
         }
     }
@@ -822,6 +868,11 @@ Name | Type | Description  | Notes
  **sourceScopesState** | [**List<string>**](string.md)| This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). | [optional] 
  **sourceScopesCity** | [**List<string>**](string.md)| This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). | [optional] 
  **sourceScopesLevel** | [**List<string>**](string.md)| This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). | [optional] 
+ **sourceLinksInCountMin** | **int?**| This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). | [optional] 
+ **sourceLinksInCountMax** | **int?**| This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). | [optional] 
+ **sourceRankingsAlexaRankMin** | **int?**| This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). | [optional] 
+ **sourceRankingsAlexaRankMax** | **int?**| This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). | [optional] 
+ **sourceRankingsAlexaCountry** | [**List<string>**](string.md)| This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). | [optional] 
  **publishedAtStart** | **string**| This parameter is used for finding stories whose published at time is less than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). | [optional] [default to NOW-7DAYS/DAY]
  **publishedAtEnd** | **string**| This parameter is used for finding stories whose published at time is greater than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). | [optional] [default to NOW/DAY]
  **period** | **string**| The size of each date range is expressed as an interval to be added to the lower bound. It supports Date Math Syntax. Valid options are &#x60;+&#x60; following an integer number greater than 0 and one of the Date Math keywords. e.g. &#x60;+1DAY&#x60;, &#x60;+2MINUTES&#x60; and &#x60;+1MONTH&#x60;. Here are [Supported keywords](https://newsapi.aylien.com/docs/working-with-dates#date-math). | [optional] [default to +1DAY]
@@ -841,8 +892,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="listtrends"></a>
 # **ListTrends**
-> Trends ListTrends (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, string field = null)
+> Trends ListTrends (List<long?> id = null, string title = null, string body = null, string text = null, List<string> language = null, string publishedAtStart = null, string publishedAtEnd = null, string categoriesTaxonomy = null, bool? categoriesConfident = null, List<string> categoriesId = null, List<int?> categoriesLevel = null, List<string> entitiesTitleText = null, List<string> entitiesTitleType = null, List<string> entitiesTitleLinksDbpedia = null, List<string> entitiesBodyText = null, List<string> entitiesBodyType = null, List<string> entitiesBodyLinksDbpedia = null, string sentimentTitlePolarity = null, string sentimentBodyPolarity = null, int? mediaImagesCountMin = null, int? mediaImagesCountMax = null, int? mediaVideosCountMin = null, int? mediaVideosCountMax = null, List<int?> authorId = null, string authorName = null, List<int?> sourceId = null, List<string> sourceName = null, List<string> sourceDomain = null, List<string> sourceLocationsCountry = null, List<string> sourceLocationsState = null, List<string> sourceLocationsCity = null, List<string> sourceScopesCountry = null, List<string> sourceScopesState = null, List<string> sourceScopesCity = null, List<string> sourceScopesLevel = null, int? sourceLinksInCountMin = null, int? sourceLinksInCountMax = null, int? sourceRankingsAlexaRankMin = null, int? sourceRankingsAlexaRankMax = null, List<string> sourceRankingsAlexaCountry = null, string field = null)
 
 List trends
 
@@ -863,7 +915,7 @@ namespace Example
     {
         static void Main(string[] args)
         {
-            
+
             // Configure API key authorization: app_id
             Configuration.Default.ApiKey.Add("X-AYLIEN-NewsAPI-Application-ID", "YOUR_APP_ID");
 
@@ -873,13 +925,13 @@ namespace Example
             var apiInstance = new DefaultApi();
             
             var id = new List<long?>(); // List<long?> | This parameter is used for finding stroies by story id. (optional) 
-            var title = "title_example";  // string | This parameter is used for finding stories whose title contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional) 
-            var body = "body_example";  // string | This parameter is used for finding stories whose body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional) 
-            var text = "text_example";  // string | This parameter is used for finding stories whose title or body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional) 
+            var title = title_example;  // string | This parameter is used for finding stories whose title contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional) 
+            var body = body_example;  // string | This parameter is used for finding stories whose body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional) 
+            var text = text_example;  // string | This parameter is used for finding stories whose title or body contains a specfic keyword. It supports [boolean operators](https://newsapi.aylien.com/docs/boolean-operators). (optional) 
             var language = new List<string>(); // List<string> | This parameter is used for finding stories whose language is the specified value. It supports [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes. (optional) 
-            var publishedAtStart = "publishedAtStart_example";  // string | This parameter is used for finding stories whose published at time is greater than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional) 
-            var publishedAtEnd = "publishedAtEnd_example";  // string | This parameter is used for finding stories whose published at time is less than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional) 
-            var categoriesTaxonomy = "categoriesTaxonomy_example";  // string | This parameter is used for defining the type of the taxonomy for the rest of the categories queries. (optional) 
+            var publishedAtStart = publishedAtStart_example;  // string | This parameter is used for finding stories whose published at time is greater than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional) 
+            var publishedAtEnd = publishedAtEnd_example;  // string | This parameter is used for finding stories whose published at time is less than the specified value. [Here](https://newsapi.aylien.com/docs/working-with-dates) you can find more information about how [to work with dates](https://newsapi.aylien.com/docs/working-with-dates). (optional) 
+            var categoriesTaxonomy = categoriesTaxonomy_example;  // string | This parameter is used for defining the type of the taxonomy for the rest of the categories queries. (optional) 
             var categoriesConfident = true;  // bool? | This parameter is used for finding stories whose categories are confident. (optional)  (default to true)
             var categoriesId = new List<string>(); // List<string> | This parameter is used for finding stories by categories id. (optional) 
             var categoriesLevel = new List<int?>(); // List<int?> | This parameter is used for finding stories by categories level. (optional) 
@@ -889,14 +941,14 @@ namespace Example
             var entitiesBodyText = new List<string>(); // List<string> | This parameter is used to find stories based on the specified entities `text` in the body of stories. (optional) 
             var entitiesBodyType = new List<string>(); // List<string> | This parameter is used to find stories based on the specified entities `type` in the body of stories. (optional) 
             var entitiesBodyLinksDbpedia = new List<string>(); // List<string> | This parameter is used to find stories based on the specified entities dbpedia URL in the body of stories. (optional) 
-            var sentimentTitlePolarity = "sentimentTitlePolarity_example";  // string | This parameter is used for finding stories whose title sentiment is the specified value. (optional) 
-            var sentimentBodyPolarity = "sentimentBodyPolarity_example";  // string | This parameter is used for finding stories whose body sentiment is the specified value. (optional) 
+            var sentimentTitlePolarity = sentimentTitlePolarity_example;  // string | This parameter is used for finding stories whose title sentiment is the specified value. (optional) 
+            var sentimentBodyPolarity = sentimentBodyPolarity_example;  // string | This parameter is used for finding stories whose body sentiment is the specified value. (optional) 
             var mediaImagesCountMin = 56;  // int? | This parameter is used for finding stories whose number of images is greater than or equal to the specified value. (optional) 
             var mediaImagesCountMax = 56;  // int? | This parameter is used for finding stories whose number of images is less than or equal to the specified value. (optional) 
             var mediaVideosCountMin = 56;  // int? | This parameter is used for finding stories whose number of videos is greater than or equal to the specified value. (optional) 
             var mediaVideosCountMax = 56;  // int? | This parameter is used for finding stories whose number of videos is less than or equal to the specified value. (optional) 
             var authorId = new List<int?>(); // List<int?> | This parameter is used for finding stories whose author id is the specified value. (optional) 
-            var authorName = "authorName_example";  // string | This parameter is used for finding stories whose author full name contains the specified value. (optional) 
+            var authorName = authorName_example;  // string | This parameter is used for finding stories whose author full name contains the specified value. (optional) 
             var sourceId = new List<int?>(); // List<int?> | This parameter is used for finding stories whose source id is the specified value. (optional) 
             var sourceName = new List<string>(); // List<string> | This parameter is used for finding stories whose source name contains the specified value. (optional) 
             var sourceDomain = new List<string>(); // List<string> | This parameter is used for finding stories whose source domain is the specified value. (optional) 
@@ -907,18 +959,22 @@ namespace Example
             var sourceScopesState = new List<string>(); // List<string> | This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional) 
             var sourceScopesCity = new List<string>(); // List<string> | This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional) 
             var sourceScopesLevel = new List<string>(); // List<string> | This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). (optional) 
-            var field = "field_example";  // string | This parameter is used to specify the trend field. (optional) 
+            var sourceLinksInCountMin = 56;  // int? | This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional) 
+            var sourceLinksInCountMax = 56;  // int? | This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). (optional) 
+            var sourceRankingsAlexaRankMin = 56;  // int? | This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional) 
+            var sourceRankingsAlexaRankMax = 56;  // int? | This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional) 
+            var sourceRankingsAlexaCountry = new List<string>(); // List<string> | This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). (optional) 
+            var field = field_example;  // string | This parameter is used to specify the trend field. (optional) 
 
             try
             {
                 // List trends
-                Trends result = apiInstance.ListTrends(id, title, body, text, language, publishedAtStart, publishedAtEnd, categoriesTaxonomy, categoriesConfident, categoriesId, categoriesLevel, entitiesTitleText, entitiesTitleType, entitiesTitleLinksDbpedia, entitiesBodyText, entitiesBodyType, entitiesBodyLinksDbpedia, sentimentTitlePolarity, sentimentBodyPolarity, mediaImagesCountMin, mediaImagesCountMax, mediaVideosCountMin, mediaVideosCountMax, authorId, authorName, sourceId, sourceName, sourceDomain, sourceLocationsCountry, sourceLocationsState, sourceLocationsCity, sourceScopesCountry, sourceScopesState, sourceScopesCity, sourceScopesLevel, field);
-                
+                Trends result = apiInstance.ListTrends(id, title, body, text, language, publishedAtStart, publishedAtEnd, categoriesTaxonomy, categoriesConfident, categoriesId, categoriesLevel, entitiesTitleText, entitiesTitleType, entitiesTitleLinksDbpedia, entitiesBodyText, entitiesBodyType, entitiesBodyLinksDbpedia, sentimentTitlePolarity, sentimentBodyPolarity, mediaImagesCountMin, mediaImagesCountMax, mediaVideosCountMin, mediaVideosCountMax, authorId, authorName, sourceId, sourceName, sourceDomain, sourceLocationsCountry, sourceLocationsState, sourceLocationsCity, sourceScopesCountry, sourceScopesState, sourceScopesCity, sourceScopesLevel, sourceLinksInCountMin, sourceLinksInCountMax, sourceRankingsAlexaRankMin, sourceRankingsAlexaRankMax, sourceRankingsAlexaCountry, field);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.ListTrends: " + e.Message);
+                Debug.Print("Exception when calling DefaultApi.ListTrends: " + e.Message );
             }
         }
     }
@@ -964,6 +1020,11 @@ Name | Type | Description  | Notes
  **sourceScopesState** | [**List<string>**](string.md)| This parameter is used for finding stories whose source scopes is the specified state/province value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). | [optional] 
  **sourceScopesCity** | [**List<string>**](string.md)| This parameter is used for finding stories whose source scopes is the specified city value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). | [optional] 
  **sourceScopesLevel** | [**List<string>**](string.md)| This parameter is used for finding stories whose source scopes is the specified level value. [Here](https://newsapi.aylien.com/docs/working-with-locations) you can find more information about how [to work with locations](https://newsapi.aylien.com/docs/working-with-locations). | [optional] 
+ **sourceLinksInCountMin** | **int?**| This parameter is used for finding stories from sources whose Links in count is greater than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). | [optional] 
+ **sourceLinksInCountMax** | **int?**| This parameter is used for finding stories from sources whose Links in count is less than or equal to the specified value. You can read more about working with Links in count here [https://newsapi.aylien.com/docs/working-with-links-in-count](https://newsapi.aylien.com/docs/working-with-links-in-count). | [optional] 
+ **sourceRankingsAlexaRankMin** | **int?**| This parameter is used for finding stories from sources whose Alexa rank is greater than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). | [optional] 
+ **sourceRankingsAlexaRankMax** | **int?**| This parameter is used for finding stories from sources whose Alexa rank is less than or equal to the specified value. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). | [optional] 
+ **sourceRankingsAlexaCountry** | [**List<string>**](string.md)| This parameter is used for finding stories from sources whose Alexa rank is in the specified country value. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. You can read more about working with Alexa ranks here [https://newsapi.aylien.com/docs/working-with-alexa-ranks](https://newsapi.aylien.com/docs/working-with-alexa-ranks). | [optional] 
  **field** | **string**| This parameter is used to specify the trend field. | [optional] 
 
 ### Return type

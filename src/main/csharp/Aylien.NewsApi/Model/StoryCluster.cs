@@ -33,7 +33,7 @@ namespace Aylien.NewsApi.Model
     /// StoryCluster
     /// </summary>
     [DataContract]
-    public partial class StoryCluster : IEquatable<StoryCluster>
+    public partial class StoryCluster :  IEquatable<StoryCluster>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="StoryCluster" /> class.
@@ -51,36 +51,36 @@ namespace Aylien.NewsApi.Model
             this.Stories = Stories;
             this.Score = Score;
         }
-
+        
         /// <summary>
         /// A unique identification for the cluster
         /// </summary>
         /// <value>A unique identification for the cluster</value>
-        [DataMember(Name = "id", EmitDefaultValue = false)]
+        [DataMember(Name="id", EmitDefaultValue=false)]
         public int? Id { get; set; }
         /// <summary>
         /// Suggested labels for the cluster
         /// </summary>
         /// <value>Suggested labels for the cluster</value>
-        [DataMember(Name = "phrases", EmitDefaultValue = false)]
+        [DataMember(Name="phrases", EmitDefaultValue=false)]
         public List<string> Phrases { get; set; }
         /// <summary>
         /// Size of the cluster
         /// </summary>
         /// <value>Size of the cluster</value>
-        [DataMember(Name = "size", EmitDefaultValue = false)]
+        [DataMember(Name="size", EmitDefaultValue=false)]
         public int? Size { get; set; }
         /// <summary>
         /// Story ids which are in the cluster
         /// </summary>
         /// <value>Story ids which are in the cluster</value>
-        [DataMember(Name = "stories", EmitDefaultValue = false)]
+        [DataMember(Name="stories", EmitDefaultValue=false)]
         public List<long?> Stories { get; set; }
         /// <summary>
         /// The cluster score
         /// </summary>
         /// <value>The cluster score</value>
-        [DataMember(Name = "score", EmitDefaultValue = false)]
+        [DataMember(Name="score", EmitDefaultValue=false)]
         public double? Score { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
@@ -98,7 +98,7 @@ namespace Aylien.NewsApi.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -130,27 +130,27 @@ namespace Aylien.NewsApi.Model
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
                     this.Id == other.Id ||
                     this.Id != null &&
                     this.Id.Equals(other.Id)
-                ) &&
+                ) && 
                 (
                     this.Phrases == other.Phrases ||
                     this.Phrases != null &&
                     this.Phrases.SequenceEqual(other.Phrases)
-                ) &&
+                ) && 
                 (
                     this.Size == other.Size ||
                     this.Size != null &&
                     this.Size.Equals(other.Size)
-                ) &&
+                ) && 
                 (
                     this.Stories == other.Stories ||
                     this.Stories != null &&
                     this.Stories.SequenceEqual(other.Stories)
-                ) &&
+                ) && 
                 (
                     this.Score == other.Score ||
                     this.Score != null &&

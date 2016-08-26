@@ -33,7 +33,7 @@ namespace Aylien.NewsApi.Model
     /// Entities
     /// </summary>
     [DataContract]
-    public partial class Entities : IEquatable<Entities>
+    public partial class Entities :  IEquatable<Entities>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Entities" /> class.
@@ -45,18 +45,18 @@ namespace Aylien.NewsApi.Model
             this.Title = Title;
             this.Body = Body;
         }
-
+        
         /// <summary>
         /// An array of extracted entities from the story title
         /// </summary>
         /// <value>An array of extracted entities from the story title</value>
-        [DataMember(Name = "title", EmitDefaultValue = false)]
+        [DataMember(Name="title", EmitDefaultValue=false)]
         public List<Entity> Title { get; set; }
         /// <summary>
         /// An array of extracted entities from the story body
         /// </summary>
         /// <value>An array of extracted entities from the story body</value>
-        [DataMember(Name = "body", EmitDefaultValue = false)]
+        [DataMember(Name="body", EmitDefaultValue=false)]
         public List<Entity> Body { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
@@ -71,7 +71,7 @@ namespace Aylien.NewsApi.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -103,12 +103,12 @@ namespace Aylien.NewsApi.Model
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
                     this.Title == other.Title ||
                     this.Title != null &&
                     this.Title.SequenceEqual(other.Title)
-                ) &&
+                ) && 
                 (
                     this.Body == other.Body ||
                     this.Body != null &&

@@ -33,7 +33,7 @@ namespace Aylien.NewsApi.Model
     /// Summary
     /// </summary>
     [DataContract]
-    public partial class Summary : IEquatable<Summary>
+    public partial class Summary :  IEquatable<Summary>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Summary" /> class.
@@ -43,12 +43,12 @@ namespace Aylien.NewsApi.Model
         {
             this.Sentences = Sentences;
         }
-
+        
         /// <summary>
         /// An array of the suggested summary sentences
         /// </summary>
         /// <value>An array of the suggested summary sentences</value>
-        [DataMember(Name = "sentences", EmitDefaultValue = false)]
+        [DataMember(Name="sentences", EmitDefaultValue=false)]
         public List<string> Sentences { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
@@ -62,7 +62,7 @@ namespace Aylien.NewsApi.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -94,7 +94,7 @@ namespace Aylien.NewsApi.Model
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
                     this.Sentences == other.Sentences ||
                     this.Sentences != null &&

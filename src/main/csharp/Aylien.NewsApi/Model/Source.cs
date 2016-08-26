@@ -33,63 +33,103 @@ namespace Aylien.NewsApi.Model
     /// Source
     /// </summary>
     [DataContract]
-    public partial class Source : IEquatable<Source>
+    public partial class Source :  IEquatable<Source>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Source" /> class.
         /// </summary>
         /// <param name="Id">The source id which is a unique value.</param>
         /// <param name="Name">The source name.</param>
-        /// <param name="Domain">Domain name of the source which is extracted from the source URL.</param>
+        /// <param name="Title">The title of the home page URL.</param>
+        /// <param name="Description">A general explanation about the source.</param>
+        /// <param name="LinksInCount">The number of websites that link to the source.</param>
+        /// <param name="HomePageUrl">The home page URL of the source.</param>
+        /// <param name="Domain">The domain name of the source which is extracted from the source URL.</param>
         /// <param name="LogoUrl">A URL which points to the source logo.</param>
         /// <param name="Locations">The source locations which are tend to be the physical locations of the source, e.g. BBC headquarter is located in London..</param>
-        /// <param name="Scopes">The source scopes which is tend to be scope locations of the source, e.g. BBC scopes is international. .</param>
-        public Source(int? Id = null, string Name = null, string Domain = null, string LogoUrl = null, List<Location> Locations = null, List<Scope> Scopes = null)
+        /// <param name="Scopes">The source scopes which is tend to be scope locations of the source, e.g. BBC scopes is international..</param>
+        /// <param name="Rankings">The web rankings of the source.</param>
+        public Source(int? Id = null, string Name = null, string Title = null, string Description = null, int? LinksInCount = null, string HomePageUrl = null, string Domain = null, string LogoUrl = null, List<Location> Locations = null, List<Scope> Scopes = null, Rankings Rankings = null)
         {
             this.Id = Id;
             this.Name = Name;
+            this.Title = Title;
+            this.Description = Description;
+            this.LinksInCount = LinksInCount;
+            this.HomePageUrl = HomePageUrl;
             this.Domain = Domain;
             this.LogoUrl = LogoUrl;
             this.Locations = Locations;
             this.Scopes = Scopes;
+            this.Rankings = Rankings;
         }
-
+        
         /// <summary>
         /// The source id which is a unique value
         /// </summary>
         /// <value>The source id which is a unique value</value>
-        [DataMember(Name = "id", EmitDefaultValue = false)]
+        [DataMember(Name="id", EmitDefaultValue=false)]
         public int? Id { get; set; }
         /// <summary>
         /// The source name
         /// </summary>
         /// <value>The source name</value>
-        [DataMember(Name = "name", EmitDefaultValue = false)]
+        [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
         /// <summary>
-        /// Domain name of the source which is extracted from the source URL
+        /// The title of the home page URL
         /// </summary>
-        /// <value>Domain name of the source which is extracted from the source URL</value>
-        [DataMember(Name = "domain", EmitDefaultValue = false)]
+        /// <value>The title of the home page URL</value>
+        [DataMember(Name="title", EmitDefaultValue=false)]
+        public string Title { get; set; }
+        /// <summary>
+        /// A general explanation about the source
+        /// </summary>
+        /// <value>A general explanation about the source</value>
+        [DataMember(Name="description", EmitDefaultValue=false)]
+        public string Description { get; set; }
+        /// <summary>
+        /// The number of websites that link to the source
+        /// </summary>
+        /// <value>The number of websites that link to the source</value>
+        [DataMember(Name="links_in_count", EmitDefaultValue=false)]
+        public int? LinksInCount { get; set; }
+        /// <summary>
+        /// The home page URL of the source
+        /// </summary>
+        /// <value>The home page URL of the source</value>
+        [DataMember(Name="home_page_url", EmitDefaultValue=false)]
+        public string HomePageUrl { get; set; }
+        /// <summary>
+        /// The domain name of the source which is extracted from the source URL
+        /// </summary>
+        /// <value>The domain name of the source which is extracted from the source URL</value>
+        [DataMember(Name="domain", EmitDefaultValue=false)]
         public string Domain { get; set; }
         /// <summary>
         /// A URL which points to the source logo
         /// </summary>
         /// <value>A URL which points to the source logo</value>
-        [DataMember(Name = "logo_url", EmitDefaultValue = false)]
+        [DataMember(Name="logo_url", EmitDefaultValue=false)]
         public string LogoUrl { get; set; }
         /// <summary>
         /// The source locations which are tend to be the physical locations of the source, e.g. BBC headquarter is located in London.
         /// </summary>
         /// <value>The source locations which are tend to be the physical locations of the source, e.g. BBC headquarter is located in London.</value>
-        [DataMember(Name = "locations", EmitDefaultValue = false)]
+        [DataMember(Name="locations", EmitDefaultValue=false)]
         public List<Location> Locations { get; set; }
         /// <summary>
-        /// The source scopes which is tend to be scope locations of the source, e.g. BBC scopes is international. 
+        /// The source scopes which is tend to be scope locations of the source, e.g. BBC scopes is international.
         /// </summary>
-        /// <value>The source scopes which is tend to be scope locations of the source, e.g. BBC scopes is international. </value>
-        [DataMember(Name = "scopes", EmitDefaultValue = false)]
+        /// <value>The source scopes which is tend to be scope locations of the source, e.g. BBC scopes is international.</value>
+        [DataMember(Name="scopes", EmitDefaultValue=false)]
         public List<Scope> Scopes { get; set; }
+        /// <summary>
+        /// The web rankings of the source
+        /// </summary>
+        /// <value>The web rankings of the source</value>
+        [DataMember(Name="rankings", EmitDefaultValue=false)]
+        public Rankings Rankings { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -100,14 +140,19 @@ namespace Aylien.NewsApi.Model
             sb.Append("class Source {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  Title: ").Append(Title).Append("\n");
+            sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  LinksInCount: ").Append(LinksInCount).Append("\n");
+            sb.Append("  HomePageUrl: ").Append(HomePageUrl).Append("\n");
             sb.Append("  Domain: ").Append(Domain).Append("\n");
             sb.Append("  LogoUrl: ").Append(LogoUrl).Append("\n");
             sb.Append("  Locations: ").Append(Locations).Append("\n");
             sb.Append("  Scopes: ").Append(Scopes).Append("\n");
+            sb.Append("  Rankings: ").Append(Rankings).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -139,36 +184,61 @@ namespace Aylien.NewsApi.Model
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
                     this.Id == other.Id ||
                     this.Id != null &&
                     this.Id.Equals(other.Id)
-                ) &&
+                ) && 
                 (
                     this.Name == other.Name ||
                     this.Name != null &&
                     this.Name.Equals(other.Name)
-                ) &&
+                ) && 
+                (
+                    this.Title == other.Title ||
+                    this.Title != null &&
+                    this.Title.Equals(other.Title)
+                ) && 
+                (
+                    this.Description == other.Description ||
+                    this.Description != null &&
+                    this.Description.Equals(other.Description)
+                ) && 
+                (
+                    this.LinksInCount == other.LinksInCount ||
+                    this.LinksInCount != null &&
+                    this.LinksInCount.Equals(other.LinksInCount)
+                ) && 
+                (
+                    this.HomePageUrl == other.HomePageUrl ||
+                    this.HomePageUrl != null &&
+                    this.HomePageUrl.Equals(other.HomePageUrl)
+                ) && 
                 (
                     this.Domain == other.Domain ||
                     this.Domain != null &&
                     this.Domain.Equals(other.Domain)
-                ) &&
+                ) && 
                 (
                     this.LogoUrl == other.LogoUrl ||
                     this.LogoUrl != null &&
                     this.LogoUrl.Equals(other.LogoUrl)
-                ) &&
+                ) && 
                 (
                     this.Locations == other.Locations ||
                     this.Locations != null &&
                     this.Locations.SequenceEqual(other.Locations)
-                ) &&
+                ) && 
                 (
                     this.Scopes == other.Scopes ||
                     this.Scopes != null &&
                     this.Scopes.SequenceEqual(other.Scopes)
+                ) && 
+                (
+                    this.Rankings == other.Rankings ||
+                    this.Rankings != null &&
+                    this.Rankings.Equals(other.Rankings)
                 );
         }
 
@@ -187,6 +257,14 @@ namespace Aylien.NewsApi.Model
                     hash = hash * 59 + this.Id.GetHashCode();
                 if (this.Name != null)
                     hash = hash * 59 + this.Name.GetHashCode();
+                if (this.Title != null)
+                    hash = hash * 59 + this.Title.GetHashCode();
+                if (this.Description != null)
+                    hash = hash * 59 + this.Description.GetHashCode();
+                if (this.LinksInCount != null)
+                    hash = hash * 59 + this.LinksInCount.GetHashCode();
+                if (this.HomePageUrl != null)
+                    hash = hash * 59 + this.HomePageUrl.GetHashCode();
                 if (this.Domain != null)
                     hash = hash * 59 + this.Domain.GetHashCode();
                 if (this.LogoUrl != null)
@@ -195,6 +273,8 @@ namespace Aylien.NewsApi.Model
                     hash = hash * 59 + this.Locations.GetHashCode();
                 if (this.Scopes != null)
                     hash = hash * 59 + this.Scopes.GetHashCode();
+                if (this.Rankings != null)
+                    hash = hash * 59 + this.Rankings.GetHashCode();
                 return hash;
             }
         }

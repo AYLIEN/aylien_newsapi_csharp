@@ -30,34 +30,42 @@ using Newtonsoft.Json.Converters;
 namespace Aylien.NewsApi.Model
 {
     /// <summary>
-    /// Sentiments
+    /// Rank
     /// </summary>
     [DataContract]
-    public partial class Sentiments :  IEquatable<Sentiments>
+    public partial class Rank :  IEquatable<Rank>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Sentiments" /> class.
+        /// Initializes a new instance of the <see cref="Rank" /> class.
         /// </summary>
-        /// <param name="Title">The sentiment for the story title.</param>
-        /// <param name="Body">The sentiment for the story body.</param>
-        public Sentiments(Sentiment Title = null, Sentiment Body = null)
+        /// <param name="_Rank">The rank.</param>
+        /// <param name="Country">The country code which the rank is in it.</param>
+        /// <param name="FetchedAt">The fetched date of the rank.</param>
+        public Rank(int? _Rank = null, string Country = null, DateTime? FetchedAt = null)
         {
-            this.Title = Title;
-            this.Body = Body;
+            this._Rank = _Rank;
+            this.Country = Country;
+            this.FetchedAt = FetchedAt;
         }
         
         /// <summary>
-        /// The sentiment for the story title
+        /// The rank
         /// </summary>
-        /// <value>The sentiment for the story title</value>
-        [DataMember(Name="title", EmitDefaultValue=false)]
-        public Sentiment Title { get; set; }
+        /// <value>The rank</value>
+        [DataMember(Name="rank", EmitDefaultValue=false)]
+        public int? _Rank { get; set; }
         /// <summary>
-        /// The sentiment for the story body
+        /// The country code which the rank is in it
         /// </summary>
-        /// <value>The sentiment for the story body</value>
-        [DataMember(Name="body", EmitDefaultValue=false)]
-        public Sentiment Body { get; set; }
+        /// <value>The country code which the rank is in it</value>
+        [DataMember(Name="country", EmitDefaultValue=false)]
+        public string Country { get; set; }
+        /// <summary>
+        /// The fetched date of the rank
+        /// </summary>
+        /// <value>The fetched date of the rank</value>
+        [DataMember(Name="fetched_at", EmitDefaultValue=false)]
+        public DateTime? FetchedAt { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -65,9 +73,10 @@ namespace Aylien.NewsApi.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class Sentiments {\n");
-            sb.Append("  Title: ").Append(Title).Append("\n");
-            sb.Append("  Body: ").Append(Body).Append("\n");
+            sb.Append("class Rank {\n");
+            sb.Append("  _Rank: ").Append(_Rank).Append("\n");
+            sb.Append("  Country: ").Append(Country).Append("\n");
+            sb.Append("  FetchedAt: ").Append(FetchedAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -89,15 +98,15 @@ namespace Aylien.NewsApi.Model
         public override bool Equals(object obj)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
-            return this.Equals(obj as Sentiments);
+            return this.Equals(obj as Rank);
         }
 
         /// <summary>
-        /// Returns true if Sentiments instances are equal
+        /// Returns true if Rank instances are equal
         /// </summary>
-        /// <param name="other">Instance of Sentiments to be compared</param>
+        /// <param name="other">Instance of Rank to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Sentiments other)
+        public bool Equals(Rank other)
         {
             // credit: http://stackoverflow.com/a/10454552/677735
             if (other == null)
@@ -105,14 +114,19 @@ namespace Aylien.NewsApi.Model
 
             return 
                 (
-                    this.Title == other.Title ||
-                    this.Title != null &&
-                    this.Title.Equals(other.Title)
+                    this._Rank == other._Rank ||
+                    this._Rank != null &&
+                    this._Rank.Equals(other._Rank)
                 ) && 
                 (
-                    this.Body == other.Body ||
-                    this.Body != null &&
-                    this.Body.Equals(other.Body)
+                    this.Country == other.Country ||
+                    this.Country != null &&
+                    this.Country.Equals(other.Country)
+                ) && 
+                (
+                    this.FetchedAt == other.FetchedAt ||
+                    this.FetchedAt != null &&
+                    this.FetchedAt.Equals(other.FetchedAt)
                 );
         }
 
@@ -127,10 +141,12 @@ namespace Aylien.NewsApi.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.Title != null)
-                    hash = hash * 59 + this.Title.GetHashCode();
-                if (this.Body != null)
-                    hash = hash * 59 + this.Body.GetHashCode();
+                if (this._Rank != null)
+                    hash = hash * 59 + this._Rank.GetHashCode();
+                if (this.Country != null)
+                    hash = hash * 59 + this.Country.GetHashCode();
+                if (this.FetchedAt != null)
+                    hash = hash * 59 + this.FetchedAt.GetHashCode();
                 return hash;
             }
         }

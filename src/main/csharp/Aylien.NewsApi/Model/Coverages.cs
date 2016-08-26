@@ -33,7 +33,7 @@ namespace Aylien.NewsApi.Model
     /// Coverages
     /// </summary>
     [DataContract]
-    public partial class Coverages : IEquatable<Coverages>
+    public partial class Coverages :  IEquatable<Coverages>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Coverages" /> class.
@@ -53,42 +53,42 @@ namespace Aylien.NewsApi.Model
             this._Coverages = _Coverages;
             this.Clusters = Clusters;
         }
-
+        
         /// <summary>
         /// The input story title
         /// </summary>
         /// <value>The input story title</value>
-        [DataMember(Name = "story_title", EmitDefaultValue = false)]
+        [DataMember(Name="story_title", EmitDefaultValue=false)]
         public string StoryTitle { get; set; }
         /// <summary>
         /// The input story body
         /// </summary>
         /// <value>The input story body</value>
-        [DataMember(Name = "story_body", EmitDefaultValue = false)]
+        [DataMember(Name="story_body", EmitDefaultValue=false)]
         public string StoryBody { get; set; }
         /// <summary>
         /// The input story published date
         /// </summary>
         /// <value>The input story published date</value>
-        [DataMember(Name = "story_published_at", EmitDefaultValue = false)]
+        [DataMember(Name="story_published_at", EmitDefaultValue=false)]
         public DateTime? StoryPublishedAt { get; set; }
         /// <summary>
         /// The input story language
         /// </summary>
         /// <value>The input story language</value>
-        [DataMember(Name = "story_language", EmitDefaultValue = false)]
+        [DataMember(Name="story_language", EmitDefaultValue=false)]
         public string StoryLanguage { get; set; }
         /// <summary>
         /// An array of coverages for the input story
         /// </summary>
         /// <value>An array of coverages for the input story</value>
-        [DataMember(Name = "coverages", EmitDefaultValue = false)]
+        [DataMember(Name="coverages", EmitDefaultValue=false)]
         public List<Story> _Coverages { get; set; }
         /// <summary>
         /// An array of clusters
         /// </summary>
         /// <value>An array of clusters</value>
-        [DataMember(Name = "clusters", EmitDefaultValue = false)]
+        [DataMember(Name="clusters", EmitDefaultValue=false)]
         public List<StoryCluster> Clusters { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
@@ -107,7 +107,7 @@ namespace Aylien.NewsApi.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -139,32 +139,32 @@ namespace Aylien.NewsApi.Model
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
                     this.StoryTitle == other.StoryTitle ||
                     this.StoryTitle != null &&
                     this.StoryTitle.Equals(other.StoryTitle)
-                ) &&
+                ) && 
                 (
                     this.StoryBody == other.StoryBody ||
                     this.StoryBody != null &&
                     this.StoryBody.Equals(other.StoryBody)
-                ) &&
+                ) && 
                 (
                     this.StoryPublishedAt == other.StoryPublishedAt ||
                     this.StoryPublishedAt != null &&
                     this.StoryPublishedAt.Equals(other.StoryPublishedAt)
-                ) &&
+                ) && 
                 (
                     this.StoryLanguage == other.StoryLanguage ||
                     this.StoryLanguage != null &&
                     this.StoryLanguage.Equals(other.StoryLanguage)
-                ) &&
+                ) && 
                 (
                     this._Coverages == other._Coverages ||
                     this._Coverages != null &&
                     this._Coverages.SequenceEqual(other._Coverages)
-                ) &&
+                ) && 
                 (
                     this.Clusters == other.Clusters ||
                     this.Clusters != null &&

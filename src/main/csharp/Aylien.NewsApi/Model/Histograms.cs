@@ -33,7 +33,7 @@ namespace Aylien.NewsApi.Model
     /// Histograms
     /// </summary>
     [DataContract]
-    public partial class Histograms : IEquatable<Histograms>
+    public partial class Histograms :  IEquatable<Histograms>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Histograms" /> class.
@@ -51,35 +51,35 @@ namespace Aylien.NewsApi.Model
             this.IntervalWidth = IntervalWidth;
             this.Field = Field;
         }
-
+        
         /// <summary>
         /// The intervals of the histograms
         /// </summary>
         /// <value>The intervals of the histograms</value>
-        [DataMember(Name = "intervals", EmitDefaultValue = false)]
+        [DataMember(Name="intervals", EmitDefaultValue=false)]
         public List<HistogramInterval> Intervals { get; set; }
         /// <summary>
         /// The start interval of the histogram
         /// </summary>
         /// <value>The start interval of the histogram</value>
-        [DataMember(Name = "interval.start", EmitDefaultValue = false)]
+        [DataMember(Name="interval.start", EmitDefaultValue=false)]
         public int? IntervalStart { get; set; }
         /// <summary>
         /// The end interval of the histogram
         /// </summary>
         /// <value>The end interval of the histogram</value>
-        [DataMember(Name = "interval.end", EmitDefaultValue = false)]
+        [DataMember(Name="interval.end", EmitDefaultValue=false)]
         public int? IntervalEnd { get; set; }
         /// <summary>
         /// The width of the histogram
         /// </summary>
         /// <value>The width of the histogram</value>
-        [DataMember(Name = "interval.width", EmitDefaultValue = false)]
+        [DataMember(Name="interval.width", EmitDefaultValue=false)]
         public int? IntervalWidth { get; set; }
         /// <summary>
         /// Gets or Sets Field
         /// </summary>
-        [DataMember(Name = "field", EmitDefaultValue = false)]
+        [DataMember(Name="field", EmitDefaultValue=false)]
         public string Field { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
@@ -97,7 +97,7 @@ namespace Aylien.NewsApi.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -129,27 +129,27 @@ namespace Aylien.NewsApi.Model
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
                     this.Intervals == other.Intervals ||
                     this.Intervals != null &&
                     this.Intervals.SequenceEqual(other.Intervals)
-                ) &&
+                ) && 
                 (
                     this.IntervalStart == other.IntervalStart ||
                     this.IntervalStart != null &&
                     this.IntervalStart.Equals(other.IntervalStart)
-                ) &&
+                ) && 
                 (
                     this.IntervalEnd == other.IntervalEnd ||
                     this.IntervalEnd != null &&
                     this.IntervalEnd.Equals(other.IntervalEnd)
-                ) &&
+                ) && 
                 (
                     this.IntervalWidth == other.IntervalWidth ||
                     this.IntervalWidth != null &&
                     this.IntervalWidth.Equals(other.IntervalWidth)
-                ) &&
+                ) && 
                 (
                     this.Field == other.Field ||
                     this.Field != null &&

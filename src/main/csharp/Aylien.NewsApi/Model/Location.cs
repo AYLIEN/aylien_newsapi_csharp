@@ -33,7 +33,7 @@ namespace Aylien.NewsApi.Model
     /// Location
     /// </summary>
     [DataContract]
-    public partial class Location : IEquatable<Location>
+    public partial class Location :  IEquatable<Location>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Location" /> class.
@@ -47,24 +47,24 @@ namespace Aylien.NewsApi.Model
             this.State = State;
             this.City = City;
         }
-
+        
         /// <summary>
         /// The country code of the location. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes.
         /// </summary>
         /// <value>The country code of the location. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes.</value>
-        [DataMember(Name = "country", EmitDefaultValue = false)]
+        [DataMember(Name="country", EmitDefaultValue=false)]
         public string Country { get; set; }
         /// <summary>
         /// The state of the location
         /// </summary>
         /// <value>The state of the location</value>
-        [DataMember(Name = "state", EmitDefaultValue = false)]
+        [DataMember(Name="state", EmitDefaultValue=false)]
         public string State { get; set; }
         /// <summary>
         /// The city of the location
         /// </summary>
         /// <value>The city of the location</value>
-        [DataMember(Name = "city", EmitDefaultValue = false)]
+        [DataMember(Name="city", EmitDefaultValue=false)]
         public string City { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
@@ -80,7 +80,7 @@ namespace Aylien.NewsApi.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -112,17 +112,17 @@ namespace Aylien.NewsApi.Model
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
                     this.Country == other.Country ||
                     this.Country != null &&
                     this.Country.Equals(other.Country)
-                ) &&
+                ) && 
                 (
                     this.State == other.State ||
                     this.State != null &&
                     this.State.Equals(other.State)
-                ) &&
+                ) && 
                 (
                     this.City == other.City ||
                     this.City != null &&

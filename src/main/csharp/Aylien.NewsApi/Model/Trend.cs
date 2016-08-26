@@ -33,7 +33,7 @@ namespace Aylien.NewsApi.Model
     /// Trend
     /// </summary>
     [DataContract]
-    public partial class Trend : IEquatable<Trend>
+    public partial class Trend :  IEquatable<Trend>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Trend" /> class.
@@ -45,18 +45,18 @@ namespace Aylien.NewsApi.Model
             this.Value = Value;
             this.Count = Count;
         }
-
+        
         /// <summary>
         /// The value of the trend
         /// </summary>
         /// <value>The value of the trend</value>
-        [DataMember(Name = "value", EmitDefaultValue = false)]
+        [DataMember(Name="value", EmitDefaultValue=false)]
         public string Value { get; set; }
         /// <summary>
         /// The count of the trend
         /// </summary>
         /// <value>The count of the trend</value>
-        [DataMember(Name = "count", EmitDefaultValue = false)]
+        [DataMember(Name="count", EmitDefaultValue=false)]
         public int? Count { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
@@ -71,7 +71,7 @@ namespace Aylien.NewsApi.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -103,12 +103,12 @@ namespace Aylien.NewsApi.Model
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
                     this.Value == other.Value ||
                     this.Value != null &&
                     this.Value.Equals(other.Value)
-                ) &&
+                ) && 
                 (
                     this.Count == other.Count ||
                     this.Count != null &&

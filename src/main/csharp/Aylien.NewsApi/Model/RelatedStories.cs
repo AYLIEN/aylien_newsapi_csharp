@@ -33,7 +33,7 @@ namespace Aylien.NewsApi.Model
     /// RelatedStories
     /// </summary>
     [DataContract]
-    public partial class RelatedStories : IEquatable<RelatedStories>
+    public partial class RelatedStories :  IEquatable<RelatedStories>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RelatedStories" /> class.
@@ -51,36 +51,36 @@ namespace Aylien.NewsApi.Model
             this._RelatedStories = _RelatedStories;
             this.Clusters = Clusters;
         }
-
+        
         /// <summary>
         /// The input story title
         /// </summary>
         /// <value>The input story title</value>
-        [DataMember(Name = "story_title", EmitDefaultValue = false)]
+        [DataMember(Name="story_title", EmitDefaultValue=false)]
         public string StoryTitle { get; set; }
         /// <summary>
         /// The input story body
         /// </summary>
         /// <value>The input story body</value>
-        [DataMember(Name = "story_body", EmitDefaultValue = false)]
+        [DataMember(Name="story_body", EmitDefaultValue=false)]
         public string StoryBody { get; set; }
         /// <summary>
         /// The input story language
         /// </summary>
         /// <value>The input story language</value>
-        [DataMember(Name = "story_language", EmitDefaultValue = false)]
+        [DataMember(Name="story_language", EmitDefaultValue=false)]
         public string StoryLanguage { get; set; }
         /// <summary>
         /// An array of related stories for the input story
         /// </summary>
         /// <value>An array of related stories for the input story</value>
-        [DataMember(Name = "related_stories", EmitDefaultValue = false)]
+        [DataMember(Name="related_stories", EmitDefaultValue=false)]
         public List<Story> _RelatedStories { get; set; }
         /// <summary>
         /// An array of clusters
         /// </summary>
         /// <value>An array of clusters</value>
-        [DataMember(Name = "clusters", EmitDefaultValue = false)]
+        [DataMember(Name="clusters", EmitDefaultValue=false)]
         public List<StoryCluster> Clusters { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
@@ -98,7 +98,7 @@ namespace Aylien.NewsApi.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -130,27 +130,27 @@ namespace Aylien.NewsApi.Model
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
                     this.StoryTitle == other.StoryTitle ||
                     this.StoryTitle != null &&
                     this.StoryTitle.Equals(other.StoryTitle)
-                ) &&
+                ) && 
                 (
                     this.StoryBody == other.StoryBody ||
                     this.StoryBody != null &&
                     this.StoryBody.Equals(other.StoryBody)
-                ) &&
+                ) && 
                 (
                     this.StoryLanguage == other.StoryLanguage ||
                     this.StoryLanguage != null &&
                     this.StoryLanguage.Equals(other.StoryLanguage)
-                ) &&
+                ) && 
                 (
                     this._RelatedStories == other._RelatedStories ||
                     this._RelatedStories != null &&
                     this._RelatedStories.SequenceEqual(other._RelatedStories)
-                ) &&
+                ) && 
                 (
                     this.Clusters == other.Clusters ||
                     this.Clusters != null &&

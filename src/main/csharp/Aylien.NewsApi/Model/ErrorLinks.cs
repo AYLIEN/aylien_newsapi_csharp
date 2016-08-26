@@ -33,7 +33,7 @@ namespace Aylien.NewsApi.Model
     /// ErrorLinks
     /// </summary>
     [DataContract]
-    public partial class ErrorLinks : IEquatable<ErrorLinks>
+    public partial class ErrorLinks :  IEquatable<ErrorLinks>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ErrorLinks" /> class.
@@ -43,11 +43,11 @@ namespace Aylien.NewsApi.Model
         {
             this.About = About;
         }
-
+        
         /// <summary>
         /// Gets or Sets About
         /// </summary>
-        [DataMember(Name = "about", EmitDefaultValue = false)]
+        [DataMember(Name="about", EmitDefaultValue=false)]
         public string About { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
@@ -61,7 +61,7 @@ namespace Aylien.NewsApi.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -93,7 +93,7 @@ namespace Aylien.NewsApi.Model
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
                     this.About == other.About ||
                     this.About != null &&

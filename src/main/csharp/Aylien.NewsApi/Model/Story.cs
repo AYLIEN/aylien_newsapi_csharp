@@ -33,7 +33,7 @@ namespace Aylien.NewsApi.Model
     /// Story
     /// </summary>
     [DataContract]
-    public partial class Story : IEquatable<Story>
+    public partial class Story :  IEquatable<Story>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Story" /> class.
@@ -81,126 +81,126 @@ namespace Aylien.NewsApi.Model
             this.PublishedAt = PublishedAt;
             this.Links = Links;
         }
-
+        
         /// <summary>
         /// ID of the story which is a unique identification
         /// </summary>
         /// <value>ID of the story which is a unique identification</value>
-        [DataMember(Name = "id", EmitDefaultValue = false)]
+        [DataMember(Name="id", EmitDefaultValue=false)]
         public long? Id { get; set; }
         /// <summary>
         /// Title of the story
         /// </summary>
         /// <value>Title of the story</value>
-        [DataMember(Name = "title", EmitDefaultValue = false)]
+        [DataMember(Name="title", EmitDefaultValue=false)]
         public string Title { get; set; }
         /// <summary>
         /// Body of the story
         /// </summary>
         /// <value>Body of the story</value>
-        [DataMember(Name = "body", EmitDefaultValue = false)]
+        [DataMember(Name="body", EmitDefaultValue=false)]
         public string Body { get; set; }
         /// <summary>
         /// The suggested story summary
         /// </summary>
         /// <value>The suggested story summary</value>
-        [DataMember(Name = "summary", EmitDefaultValue = false)]
+        [DataMember(Name="summary", EmitDefaultValue=false)]
         public Summary Summary { get; set; }
         /// <summary>
         /// The story source
         /// </summary>
         /// <value>The story source</value>
-        [DataMember(Name = "source", EmitDefaultValue = false)]
+        [DataMember(Name="source", EmitDefaultValue=false)]
         public Source Source { get; set; }
         /// <summary>
         /// The story author
         /// </summary>
         /// <value>The story author</value>
-        [DataMember(Name = "author", EmitDefaultValue = false)]
+        [DataMember(Name="author", EmitDefaultValue=false)]
         public Author Author { get; set; }
         /// <summary>
         /// Extracted entities from the story title or body
         /// </summary>
         /// <value>Extracted entities from the story title or body</value>
-        [DataMember(Name = "entities", EmitDefaultValue = false)]
+        [DataMember(Name="entities", EmitDefaultValue=false)]
         public Entities Entities { get; set; }
         /// <summary>
         /// Extracted keywords mentioned in the story title or body
         /// </summary>
         /// <value>Extracted keywords mentioned in the story title or body</value>
-        [DataMember(Name = "keywords", EmitDefaultValue = false)]
+        [DataMember(Name="keywords", EmitDefaultValue=false)]
         public List<string> Keywords { get; set; }
         /// <summary>
         /// An array of suggested Story hashtags
         /// </summary>
         /// <value>An array of suggested Story hashtags</value>
-        [DataMember(Name = "hashtags", EmitDefaultValue = false)]
+        [DataMember(Name="hashtags", EmitDefaultValue=false)]
         public List<string> Hashtags { get; set; }
         /// <summary>
         /// Character count of the story body
         /// </summary>
         /// <value>Character count of the story body</value>
-        [DataMember(Name = "characters_count", EmitDefaultValue = false)]
+        [DataMember(Name="characters_count", EmitDefaultValue=false)]
         public int? CharactersCount { get; set; }
         /// <summary>
         /// Word count of the story body
         /// </summary>
         /// <value>Word count of the story body</value>
-        [DataMember(Name = "words_count", EmitDefaultValue = false)]
+        [DataMember(Name="words_count", EmitDefaultValue=false)]
         public int? WordsCount { get; set; }
         /// <summary>
         /// Sentence count of the story body
         /// </summary>
         /// <value>Sentence count of the story body</value>
-        [DataMember(Name = "sentences_count", EmitDefaultValue = false)]
+        [DataMember(Name="sentences_count", EmitDefaultValue=false)]
         public int? SentencesCount { get; set; }
         /// <summary>
         /// Paragraph count of the story body
         /// </summary>
         /// <value>Paragraph count of the story body</value>
-        [DataMember(Name = "paragraphs_count", EmitDefaultValue = false)]
+        [DataMember(Name="paragraphs_count", EmitDefaultValue=false)]
         public int? ParagraphsCount { get; set; }
         /// <summary>
         /// Suggested categories for the story
         /// </summary>
         /// <value>Suggested categories for the story</value>
-        [DataMember(Name = "categories", EmitDefaultValue = false)]
+        [DataMember(Name="categories", EmitDefaultValue=false)]
         public List<Category> Categories { get; set; }
         /// <summary>
         /// Social shares count for the story
         /// </summary>
         /// <value>Social shares count for the story</value>
-        [DataMember(Name = "social_shares_count", EmitDefaultValue = false)]
+        [DataMember(Name="social_shares_count", EmitDefaultValue=false)]
         public ShareCounts SocialSharesCount { get; set; }
         /// <summary>
         /// An array of extracted media such as images and videos
         /// </summary>
         /// <value>An array of extracted media such as images and videos</value>
-        [DataMember(Name = "media", EmitDefaultValue = false)]
+        [DataMember(Name="media", EmitDefaultValue=false)]
         public List<Media> Media { get; set; }
         /// <summary>
         /// Suggested sentiments for the story title or body
         /// </summary>
         /// <value>Suggested sentiments for the story title or body</value>
-        [DataMember(Name = "sentiment", EmitDefaultValue = false)]
+        [DataMember(Name="sentiment", EmitDefaultValue=false)]
         public Sentiments Sentiment { get; set; }
         /// <summary>
         /// Language of the story
         /// </summary>
         /// <value>Language of the story</value>
-        [DataMember(Name = "language", EmitDefaultValue = false)]
+        [DataMember(Name="language", EmitDefaultValue=false)]
         public string Language { get; set; }
         /// <summary>
         /// Published date of the story
         /// </summary>
         /// <value>Published date of the story</value>
-        [DataMember(Name = "published_at", EmitDefaultValue = false)]
+        [DataMember(Name="published_at", EmitDefaultValue=false)]
         public DateTime? PublishedAt { get; set; }
         /// <summary>
         /// Links which is related to the story
         /// </summary>
         /// <value>Links which is related to the story</value>
-        [DataMember(Name = "links", EmitDefaultValue = false)]
+        [DataMember(Name="links", EmitDefaultValue=false)]
         public StoryLinks Links { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
@@ -233,7 +233,7 @@ namespace Aylien.NewsApi.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -265,102 +265,102 @@ namespace Aylien.NewsApi.Model
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
                     this.Id == other.Id ||
                     this.Id != null &&
                     this.Id.Equals(other.Id)
-                ) &&
+                ) && 
                 (
                     this.Title == other.Title ||
                     this.Title != null &&
                     this.Title.Equals(other.Title)
-                ) &&
+                ) && 
                 (
                     this.Body == other.Body ||
                     this.Body != null &&
                     this.Body.Equals(other.Body)
-                ) &&
+                ) && 
                 (
                     this.Summary == other.Summary ||
                     this.Summary != null &&
                     this.Summary.Equals(other.Summary)
-                ) &&
+                ) && 
                 (
                     this.Source == other.Source ||
                     this.Source != null &&
                     this.Source.Equals(other.Source)
-                ) &&
+                ) && 
                 (
                     this.Author == other.Author ||
                     this.Author != null &&
                     this.Author.Equals(other.Author)
-                ) &&
+                ) && 
                 (
                     this.Entities == other.Entities ||
                     this.Entities != null &&
                     this.Entities.Equals(other.Entities)
-                ) &&
+                ) && 
                 (
                     this.Keywords == other.Keywords ||
                     this.Keywords != null &&
                     this.Keywords.SequenceEqual(other.Keywords)
-                ) &&
+                ) && 
                 (
                     this.Hashtags == other.Hashtags ||
                     this.Hashtags != null &&
                     this.Hashtags.SequenceEqual(other.Hashtags)
-                ) &&
+                ) && 
                 (
                     this.CharactersCount == other.CharactersCount ||
                     this.CharactersCount != null &&
                     this.CharactersCount.Equals(other.CharactersCount)
-                ) &&
+                ) && 
                 (
                     this.WordsCount == other.WordsCount ||
                     this.WordsCount != null &&
                     this.WordsCount.Equals(other.WordsCount)
-                ) &&
+                ) && 
                 (
                     this.SentencesCount == other.SentencesCount ||
                     this.SentencesCount != null &&
                     this.SentencesCount.Equals(other.SentencesCount)
-                ) &&
+                ) && 
                 (
                     this.ParagraphsCount == other.ParagraphsCount ||
                     this.ParagraphsCount != null &&
                     this.ParagraphsCount.Equals(other.ParagraphsCount)
-                ) &&
+                ) && 
                 (
                     this.Categories == other.Categories ||
                     this.Categories != null &&
                     this.Categories.SequenceEqual(other.Categories)
-                ) &&
+                ) && 
                 (
                     this.SocialSharesCount == other.SocialSharesCount ||
                     this.SocialSharesCount != null &&
                     this.SocialSharesCount.Equals(other.SocialSharesCount)
-                ) &&
+                ) && 
                 (
                     this.Media == other.Media ||
                     this.Media != null &&
                     this.Media.SequenceEqual(other.Media)
-                ) &&
+                ) && 
                 (
                     this.Sentiment == other.Sentiment ||
                     this.Sentiment != null &&
                     this.Sentiment.Equals(other.Sentiment)
-                ) &&
+                ) && 
                 (
                     this.Language == other.Language ||
                     this.Language != null &&
                     this.Language.Equals(other.Language)
-                ) &&
+                ) && 
                 (
                     this.PublishedAt == other.PublishedAt ||
                     this.PublishedAt != null &&
                     this.PublishedAt.Equals(other.PublishedAt)
-                ) &&
+                ) && 
                 (
                     this.Links == other.Links ||
                     this.Links != null &&

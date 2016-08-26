@@ -33,7 +33,7 @@ namespace Aylien.NewsApi.Model
     /// Error
     /// </summary>
     [DataContract]
-    public partial class Error : IEquatable<Error>
+    public partial class Error :  IEquatable<Error>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Error" /> class.
@@ -53,36 +53,36 @@ namespace Aylien.NewsApi.Model
             this.Title = Title;
             this.Detail = Detail;
         }
-
+        
         /// <summary>
         /// Gets or Sets Id
         /// </summary>
-        [DataMember(Name = "id", EmitDefaultValue = false)]
+        [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
         /// <summary>
         /// Gets or Sets Links
         /// </summary>
-        [DataMember(Name = "links", EmitDefaultValue = false)]
+        [DataMember(Name="links", EmitDefaultValue=false)]
         public ErrorLinks Links { get; set; }
         /// <summary>
         /// Gets or Sets Status
         /// </summary>
-        [DataMember(Name = "status", EmitDefaultValue = false)]
+        [DataMember(Name="status", EmitDefaultValue=false)]
         public string Status { get; set; }
         /// <summary>
         /// Gets or Sets Code
         /// </summary>
-        [DataMember(Name = "code", EmitDefaultValue = false)]
+        [DataMember(Name="code", EmitDefaultValue=false)]
         public string Code { get; set; }
         /// <summary>
         /// Gets or Sets Title
         /// </summary>
-        [DataMember(Name = "title", EmitDefaultValue = false)]
+        [DataMember(Name="title", EmitDefaultValue=false)]
         public string Title { get; set; }
         /// <summary>
         /// Gets or Sets Detail
         /// </summary>
-        [DataMember(Name = "detail", EmitDefaultValue = false)]
+        [DataMember(Name="detail", EmitDefaultValue=false)]
         public string Detail { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
@@ -101,7 +101,7 @@ namespace Aylien.NewsApi.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -133,32 +133,32 @@ namespace Aylien.NewsApi.Model
             if (other == null)
                 return false;
 
-            return
+            return 
                 (
                     this.Id == other.Id ||
                     this.Id != null &&
                     this.Id.Equals(other.Id)
-                ) &&
+                ) && 
                 (
                     this.Links == other.Links ||
                     this.Links != null &&
                     this.Links.Equals(other.Links)
-                ) &&
+                ) && 
                 (
                     this.Status == other.Status ||
                     this.Status != null &&
                     this.Status.Equals(other.Status)
-                ) &&
+                ) && 
                 (
                     this.Code == other.Code ||
                     this.Code != null &&
                     this.Code.Equals(other.Code)
-                ) &&
+                ) && 
                 (
                     this.Title == other.Title ||
                     this.Title != null &&
                     this.Title.Equals(other.Title)
-                ) &&
+                ) && 
                 (
                     this.Detail == other.Detail ||
                     this.Detail != null &&
