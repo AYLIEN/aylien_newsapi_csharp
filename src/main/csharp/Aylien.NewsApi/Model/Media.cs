@@ -20,12 +20,14 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
 
 namespace Aylien.NewsApi.Model
 {
@@ -33,7 +35,7 @@ namespace Aylien.NewsApi.Model
     /// Media
     /// </summary>
     [DataContract]
-    public partial class Media :  IEquatable<Media>
+    public partial class Media :  IEquatable<Media>, IValidatableObject
     {
         /// <summary>
         /// The type of media
@@ -57,20 +59,103 @@ namespace Aylien.NewsApi.Model
         }
 
         /// <summary>
+        /// The format of media
+        /// </summary>
+        /// <value>The format of media</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum FormatEnum
+        {
+            
+            /// <summary>
+            /// Enum BMP for "BMP"
+            /// </summary>
+            [EnumMember(Value = "BMP")]
+            BMP,
+            
+            /// <summary>
+            /// Enum GIF for "GIF"
+            /// </summary>
+            [EnumMember(Value = "GIF")]
+            GIF,
+            
+            /// <summary>
+            /// Enum JPEG for "JPEG"
+            /// </summary>
+            [EnumMember(Value = "JPEG")]
+            JPEG,
+            
+            /// <summary>
+            /// Enum PNG for "PNG"
+            /// </summary>
+            [EnumMember(Value = "PNG")]
+            PNG,
+            
+            /// <summary>
+            /// Enum TIFF for "TIFF"
+            /// </summary>
+            [EnumMember(Value = "TIFF")]
+            TIFF,
+            
+            /// <summary>
+            /// Enum PSD for "PSD"
+            /// </summary>
+            [EnumMember(Value = "PSD")]
+            PSD,
+            
+            /// <summary>
+            /// Enum ICO for "ICO"
+            /// </summary>
+            [EnumMember(Value = "ICO")]
+            ICO,
+            
+            /// <summary>
+            /// Enum CUR for "CUR"
+            /// </summary>
+            [EnumMember(Value = "CUR")]
+            CUR,
+            
+            /// <summary>
+            /// Enum WEBP for "WEBP"
+            /// </summary>
+            [EnumMember(Value = "WEBP")]
+            WEBP,
+            
+            /// <summary>
+            /// Enum SVG for "SVG"
+            /// </summary>
+            [EnumMember(Value = "SVG")]
+            SVG
+        }
+
+        /// <summary>
         /// The type of media
         /// </summary>
         /// <value>The type of media</value>
         [DataMember(Name="type", EmitDefaultValue=false)]
         public TypeEnum? Type { get; set; }
         /// <summary>
+        /// The format of media
+        /// </summary>
+        /// <value>The format of media</value>
+        [DataMember(Name="format", EmitDefaultValue=false)]
+        public FormatEnum? Format { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="Media" /> class.
         /// </summary>
         /// <param name="Type">The type of media.</param>
         /// <param name="Url">A URL which points to the media file.</param>
-        public Media(TypeEnum? Type = null, string Url = null)
+        /// <param name="Format">The format of media.</param>
+        /// <param name="ContentLength">The content length of media.</param>
+        /// <param name="Width">The width of media.</param>
+        /// <param name="Height">The height of media.</param>
+        public Media(TypeEnum? Type = null, string Url = null, FormatEnum? Format = null, int? ContentLength = null, int? Width = null, int? Height = null)
         {
             this.Type = Type;
             this.Url = Url;
+            this.Format = Format;
+            this.ContentLength = ContentLength;
+            this.Width = Width;
+            this.Height = Height;
         }
         
         /// <summary>
@@ -79,6 +164,24 @@ namespace Aylien.NewsApi.Model
         /// <value>A URL which points to the media file</value>
         [DataMember(Name="url", EmitDefaultValue=false)]
         public string Url { get; set; }
+        /// <summary>
+        /// The content length of media
+        /// </summary>
+        /// <value>The content length of media</value>
+        [DataMember(Name="content_length", EmitDefaultValue=false)]
+        public int? ContentLength { get; set; }
+        /// <summary>
+        /// The width of media
+        /// </summary>
+        /// <value>The width of media</value>
+        [DataMember(Name="width", EmitDefaultValue=false)]
+        public int? Width { get; set; }
+        /// <summary>
+        /// The height of media
+        /// </summary>
+        /// <value>The height of media</value>
+        [DataMember(Name="height", EmitDefaultValue=false)]
+        public int? Height { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -89,6 +192,10 @@ namespace Aylien.NewsApi.Model
             sb.Append("class Media {\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
+            sb.Append("  Format: ").Append(Format).Append("\n");
+            sb.Append("  ContentLength: ").Append(ContentLength).Append("\n");
+            sb.Append("  Width: ").Append(Width).Append("\n");
+            sb.Append("  Height: ").Append(Height).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -134,6 +241,26 @@ namespace Aylien.NewsApi.Model
                     this.Url == other.Url ||
                     this.Url != null &&
                     this.Url.Equals(other.Url)
+                ) && 
+                (
+                    this.Format == other.Format ||
+                    this.Format != null &&
+                    this.Format.Equals(other.Format)
+                ) && 
+                (
+                    this.ContentLength == other.ContentLength ||
+                    this.ContentLength != null &&
+                    this.ContentLength.Equals(other.ContentLength)
+                ) && 
+                (
+                    this.Width == other.Width ||
+                    this.Width != null &&
+                    this.Width.Equals(other.Width)
+                ) && 
+                (
+                    this.Height == other.Height ||
+                    this.Height != null &&
+                    this.Height.Equals(other.Height)
                 );
         }
 
@@ -152,8 +279,21 @@ namespace Aylien.NewsApi.Model
                     hash = hash * 59 + this.Type.GetHashCode();
                 if (this.Url != null)
                     hash = hash * 59 + this.Url.GetHashCode();
+                if (this.Format != null)
+                    hash = hash * 59 + this.Format.GetHashCode();
+                if (this.ContentLength != null)
+                    hash = hash * 59 + this.ContentLength.GetHashCode();
+                if (this.Width != null)
+                    hash = hash * 59 + this.Width.GetHashCode();
+                if (this.Height != null)
+                    hash = hash * 59 + this.Height.GetHashCode();
                 return hash;
             }
+        }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        { 
+            yield break;
         }
     }
 

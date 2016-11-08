@@ -54,7 +54,7 @@ namespace Aylien.NewsApi.Client
                              string tempFolderPath = null,
                              string dateTimeFormat = null,
                              int timeout = 100000,
-                             string userAgent = "aylien-news-api/1.2.0/csharp"
+                             string userAgent = "aylien-news-api/1.3.0/csharp"
                             )
         {
             setApiClientUsingDefault(apiClient);
@@ -89,7 +89,7 @@ namespace Aylien.NewsApi.Client
         /// Version of the package.
         /// </summary>
         /// <value>Version of the package.</value>
-        public const string Version = "1.2.0";
+        public const string Version = "1.3.0";
 
         /// <summary>
         /// Gets or sets the default Configuration.
@@ -326,7 +326,7 @@ namespace Aylien.NewsApi.Client
                      .GetReferencedAssemblies()
                      .Where(x => x.Name == "System.Core").First().Version.ToString()  + "\n";
             report += "    Version of the API: 1.0\n";
-            report += "    SDK Package Version: 1.2.0\n";
+            report += "    SDK Package Version: 1.3.0\n";
 
             return report;
         }

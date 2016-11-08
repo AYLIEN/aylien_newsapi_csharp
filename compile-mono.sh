@@ -19,6 +19,7 @@ cp vendor/RestSharp.105.2.3/lib/${frameworkVersion}/RestSharp.dll bin/${framewor
 
 mcs -sdk:${netfx} -r:bin/${frameworkVersion}/Newtonsoft.Json.dll,\
 bin/${frameworkVersion}/RestSharp.dll,\
+System.ComponentModel.DataAnnotations.dll,\
 System.Runtime.Serialization.dll \
 -target:library \
 -out:bin/${frameworkVersion}/Aylien.NewsApi.dll \

@@ -20,12 +20,14 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
 
 namespace Aylien.NewsApi.Model
 {
@@ -33,7 +35,7 @@ namespace Aylien.NewsApi.Model
     /// ShareCounts
     /// </summary>
     [DataContract]
-    public partial class ShareCounts :  IEquatable<ShareCounts>
+    public partial class ShareCounts :  IEquatable<ShareCounts>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ShareCounts" /> class.
@@ -165,6 +167,11 @@ namespace Aylien.NewsApi.Model
                     hash = hash * 59 + this.Reddit.GetHashCode();
                 return hash;
             }
+        }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        { 
+            yield break;
         }
     }
 

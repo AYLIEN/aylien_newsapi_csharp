@@ -20,12 +20,14 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
 
 namespace Aylien.NewsApi.Model
 {
@@ -33,7 +35,7 @@ namespace Aylien.NewsApi.Model
     /// Trends
     /// </summary>
     [DataContract]
-    public partial class Trends :  IEquatable<Trends>
+    public partial class Trends :  IEquatable<Trends>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Trends" /> class.
@@ -133,6 +135,11 @@ namespace Aylien.NewsApi.Model
                     hash = hash * 59 + this.Field.GetHashCode();
                 return hash;
             }
+        }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        { 
+            yield break;
         }
     }
 

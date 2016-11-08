@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <version>1.2.0.0</version>
+    <version>1.3.0.0</version>
     <id>Aylien.NewsApi</id>
     <title>Aylien.NewsApi</title>
     <description>Aylien News API library for .NET</description>
     <authors>Aylien Inc., Hamed Ramezanian Nik</authors>
     <owners>Aylien Inc.</owners>
     <licenseUrl>https://github.com/AYLIEN/aylien_newsapi_csharp/blob/master/LICENSE</licenseUrl>
-    <projectUrl>https://github.com/AYLIEN/aylien_newsapi_csharp</projectUrl>
+    <projectUrl>https://newsapi.aylien.com/</projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <copyright>Copyright AYLIEN Inc. 2016</copyright>
     <releaseNotes>See GitHub for details of commits since previous version.</releaseNotes>
@@ -17,6 +17,9 @@
       <dependency id="Newtonsoft.Json" version="8.0.3" />
       <dependency id="RestSharp" version="105.2.3" />
     </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.ComponentModel.DataAnnotations" />
+    </frameworkAssemblies>
   </metadata>
   <files>
     <file src="README.md" target="tools/README.md" />

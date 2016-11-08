@@ -20,12 +20,14 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
 
 namespace Aylien.NewsApi.Model
 {
@@ -33,7 +35,7 @@ namespace Aylien.NewsApi.Model
     /// Entity
     /// </summary>
     [DataContract]
-    public partial class Entity :  IEquatable<Entity>
+    public partial class Entity :  IEquatable<Entity>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Entity" /> class.
@@ -181,6 +183,23 @@ namespace Aylien.NewsApi.Model
                     hash = hash * 59 + this.Indices.GetHashCode();
                 return hash;
             }
+        }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        { 
+            // Score (double?) maximum
+            if(this.Score > (double?)1.0)
+            {
+                yield return new ValidationResult("Invalid value for Score, must be a value less than or equal to 1.0.", new [] { "Score" });
+            }
+
+            // Score (double?) minimum
+            if(this.Score < (double?)0.0)
+            {
+                yield return new ValidationResult("Invalid value for Score, must be a value greater than or equal to 0.0.", new [] { "Score" });
+            }
+
+            yield break;
         }
     }
 
