@@ -1,6 +1,6 @@
 #region License
 /*
-Copyright 2016 Aylien, Inc. All Rights Reserved.
+Copyright 2017 Aylien, Inc. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -43,7 +43,7 @@ namespace Aylien.NewsApi.Model
         /// <param name="_Rank">The rank.</param>
         /// <param name="Country">The country code which the rank is in it.</param>
         /// <param name="FetchedAt">The fetched date of the rank.</param>
-        public Rank(int? _Rank = null, string Country = null, DateTime? FetchedAt = null)
+        public Rank(int? _Rank = default(int?), string Country = default(string), DateTime? FetchedAt = default(DateTime?))
         {
             this._Rank = _Rank;
             this.Country = Country;

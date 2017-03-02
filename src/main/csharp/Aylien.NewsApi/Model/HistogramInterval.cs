@@ -1,6 +1,6 @@
 #region License
 /*
-Copyright 2016 Aylien, Inc. All Rights Reserved.
+Copyright 2017 Aylien, Inc. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ namespace Aylien.NewsApi.Model
         /// </summary>
         /// <param name="Bin">Histogram bin.</param>
         /// <param name="Count">Histogram bin size.</param>
-        public HistogramInterval(int? Bin = null, int? Count = null)
+        public HistogramInterval(int? Bin = default(int?), int? Count = default(int?))
         {
             this.Bin = Bin;
             this.Count = Count;

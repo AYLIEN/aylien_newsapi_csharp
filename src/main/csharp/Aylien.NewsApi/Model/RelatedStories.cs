@@ -1,6 +1,6 @@
 #region License
 /*
-Copyright 2016 Aylien, Inc. All Rights Reserved.
+Copyright 2017 Aylien, Inc. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -45,7 +45,7 @@ namespace Aylien.NewsApi.Model
         /// <param name="StoryLanguage">The input story language.</param>
         /// <param name="_RelatedStories">An array of related stories for the input story.</param>
         /// <param name="Clusters">An array of clusters.</param>
-        public RelatedStories(string StoryTitle = null, string StoryBody = null, string StoryLanguage = null, List<Story> _RelatedStories = null, List<StoryCluster> Clusters = null)
+        public RelatedStories(string StoryTitle = default(string), string StoryBody = default(string), string StoryLanguage = default(string), List<Story> _RelatedStories = default(List<Story>), List<StoryCluster> Clusters = default(List<StoryCluster>))
         {
             this.StoryTitle = StoryTitle;
             this.StoryBody = StoryBody;

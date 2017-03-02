@@ -1,6 +1,6 @@
 #region License
 /*
-Copyright 2016 Aylien, Inc. All Rights Reserved.
+Copyright 2017 Aylien, Inc. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -43,7 +43,7 @@ namespace Aylien.NewsApi.Model
         /// <param name="_Stories">An array of stories.</param>
         /// <param name="Clusters">An array of clusters.</param>
         /// <param name="NextPageCursor">The next page cursor.</param>
-        public Stories(List<Story> _Stories = null, List<StoryCluster> Clusters = null, string NextPageCursor = null)
+        public Stories(List<Story> _Stories = default(List<Story>), List<StoryCluster> Clusters = default(List<StoryCluster>), string NextPageCursor = default(string))
         {
             this._Stories = _Stories;
             this.Clusters = Clusters;

@@ -1,6 +1,6 @@
 #region License
 /*
-Copyright 2016 Aylien, Inc. All Rights Reserved.
+Copyright 2017 Aylien, Inc. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ namespace Aylien.NewsApi.Model
         /// </summary>
         /// <param name="Count">The number of shares.</param>
         /// <param name="FetchedAt">The fetched date of the shares.</param>
-        public ShareCount(int? Count = null, DateTime? FetchedAt = null)
+        public ShareCount(int? Count = default(int?), DateTime? FetchedAt = default(DateTime?))
         {
             this.Count = Count;
             this.FetchedAt = FetchedAt;

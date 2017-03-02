@@ -1,6 +1,6 @@
 #region License
 /*
-Copyright 2016 Aylien, Inc. All Rights Reserved.
+Copyright 2017 Aylien, Inc. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -44,7 +44,7 @@ namespace Aylien.NewsApi.Model
         /// <param name="Period">The size of each date range expressed as an interval to be added to the lower bound..</param>
         /// <param name="PublishedAtStart">The start published date of the time series.</param>
         /// <param name="PublishedAtEnd">The end published date of the time series.</param>
-        public TimeSeriesList(List<TimeSeries> TimeSeries = null, string Period = null, DateTime? PublishedAtStart = null, DateTime? PublishedAtEnd = null)
+        public TimeSeriesList(List<TimeSeries> TimeSeries = default(List<TimeSeries>), string Period = default(string), DateTime? PublishedAtStart = default(DateTime?), DateTime? PublishedAtEnd = default(DateTime?))
         {
             this.TimeSeries = TimeSeries;
             this.Period = Period;

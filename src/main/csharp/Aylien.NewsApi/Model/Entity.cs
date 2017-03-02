@@ -1,6 +1,6 @@
 #region License
 /*
-Copyright 2016 Aylien, Inc. All Rights Reserved.
+Copyright 2017 Aylien, Inc. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -45,7 +45,7 @@ namespace Aylien.NewsApi.Model
         /// <param name="Types">An array of the dbpedia types.</param>
         /// <param name="Links">Related links to the entity.</param>
         /// <param name="Indices">The indices of the entity text.</param>
-        public Entity(string Text = null, double? Score = null, List<string> Types = null, EntityLinks Links = null, List<List<int?>> Indices = null)
+        public Entity(string Text = default(string), double? Score = default(double?), List<string> Types = default(List<string>), EntityLinks Links = default(EntityLinks), List<List<int?>> Indices = default(List<List<int?>>))
         {
             this.Text = Text;
             this.Score = Score;
@@ -188,15 +188,15 @@ namespace Aylien.NewsApi.Model
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         { 
             // Score (double?) maximum
-            if(this.Score > (double?)1.0)
+            if(this.Score > (double?)1)
             {
-                yield return new ValidationResult("Invalid value for Score, must be a value less than or equal to 1.0.", new [] { "Score" });
+                yield return new ValidationResult("Invalid value for Score, must be a value less than or equal to 1.", new [] { "Score" });
             }
 
             // Score (double?) minimum
-            if(this.Score < (double?)0.0)
+            if(this.Score < (double?)0)
             {
-                yield return new ValidationResult("Invalid value for Score, must be a value greater than or equal to 0.0.", new [] { "Score" });
+                yield return new ValidationResult("Invalid value for Score, must be a value greater than or equal to 0.", new [] { "Score" });
             }
 
             yield break;

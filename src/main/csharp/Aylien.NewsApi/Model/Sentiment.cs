@@ -1,6 +1,6 @@
 #region License
 /*
-Copyright 2016 Aylien, Inc. All Rights Reserved.
+Copyright 2017 Aylien, Inc. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -75,7 +75,7 @@ namespace Aylien.NewsApi.Model
         /// </summary>
         /// <param name="Polarity">Polarity of the sentiment.</param>
         /// <param name="Score">Polarity score of the sentiment.</param>
-        public Sentiment(PolarityEnum? Polarity = null, double? Score = null)
+        public Sentiment(PolarityEnum? Polarity = default(PolarityEnum?), double? Score = default(double?))
         {
             this.Polarity = Polarity;
             this.Score = Score;
@@ -167,15 +167,15 @@ namespace Aylien.NewsApi.Model
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         { 
             // Score (double?) maximum
-            if(this.Score > (double?)1.0)
+            if(this.Score > (double?)1)
             {
-                yield return new ValidationResult("Invalid value for Score, must be a value less than or equal to 1.0.", new [] { "Score" });
+                yield return new ValidationResult("Invalid value for Score, must be a value less than or equal to 1.", new [] { "Score" });
             }
 
             // Score (double?) minimum
-            if(this.Score < (double?)0.0)
+            if(this.Score < (double?)0)
             {
-                yield return new ValidationResult("Invalid value for Score, must be a value greater than or equal to 0.0.", new [] { "Score" });
+                yield return new ValidationResult("Invalid value for Score, must be a value greater than or equal to 0.", new [] { "Score" });
             }
 
             yield break;

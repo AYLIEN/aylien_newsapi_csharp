@@ -1,6 +1,6 @@
 #region License
 /*
-Copyright 2016 Aylien, Inc. All Rights Reserved.
+Copyright 2017 Aylien, Inc. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -60,7 +60,7 @@ namespace Aylien.NewsApi.Model
         /// <param name="Language">Language of the story.</param>
         /// <param name="PublishedAt">Published date of the story.</param>
         /// <param name="Links">Links which is related to the story.</param>
-        public Story(long? Id = null, string Title = null, string Body = null, Summary Summary = null, Source Source = null, Author Author = null, Entities Entities = null, List<string> Keywords = null, List<string> Hashtags = null, int? CharactersCount = null, int? WordsCount = null, int? SentencesCount = null, int? ParagraphsCount = null, List<Category> Categories = null, ShareCounts SocialSharesCount = null, List<Media> Media = null, Sentiments Sentiment = null, string Language = null, DateTime? PublishedAt = null, StoryLinks Links = null)
+        public Story(long? Id = default(long?), string Title = default(string), string Body = default(string), Summary Summary = default(Summary), Source Source = default(Source), Author Author = default(Author), Entities Entities = default(Entities), List<string> Keywords = default(List<string>), List<string> Hashtags = default(List<string>), int? CharactersCount = default(int?), int? WordsCount = default(int?), int? SentencesCount = default(int?), int? ParagraphsCount = default(int?), List<Category> Categories = default(List<Category>), ShareCounts SocialSharesCount = default(ShareCounts), List<Media> Media = default(List<Media>), Sentiments Sentiment = default(Sentiments), string Language = default(string), DateTime? PublishedAt = default(DateTime?), StoryLinks Links = default(StoryLinks))
         {
             this.Id = Id;
             this.Title = Title;

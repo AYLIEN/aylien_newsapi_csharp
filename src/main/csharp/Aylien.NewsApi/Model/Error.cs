@@ -1,6 +1,6 @@
 #region License
 /*
-Copyright 2016 Aylien, Inc. All Rights Reserved.
+Copyright 2017 Aylien, Inc. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -46,7 +46,7 @@ namespace Aylien.NewsApi.Model
         /// <param name="Code">Code.</param>
         /// <param name="Title">Title.</param>
         /// <param name="Detail">Detail.</param>
-        public Error(string Id = null, ErrorLinks Links = null, string Status = null, string Code = null, string Title = null, string Detail = null)
+        public Error(string Id = default(string), ErrorLinks Links = default(ErrorLinks), string Status = default(string), string Code = default(string), string Title = default(string), string Detail = default(string))
         {
             this.Id = Id;
             this.Links = Links;

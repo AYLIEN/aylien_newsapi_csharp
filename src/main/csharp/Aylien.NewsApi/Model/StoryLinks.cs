@@ -1,6 +1,6 @@
 #region License
 /*
-Copyright 2016 Aylien, Inc. All Rights Reserved.
+Copyright 2017 Aylien, Inc. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -43,11 +43,13 @@ namespace Aylien.NewsApi.Model
         /// <param name="Permalink">The story permalink URL.</param>
         /// <param name="RelatedStories">The related stories URL.</param>
         /// <param name="Coverages">The coverages URL.</param>
-        public StoryLinks(string Permalink = null, string RelatedStories = null, string Coverages = null)
+        /// <param name="Canonical">The story canonical URL.</param>
+        public StoryLinks(string Permalink = default(string), string RelatedStories = default(string), string Coverages = default(string), string Canonical = default(string))
         {
             this.Permalink = Permalink;
             this.RelatedStories = RelatedStories;
             this.Coverages = Coverages;
+            this.Canonical = Canonical;
         }
         
         /// <summary>
@@ -69,6 +71,12 @@ namespace Aylien.NewsApi.Model
         [DataMember(Name="coverages", EmitDefaultValue=false)]
         public string Coverages { get; set; }
         /// <summary>
+        /// The story canonical URL
+        /// </summary>
+        /// <value>The story canonical URL</value>
+        [DataMember(Name="canonical", EmitDefaultValue=false)]
+        public string Canonical { get; set; }
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -79,6 +87,7 @@ namespace Aylien.NewsApi.Model
             sb.Append("  Permalink: ").Append(Permalink).Append("\n");
             sb.Append("  RelatedStories: ").Append(RelatedStories).Append("\n");
             sb.Append("  Coverages: ").Append(Coverages).Append("\n");
+            sb.Append("  Canonical: ").Append(Canonical).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -129,6 +138,11 @@ namespace Aylien.NewsApi.Model
                     this.Coverages == other.Coverages ||
                     this.Coverages != null &&
                     this.Coverages.Equals(other.Coverages)
+                ) && 
+                (
+                    this.Canonical == other.Canonical ||
+                    this.Canonical != null &&
+                    this.Canonical.Equals(other.Canonical)
                 );
         }
 
@@ -149,6 +163,8 @@ namespace Aylien.NewsApi.Model
                     hash = hash * 59 + this.RelatedStories.GetHashCode();
                 if (this.Coverages != null)
                     hash = hash * 59 + this.Coverages.GetHashCode();
+                if (this.Canonical != null)
+                    hash = hash * 59 + this.Canonical.GetHashCode();
                 return hash;
             }
         }

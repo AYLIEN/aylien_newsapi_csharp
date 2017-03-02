@@ -1,6 +1,6 @@
 #region License
 /*
-Copyright 2016 Aylien, Inc. All Rights Reserved.
+Copyright 2017 Aylien, Inc. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -43,7 +43,7 @@ namespace Aylien.NewsApi.Model
         /// <param name="Id">A unique identification for the author.</param>
         /// <param name="Name">The extracted author full name.</param>
         /// <param name="AvatarUrl">A URL which points to the author avatar.</param>
-        public Author(long? Id = null, string Name = null, string AvatarUrl = null)
+        public Author(long? Id = default(long?), string Name = default(string), string AvatarUrl = default(string))
         {
             this.Id = Id;
             this.Name = Name;

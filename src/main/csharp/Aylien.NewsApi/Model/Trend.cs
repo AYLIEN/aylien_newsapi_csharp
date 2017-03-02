@@ -1,6 +1,6 @@
 #region License
 /*
-Copyright 2016 Aylien, Inc. All Rights Reserved.
+Copyright 2017 Aylien, Inc. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ namespace Aylien.NewsApi.Model
         /// </summary>
         /// <param name="Value">The value of the trend.</param>
         /// <param name="Count">The count of the trend.</param>
-        public Trend(string Value = null, int? Count = null)
+        public Trend(string Value = default(string), int? Count = default(int?))
         {
             this.Value = Value;
             this.Count = Count;

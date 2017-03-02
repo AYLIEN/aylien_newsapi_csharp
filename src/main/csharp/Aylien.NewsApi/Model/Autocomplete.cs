@@ -1,6 +1,6 @@
 #region License
 /*
-Copyright 2016 Aylien, Inc. All Rights Reserved.
+Copyright 2017 Aylien, Inc. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ namespace Aylien.NewsApi.Model
         /// </summary>
         /// <param name="Id">ID of the autocomplete.</param>
         /// <param name="Text">Text of the autocomplete.</param>
-        public Autocomplete(string Id = null, string Text = null)
+        public Autocomplete(string Id = default(string), string Text = default(string))
         {
             this.Id = Id;
             this.Text = Text;

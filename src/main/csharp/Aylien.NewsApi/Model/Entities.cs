@@ -1,6 +1,6 @@
 #region License
 /*
-Copyright 2016 Aylien, Inc. All Rights Reserved.
+Copyright 2017 Aylien, Inc. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ namespace Aylien.NewsApi.Model
         /// </summary>
         /// <param name="Title">An array of extracted entities from the story title.</param>
         /// <param name="Body">An array of extracted entities from the story body.</param>
-        public Entities(List<Entity> Title = null, List<Entity> Body = null)
+        public Entities(List<Entity> Title = default(List<Entity>), List<Entity> Body = default(List<Entity>))
         {
             this.Title = Title;
             this.Body = Body;

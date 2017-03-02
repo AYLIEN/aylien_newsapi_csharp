@@ -1,6 +1,6 @@
 #region License
 /*
-Copyright 2016 Aylien, Inc. All Rights Reserved.
+Copyright 2017 Aylien, Inc. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -148,7 +148,7 @@ namespace Aylien.NewsApi.Model
         /// <param name="ContentLength">The content length of media.</param>
         /// <param name="Width">The width of media.</param>
         /// <param name="Height">The height of media.</param>
-        public Media(TypeEnum? Type = null, string Url = null, FormatEnum? Format = null, int? ContentLength = null, int? Width = null, int? Height = null)
+        public Media(TypeEnum? Type = default(TypeEnum?), string Url = default(string), FormatEnum? Format = default(FormatEnum?), int? ContentLength = default(int?), int? Width = default(int?), int? Height = default(int?))
         {
             this.Type = Type;
             this.Url = Url;

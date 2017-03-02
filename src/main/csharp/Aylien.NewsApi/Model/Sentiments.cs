@@ -1,6 +1,6 @@
 #region License
 /*
-Copyright 2016 Aylien, Inc. All Rights Reserved.
+Copyright 2017 Aylien, Inc. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ namespace Aylien.NewsApi.Model
         /// </summary>
         /// <param name="Title">The sentiment for the story title.</param>
         /// <param name="Body">The sentiment for the story body.</param>
-        public Sentiments(Sentiment Title = null, Sentiment Body = null)
+        public Sentiments(Sentiment Title = default(Sentiment), Sentiment Body = default(Sentiment))
         {
             this.Title = Title;
             this.Body = Body;

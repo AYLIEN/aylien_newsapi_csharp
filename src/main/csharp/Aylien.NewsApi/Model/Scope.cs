@@ -1,6 +1,6 @@
 #region License
 /*
-Copyright 2016 Aylien, Inc. All Rights Reserved.
+Copyright 2017 Aylien, Inc. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -77,7 +77,7 @@ namespace Aylien.NewsApi.Model
         /// <param name="State">The scope by state.</param>
         /// <param name="City">The scope by city.</param>
         /// <param name="Level">The scope by level.</param>
-        public Scope(string Country = null, string State = null, string City = null, LevelEnum? Level = null)
+        public Scope(string Country = default(string), string State = default(string), string City = default(string), LevelEnum? Level = default(LevelEnum?))
         {
             this.Country = Country;
             this.State = State;

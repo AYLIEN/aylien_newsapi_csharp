@@ -1,6 +1,6 @@
 #region License
 /*
-Copyright 2016 Aylien, Inc. All Rights Reserved.
+Copyright 2017 Aylien, Inc. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -54,7 +54,7 @@ namespace Aylien.NewsApi.Client
                              string tempFolderPath = null,
                              string dateTimeFormat = null,
                              int timeout = 100000,
-                             string userAgent = "aylien-news-api/1.3.0/csharp"
+                             string userAgent = "aylien-news-api/2.0.0/csharp"
                             )
         {
             setApiClientUsingDefault(apiClient);
@@ -89,7 +89,7 @@ namespace Aylien.NewsApi.Client
         /// Version of the package.
         /// </summary>
         /// <value>Version of the package.</value>
-        public const string Version = "1.3.0";
+        public const string Version = "2.0.0";
 
         /// <summary>
         /// Gets or sets the default Configuration.
@@ -251,7 +251,7 @@ namespace Aylien.NewsApi.Client
                 return apiKeyValue;
         }
 
-        private string _tempFolderPath = Path.GetTempPath();
+        private string _tempFolderPath;
 
         /// <summary>
         /// Gets or sets the temporary folder path to store the files downloaded from the server.
@@ -259,7 +259,15 @@ namespace Aylien.NewsApi.Client
         /// <value>Folder path.</value>
         public String TempFolderPath
         {
-            get { return _tempFolderPath; }
+            get
+            {
+                // default to Path.GetTempPath() if _tempFolderPath is not set
+                if (String.IsNullOrEmpty(_tempFolderPath))
+                {
+                    _tempFolderPath = Path.GetTempPath();
+                }
+                return _tempFolderPath;
+            }
 
             set
             {
@@ -326,7 +334,7 @@ namespace Aylien.NewsApi.Client
                      .GetReferencedAssemblies()
                      .Where(x => x.Name == "System.Core").First().Version.ToString()  + "\n";
             report += "    Version of the API: 1.0\n";
-            report += "    SDK Package Version: 1.3.0\n";
+            report += "    SDK Package Version: 2.0.0\n";
 
             return report;
         }

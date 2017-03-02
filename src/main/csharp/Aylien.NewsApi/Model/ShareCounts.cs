@@ -1,6 +1,6 @@
 #region License
 /*
-Copyright 2016 Aylien, Inc. All Rights Reserved.
+Copyright 2017 Aylien, Inc. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -44,7 +44,7 @@ namespace Aylien.NewsApi.Model
         /// <param name="GooglePlus">Google Plus shares count.</param>
         /// <param name="Linkedin">LinkedIn shares count.</param>
         /// <param name="Reddit">Reddit shares count.</param>
-        public ShareCounts(List<ShareCount> Facebook = null, List<ShareCount> GooglePlus = null, List<ShareCount> Linkedin = null, List<ShareCount> Reddit = null)
+        public ShareCounts(List<ShareCount> Facebook = default(List<ShareCount>), List<ShareCount> GooglePlus = default(List<ShareCount>), List<ShareCount> Linkedin = default(List<ShareCount>), List<ShareCount> Reddit = default(List<ShareCount>))
         {
             this.Facebook = Facebook;
             this.GooglePlus = GooglePlus;

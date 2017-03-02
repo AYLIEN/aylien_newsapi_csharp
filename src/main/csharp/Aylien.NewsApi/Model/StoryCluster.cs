@@ -1,6 +1,6 @@
 #region License
 /*
-Copyright 2016 Aylien, Inc. All Rights Reserved.
+Copyright 2017 Aylien, Inc. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -45,7 +45,7 @@ namespace Aylien.NewsApi.Model
         /// <param name="Size">Size of the cluster.</param>
         /// <param name="Stories">Story ids which are in the cluster.</param>
         /// <param name="Score">The cluster score.</param>
-        public StoryCluster(int? Id = null, List<string> Phrases = null, int? Size = null, List<long?> Stories = null, double? Score = null)
+        public StoryCluster(int? Id = default(int?), List<string> Phrases = default(List<string>), int? Size = default(int?), List<long?> Stories = default(List<long?>), double? Score = default(double?))
         {
             this.Id = Id;
             this.Phrases = Phrases;

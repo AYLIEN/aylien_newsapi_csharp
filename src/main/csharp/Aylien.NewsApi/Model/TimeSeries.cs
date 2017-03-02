@@ -1,6 +1,6 @@
 #region License
 /*
-Copyright 2016 Aylien, Inc. All Rights Reserved.
+Copyright 2017 Aylien, Inc. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ namespace Aylien.NewsApi.Model
         /// </summary>
         /// <param name="PublishedAt">The published date of the time series bin.</param>
         /// <param name="Count">The count of time series bin.</param>
-        public TimeSeries(DateTime? PublishedAt = null, int? Count = null)
+        public TimeSeries(DateTime? PublishedAt = default(DateTime?), int? Count = default(int?))
         {
             this.PublishedAt = PublishedAt;
             this.Count = Count;

@@ -1,6 +1,6 @@
 #region License
 /*
-Copyright 2016 Aylien, Inc. All Rights Reserved.
+Copyright 2017 Aylien, Inc. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -27,6 +27,6 @@ namespace Aylien.NewsApi.Client
     /// </summary>
     /// <param name="methodName">Method name</param>
     /// <param name="response">Response</param>
-    /// <returns>Exceptions</returns>    
+    /// <returns>Exceptions</returns>
     public delegate Exception ExceptionFactory(string methodName, IRestResponse response);
 }

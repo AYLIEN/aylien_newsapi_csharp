@@ -1,6 +1,6 @@
 #region License
 /*
-Copyright 2016 Aylien, Inc. All Rights Reserved.
+Copyright 2017 Aylien, Inc. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -51,7 +51,7 @@ namespace Aylien.NewsApi.Model
         /// <param name="Locations">The source locations which are tend to be the physical locations of the source, e.g. BBC headquarter is located in London..</param>
         /// <param name="Scopes">The source scopes which is tend to be scope locations of the source, e.g. BBC scopes is international..</param>
         /// <param name="Rankings">The web rankings of the source.</param>
-        public Source(int? Id = null, string Name = null, string Title = null, string Description = null, int? LinksInCount = null, string HomePageUrl = null, string Domain = null, string LogoUrl = null, List<Location> Locations = null, List<Scope> Scopes = null, Rankings Rankings = null)
+        public Source(int? Id = default(int?), string Name = default(string), string Title = default(string), string Description = default(string), int? LinksInCount = default(int?), string HomePageUrl = default(string), string Domain = default(string), string LogoUrl = default(string), List<Location> Locations = default(List<Location>), List<Scope> Scopes = default(List<Scope>), Rankings Rankings = default(Rankings))
         {
             this.Id = Id;
             this.Name = Name;

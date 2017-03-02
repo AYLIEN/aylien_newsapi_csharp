@@ -1,6 +1,6 @@
 #region License
 /*
-Copyright 2016 Aylien, Inc. All Rights Reserved.
+Copyright 2017 Aylien, Inc. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ namespace Aylien.NewsApi.Model
         /// </summary>
         /// <param name="_Trends">An array of trends.</param>
         /// <param name="Field">The field of trends.</param>
-        public Trends(List<Trend> _Trends = null, string Field = null)
+        public Trends(List<Trend> _Trends = default(List<Trend>), string Field = default(string))
         {
             this._Trends = _Trends;
             this.Field = Field;

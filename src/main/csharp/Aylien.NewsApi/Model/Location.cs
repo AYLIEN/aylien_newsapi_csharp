@@ -1,6 +1,6 @@
 #region License
 /*
-Copyright 2016 Aylien, Inc. All Rights Reserved.
+Copyright 2017 Aylien, Inc. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -43,7 +43,7 @@ namespace Aylien.NewsApi.Model
         /// <param name="Country">The country code of the location. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes..</param>
         /// <param name="State">The state of the location.</param>
         /// <param name="City">The city of the location.</param>
-        public Location(string Country = null, string State = null, string City = null)
+        public Location(string Country = default(string), string State = default(string), string City = default(string))
         {
             this.Country = Country;
             this.State = State;

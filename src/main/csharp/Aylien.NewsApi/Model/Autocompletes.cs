@@ -1,6 +1,6 @@
 #region License
 /*
-Copyright 2016 Aylien, Inc. All Rights Reserved.
+Copyright 2017 Aylien, Inc. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -41,7 +41,7 @@ namespace Aylien.NewsApi.Model
         /// Initializes a new instance of the <see cref="Autocompletes" /> class.
         /// </summary>
         /// <param name="_Autocompletes">An array of autocompletes.</param>
-        public Autocompletes(List<Autocomplete> _Autocompletes = null)
+        public Autocompletes(List<Autocomplete> _Autocompletes = default(List<Autocomplete>))
         {
             this._Autocompletes = _Autocompletes;
         }

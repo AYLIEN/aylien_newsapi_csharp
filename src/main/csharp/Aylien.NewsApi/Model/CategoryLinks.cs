@@ -1,6 +1,6 @@
 #region License
 /*
-Copyright 2016 Aylien, Inc. All Rights Reserved.
+Copyright 2017 Aylien, Inc. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ namespace Aylien.NewsApi.Model
         /// </summary>
         /// <param name="Self">A URL pointing to the category.</param>
         /// <param name="Parent">A URL pointing to the parent category.</param>
-        public CategoryLinks(string Self = null, string Parent = null)
+        public CategoryLinks(string Self = default(string), string Parent = default(string))
         {
             this.Self = Self;
             this.Parent = Parent;

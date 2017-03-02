@@ -1,6 +1,6 @@
 #region License
 /*
-Copyright 2016 Aylien, Inc. All Rights Reserved.
+Copyright 2017 Aylien, Inc. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -73,7 +73,7 @@ namespace Aylien.NewsApi.Model
         /// <param name="Score">The score of the category.</param>
         /// <param name="Confident">It defines whether the extracted category is confident or not.</param>
         /// <param name="Links">Related links for the category.</param>
-        public Category(string Id = null, TaxonomyEnum? Taxonomy = null, int? Level = null, double? Score = null, bool? Confident = null, CategoryLinks Links = null)
+        public Category(string Id = default(string), TaxonomyEnum? Taxonomy = default(TaxonomyEnum?), int? Level = default(int?), double? Score = default(double?), bool? Confident = default(bool?), CategoryLinks Links = default(CategoryLinks))
         {
             this.Id = Id;
             this.Taxonomy = Taxonomy;

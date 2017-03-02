@@ -1,6 +1,6 @@
 #region License
 /*
-Copyright 2016 Aylien, Inc. All Rights Reserved.
+Copyright 2017 Aylien, Inc. All Rights Reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -45,7 +45,7 @@ namespace Aylien.NewsApi.Model
         /// <param name="IntervalEnd">The end interval of the histogram.</param>
         /// <param name="IntervalWidth">The width of the histogram.</param>
         /// <param name="Field">Field.</param>
-        public Histograms(List<HistogramInterval> Intervals = null, int? IntervalStart = null, int? IntervalEnd = null, int? IntervalWidth = null, string Field = null)
+        public Histograms(List<HistogramInterval> Intervals = default(List<HistogramInterval>), int? IntervalStart = default(int?), int? IntervalEnd = default(int?), int? IntervalWidth = default(int?), string Field = default(string))
         {
             this.Intervals = Intervals;
             this.IntervalStart = IntervalStart;
