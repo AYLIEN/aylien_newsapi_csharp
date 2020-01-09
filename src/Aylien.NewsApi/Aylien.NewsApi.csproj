@@ -12,7 +12,7 @@ Contact: support@aylien.com
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5ED0A3EC-0461-4092-862B-D7B0EFEE25F5}</ProjectGuid>
+    <ProjectGuid>{FE212260-F0B9-4745-BF2C-7F831F3EB3CE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Aylien.NewsApi</RootNamespace>
