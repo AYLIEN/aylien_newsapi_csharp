@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Polarity** | **string** | Polarity of the sentiment | [optional] 
+**Polarity** | **SentimentPolarity** |  | [optional] 
 **Score** | **double** | Polarity score of the sentiment | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models)

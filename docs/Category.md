@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Level** | **int** | The level of the category | [optional] 
 **Links** | [**CategoryLinks**](CategoryLinks.md) |  | [optional] 
 **Score** | **double** | The score of the category | [optional] 
-**Taxonomy** | **string** | The taxonomy of the category | [optional] 
+**Taxonomy** | **CategoryTaxonomy** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to API list]](../README.md#documentation-for-api-endpoints)

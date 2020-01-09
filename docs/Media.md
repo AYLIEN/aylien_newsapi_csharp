@@ -6,9 +6,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ContentLength** | **int** | The content length of media | [optional] 
-**Format** | **string** | The format of media | [optional] 
+**Format** | **MediaFormat** |  | [optional] 
 **Height** | **int** | The height of media | [optional] 
-**Type** | **string** | The type of media | [optional] 
+**Type** | **MediaType** |  | [optional] 
 **Url** | **string** | A URL which points to the media file | [optional] 
 **Width** | **int** | The width of media | [optional] 
 

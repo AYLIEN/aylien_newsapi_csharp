@@ -29,46 +29,18 @@ namespace Aylien.NewsApi.Model
     public partial class Scope :  IEquatable<Scope>
     {
         /// <summary>
-        /// The scope by level
+        /// Gets or Sets Level
         /// </summary>
-        /// <value>The scope by level</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum LevelEnum
-        {
-            /// <summary>
-            /// Enum International for value: international
-            /// </summary>
-            [EnumMember(Value = "international")]
-            International = 1,
-
-            /// <summary>
-            /// Enum National for value: national
-            /// </summary>
-            [EnumMember(Value = "national")]
-            National = 2,
-
-            /// <summary>
-            /// Enum Local for value: local
-            /// </summary>
-            [EnumMember(Value = "local")]
-            Local = 3
-
-        }
-
-        /// <summary>
-        /// The scope by level
-        /// </summary>
-        /// <value>The scope by level</value>
         [DataMember(Name="level", EmitDefaultValue=false)]
-        public LevelEnum? Level { get; set; }
+        public ScopeLevel? Level { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Scope" /> class.
         /// </summary>
         /// <param name="city">The scope by city.</param>
         /// <param name="country">The source scope by country code. It supports [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. .</param>
-        /// <param name="level">The scope by level.</param>
+        /// <param name="level">level.</param>
         /// <param name="state">The scope by state.</param>
-        public Scope(string city = default(string), string country = default(string), LevelEnum? level = default(LevelEnum?), string state = default(string))
+        public Scope(string city = default(string), string country = default(string), ScopeLevel level = default(ScopeLevel), string state = default(string))
         {
             this.City = city;
             this.Country = country;

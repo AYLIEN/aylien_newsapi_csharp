@@ -29,117 +29,25 @@ namespace Aylien.NewsApi.Model
     public partial class Media :  IEquatable<Media>
     {
         /// <summary>
-        /// The format of media
+        /// Gets or Sets Format
         /// </summary>
-        /// <value>The format of media</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum FormatEnum
-        {
-            /// <summary>
-            /// Enum BMP for value: BMP
-            /// </summary>
-            [EnumMember(Value = "BMP")]
-            BMP = 1,
-
-            /// <summary>
-            /// Enum GIF for value: GIF
-            /// </summary>
-            [EnumMember(Value = "GIF")]
-            GIF = 2,
-
-            /// <summary>
-            /// Enum JPEG for value: JPEG
-            /// </summary>
-            [EnumMember(Value = "JPEG")]
-            JPEG = 3,
-
-            /// <summary>
-            /// Enum PNG for value: PNG
-            /// </summary>
-            [EnumMember(Value = "PNG")]
-            PNG = 4,
-
-            /// <summary>
-            /// Enum TIFF for value: TIFF
-            /// </summary>
-            [EnumMember(Value = "TIFF")]
-            TIFF = 5,
-
-            /// <summary>
-            /// Enum PSD for value: PSD
-            /// </summary>
-            [EnumMember(Value = "PSD")]
-            PSD = 6,
-
-            /// <summary>
-            /// Enum ICO for value: ICO
-            /// </summary>
-            [EnumMember(Value = "ICO")]
-            ICO = 7,
-
-            /// <summary>
-            /// Enum CUR for value: CUR
-            /// </summary>
-            [EnumMember(Value = "CUR")]
-            CUR = 8,
-
-            /// <summary>
-            /// Enum WEBP for value: WEBP
-            /// </summary>
-            [EnumMember(Value = "WEBP")]
-            WEBP = 9,
-
-            /// <summary>
-            /// Enum SVG for value: SVG
-            /// </summary>
-            [EnumMember(Value = "SVG")]
-            SVG = 10
-
-        }
-
-        /// <summary>
-        /// The format of media
-        /// </summary>
-        /// <value>The format of media</value>
         [DataMember(Name="format", EmitDefaultValue=false)]
-        public FormatEnum? Format { get; set; }
+        public MediaFormat? Format { get; set; }
         /// <summary>
-        /// The type of media
+        /// Gets or Sets Type
         /// </summary>
-        /// <value>The type of media</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum TypeEnum
-        {
-            /// <summary>
-            /// Enum Image for value: image
-            /// </summary>
-            [EnumMember(Value = "image")]
-            Image = 1,
-
-            /// <summary>
-            /// Enum Video for value: video
-            /// </summary>
-            [EnumMember(Value = "video")]
-            Video = 2
-
-        }
-
-        /// <summary>
-        /// The type of media
-        /// </summary>
-        /// <value>The type of media</value>
         [DataMember(Name="type", EmitDefaultValue=false)]
-        public TypeEnum? Type { get; set; }
+        public MediaType? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Media" /> class.
         /// </summary>
         /// <param name="contentLength">The content length of media.</param>
-        /// <param name="format">The format of media.</param>
+        /// <param name="format">format.</param>
         /// <param name="height">The height of media.</param>
-        /// <param name="type">The type of media.</param>
+        /// <param name="type">type.</param>
         /// <param name="url">A URL which points to the media file.</param>
         /// <param name="width">The width of media.</param>
-        public Media(int contentLength = default(int), FormatEnum? format = default(FormatEnum?), int height = default(int), TypeEnum? type = default(TypeEnum?), string url = default(string), int width = default(int))
+        public Media(int contentLength = default(int), MediaFormat format = default(MediaFormat), int height = default(int), MediaType type = default(MediaType), string url = default(string), int width = default(int))
         {
             this.ContentLength = contentLength;
             this.Format = format;

@@ -29,32 +29,10 @@ namespace Aylien.NewsApi.Model
     public partial class Category :  IEquatable<Category>
     {
         /// <summary>
-        /// The taxonomy of the category
+        /// Gets or Sets Taxonomy
         /// </summary>
-        /// <value>The taxonomy of the category</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum TaxonomyEnum
-        {
-            /// <summary>
-            /// Enum IabQag for value: iab-qag
-            /// </summary>
-            [EnumMember(Value = "iab-qag")]
-            IabQag = 1,
-
-            /// <summary>
-            /// Enum IptcSubjectcode for value: iptc-subjectcode
-            /// </summary>
-            [EnumMember(Value = "iptc-subjectcode")]
-            IptcSubjectcode = 2
-
-        }
-
-        /// <summary>
-        /// The taxonomy of the category
-        /// </summary>
-        /// <value>The taxonomy of the category</value>
         [DataMember(Name="taxonomy", EmitDefaultValue=false)]
-        public TaxonomyEnum? Taxonomy { get; set; }
+        public CategoryTaxonomy? Taxonomy { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Category" /> class.
         /// </summary>
@@ -63,8 +41,8 @@ namespace Aylien.NewsApi.Model
         /// <param name="level">The level of the category.</param>
         /// <param name="links">links.</param>
         /// <param name="score">The score of the category.</param>
-        /// <param name="taxonomy">The taxonomy of the category.</param>
-        public Category(bool confident = default(bool), string id = default(string), int level = default(int), CategoryLinks links = default(CategoryLinks), double score = default(double), TaxonomyEnum? taxonomy = default(TaxonomyEnum?))
+        /// <param name="taxonomy">taxonomy.</param>
+        public Category(bool confident = default(bool), string id = default(string), int level = default(int), CategoryLinks links = default(CategoryLinks), double score = default(double), CategoryTaxonomy taxonomy = default(CategoryTaxonomy))
         {
             this.Confident = confident;
             this.Id = id;

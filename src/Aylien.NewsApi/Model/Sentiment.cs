@@ -29,44 +29,16 @@ namespace Aylien.NewsApi.Model
     public partial class Sentiment :  IEquatable<Sentiment>
     {
         /// <summary>
-        /// Polarity of the sentiment
+        /// Gets or Sets Polarity
         /// </summary>
-        /// <value>Polarity of the sentiment</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum PolarityEnum
-        {
-            /// <summary>
-            /// Enum Positive for value: positive
-            /// </summary>
-            [EnumMember(Value = "positive")]
-            Positive = 1,
-
-            /// <summary>
-            /// Enum Neutral for value: neutral
-            /// </summary>
-            [EnumMember(Value = "neutral")]
-            Neutral = 2,
-
-            /// <summary>
-            /// Enum Negative for value: negative
-            /// </summary>
-            [EnumMember(Value = "negative")]
-            Negative = 3
-
-        }
-
-        /// <summary>
-        /// Polarity of the sentiment
-        /// </summary>
-        /// <value>Polarity of the sentiment</value>
         [DataMember(Name="polarity", EmitDefaultValue=false)]
-        public PolarityEnum? Polarity { get; set; }
+        public SentimentPolarity? Polarity { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Sentiment" /> class.
         /// </summary>
-        /// <param name="polarity">Polarity of the sentiment.</param>
+        /// <param name="polarity">polarity.</param>
         /// <param name="score">Polarity score of the sentiment.</param>
-        public Sentiment(PolarityEnum? polarity = default(PolarityEnum?), double score = default(double))
+        public Sentiment(SentimentPolarity polarity = default(SentimentPolarity), double score = default(double))
         {
             this.Polarity = polarity;
             this.Score = score;

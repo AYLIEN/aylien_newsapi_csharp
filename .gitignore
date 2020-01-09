@@ -6,6 +6,7 @@
 *.suo
 *.user
 *.sln.docstates
+./nuget
 
 # Build results
 
@@ -183,6 +184,3 @@ $RECYCLE.BIN/
 
 # Visual Studio 2014 CTP
 **/*.sln.ide
-
-vendor/
-nuget.exe
